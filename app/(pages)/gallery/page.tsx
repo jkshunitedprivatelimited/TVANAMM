@@ -20,7 +20,7 @@ export default async function GalleryPage() {
     category: img.categoryTag || 'All',
     src: img.image ? urlFor(img.image as Record<string, unknown>).url() : '',
     title: img.title || img.altText || `Gallery image ${i}`,
-  })).filter((img: { src: string }) => img.src) || []; // Filter out bad images
+  })).filter((img: { src: string }) => img.src).reverse() || []; // Reverse to show newest first
 
   return (
     <GalleryClient 

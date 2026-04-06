@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { WhatsappFloat } from "@/components/ui/WhatsappFloat";
-import { CookieConsent } from "@/components/ui/CookieConsent";
-import { FranchisePopup } from "@/components/modals/FranchisePopup";
+import { SiteLayoutWrapper } from "@/components/layout/SiteLayoutWrapper";
 import { Analytics } from "@/components/layout/Analytics";
 import { getSiteSettings } from "@/lib/sanity/queries";
 
@@ -37,15 +33,10 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-gray-900 bg-white min-h-screen flex flex-col`}>
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer settings={settings} />
-        <WhatsappFloat phone={settings?.whatsappNumber} />
-        <CookieConsent />
-        <FranchisePopup />
-        <Analytics />
+          <SiteLayoutWrapper settings={settings as any}>
+            {children}
+          </SiteLayoutWrapper>
+          <Analytics />
       </body>
     </html>
   );

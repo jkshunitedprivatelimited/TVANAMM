@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 // Use same filters as before
-const filters = ['All', 'Outlets', 'Products', 'Franchise Owners', 'Before & After'];
+const filters = ['All', 'Outlets', 'Products', 'Franchise Owners'];
 
 // Fallback images if completely empty
 const fallbackGallery = Array.from({ length: 12 }).map((_, i) => {
@@ -14,7 +14,7 @@ const fallbackGallery = Array.from({ length: 12 }).map((_, i) => {
   const titles = ['Premium Tea Assortment', 'Refreshing Iced Peach Tea'];
   return {
     id: `fallback-${i}`,
-    category: filters[(i % 4) + 1],
+    category: filters[(i % 3) + 1],
     src: images[i % 2],
     title: titles[i % 2],
   };
@@ -90,32 +90,37 @@ export function GalleryClient({ initialImages, initialVideos }: GalleryClientPro
             {filteredImages.length === 0 ? (
               <div className="text-center py-20 text-gray-500">No images found for this category.</div>
             ) : (
-              <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredImages.map((item) => (
                   <motion.div
                     key={item.id}
                     layout
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.3 }}
-                    className="break-inside-avoid"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4 }}
                   >
                     <div 
-                      className="relative w-full rounded-2xl overflow-hidden cursor-pointer group shadow-sm bg-gray-100"
+                      className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer group shadow-lg bg-gray-100"
                       onClick={() => setSelectedImage(item.src)}
                     >
                       <Image 
                         src={item.src} 
                         alt={item.title || 'Gallery image'} 
-                        width={600} 
-                        height={item.src.includes('800') ? 800 : 600} 
-                        className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500" 
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700" 
                       />
-                      <div className="absolute inset-0 bg-[#006437]/0 group-hover:bg-[#006437]/60 transition-colors duration-300 flex items-center justify-center">
-                        <span className="text-white opacity-0 group-hover:opacity-100 font-bold tracking-widest uppercase transition-opacity duration-300 delay-100 text-sm">Expand</span>
+                      <div className="absolute inset-0 bg-[#006437]/0 group-hover:bg-[#006437]/40 transition-colors duration-300 flex items-center justify-center">
+                        <div className="bg-white/90 text-[#006437] px-6 py-2 rounded-full font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 text-sm shadow-xl">
+                          View Image
+                        </div>
                       </div>
                     </div>
+                    {item.title && (
+                      <div className="mt-4 text-center">
+                        <h3 className="text-[#006437] font-playfair font-bold text-lg">{item.title}</h3>
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </motion.div>
@@ -131,11 +136,24 @@ export function GalleryClient({ initialImages, initialVideos }: GalleryClientPro
             <div className="w-16 h-1 bg-[#C8A96E] mx-auto rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-             {videoData.map((vid: GalleryVideo, idx: number) => (
-               <div key={idx} className="aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-xl">
-                 <iframe width="100%" height="100%" src={vid.youtubeUrl} title={vid.title || `Video ${idx+1}`} frameBorder="0" allowFullScreen></iframe>
-               </div>
-             ))}
+             {videoData.map((vid: GalleryVideo, idx: number) => {
+               // Automatically convert standard youtube URLs to embed format so the iframe doesn't crash
+               let embedUrl = vid.youtubeUrl;
+               if (embedUrl?.includes('watch?v=')) {
+                 embedUrl = embedUrl.replace('watch?v=', 'embed/');
+                 // Remove any additional parameters like &t=
+                 embedUrl = embedUrl.split('&')[0];
+               } else if (embedUrl?.includes('youtu.be/')) {
+                 embedUrl = embedUrl.replace('youtu.be/', 'youtube.com/embed/');
+                 embedUrl = embedUrl.split('?')[0];
+               }
+
+               return (
+                 <div key={idx} className="aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-xl">
+                   <iframe width="100%" height="100%" src={embedUrl} title={vid.title || `Video ${idx+1}`} frameBorder="0" allowFullScreen></iframe>
+                 </div>
+               );
+             })}
           </div>
         </div>
       </section>
