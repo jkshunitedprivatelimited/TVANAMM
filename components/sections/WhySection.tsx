@@ -2,21 +2,19 @@
 
 import { motion } from 'framer-motion';
 import { 
-  Building2, 
-  Banknote, 
-  GraduationCap, 
-  Megaphone, 
-  ClipboardCheck, 
-  TrendingUp 
+  Leaf,
+  Utensils,
+  ShieldCheck,
+  Recycle,
+  Building2
 } from 'lucide-react';
 
 const ICON_MAP: Record<string, React.ElementType> = {
+  Leaf: Leaf,
+  Utensils: Utensils,
+  ShieldCheck: ShieldCheck,
+  Recycle: Recycle,
   Building2: Building2,
-  Banknote: Banknote,
-  GraduationCap: GraduationCap,
-  Megaphone: Megaphone,
-  ClipboardCheck: ClipboardCheck,
-  TrendingUp: TrendingUp,
 };
 
 export interface WhyCard {
@@ -27,34 +25,24 @@ export interface WhyCard {
 
 const defaultReasons: WhyCard[] = [
   {
-    icon: 'Building2',
-    title: 'Proven Business Model',
-    description: 'Join a winning formula. With 250+ active outlets across India, our business model is tested, refined, and highly profitable.',
+    icon: 'Leaf',
+    title: '100% Organic Ingredients',
+    description: 'Sourced directly from certified organic farms with full traceability.',
   },
   {
-    icon: 'Banknote',
-    title: 'Affordable Investment',
-    description: 'Start your entrepreneurial journey with low setup costs and high return potential designed for rapid breakeven.',
+    icon: 'Utensils',
+    title: 'Traditional Recipes',
+    description: 'Time-tested formulations refined for modern tastes and consistent margins.',
   },
   {
-    icon: 'GraduationCap',
-    title: 'Full Training & Support',
-    description: 'We provide comprehensive training for your staff on crafting all 120+ authentic beverages to perfection.',
+    icon: 'ShieldCheck',
+    title: 'Quality Assured',
+    description: 'Rigorous testing and SOP-driven control at every step of production.',
   },
   {
-    icon: 'Megaphone',
-    title: 'Brand & Marketing Support',
-    description: 'Benefit from our nationwide brand recognition. We supply ready-to-use marketing assets and localized promotion strategies.',
-  },
-  {
-    icon: 'ClipboardCheck',
-    title: 'Operations & Compliance',
-    description: 'Run your business smoothly with our detailed standard operating procedures (SOPs) and compliance manuals.',
-  },
-  {
-    icon: 'TrendingUp',
-    title: 'Business Growth Support',
-    description: 'Your growth is our growth. Enjoy dedicated support from day one from our experienced franchise management team.',
+    icon: 'Recycle',
+    title: 'Sustainable Practices',
+    description: 'Ethical sourcing and efficient logistics for a greener Franchise Tea Business.',
   },
 ];
 
@@ -76,11 +64,14 @@ export function WhySection({ cards }: { cards?: WhyCard[] }) {
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
-            Why Choose T Vanamm?
+            Why Choose T VANAMM?
           </h2>
-          <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
+          <p className="text-gray-600 text-lg leading-relaxed">
+            Our commitment to quality, tradition, and innovation sets us apart as a leading Tea Franchise in India—an Affordable and Profitable Chai Franchise model for partners.
+          </p>
         </div>
 
         <motion.div 
@@ -88,7 +79,7 @@ export function WhySection({ cards }: { cards?: WhyCard[] }) {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {displayReasons.map((reason, i) => {
             const IconComponent = ICON_MAP[reason.icon] || Building2;
@@ -96,13 +87,13 @@ export function WhySection({ cards }: { cards?: WhyCard[] }) {
               <motion.div 
                 key={i}
                 variants={cardVariants}
-                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:shadow-[#006437]/10 transition-all duration-300 border border-gray-100 group"
+                className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-[#006437]/10 transition-all duration-300 border border-gray-100 group flex flex-col items-center justify-center text-center"
               >
-                <div className="w-14 h-14 bg-[#006437]/10 text-[#006437] rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#006437] group-hover:text-white transition-colors duration-300">
+                <div className="w-16 h-16 bg-[#006437]/10 text-[#006437] rounded-full flex items-center justify-center mb-5 group-hover:bg-[#006437] group-hover:text-white transition-colors duration-300 shrink-0">
                   <IconComponent size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{reason.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{reason.title}</h3>
+                <p className="text-gray-600 leading-relaxed text-sm">
                   {reason.description}
                 </p>
               </motion.div>

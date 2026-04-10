@@ -29,8 +29,8 @@ export default async function Home() {
       />
       <StatsBar stats={data?.stats} />
       <WhySection cards={data?.whySectionCards} />
-      <HowItWorksSection steps={data?.howItWorksSteps} />
       <ProductsShowcaseSection categories={data?.productCategories} />
+      <HowItWorksSection steps={data?.howItWorksSteps} />
       <TestimonialsSection testimonials={data?.testimonials} />
       <GalleryTeaser images={data?.galleryTeaserImages} />
       <IndiaPresenceSection 
@@ -41,6 +41,7 @@ export default async function Home() {
         headline={data?.franchiseEnquiry?.headline}
         subtitle={data?.franchiseEnquiry?.subtitle}
         benefits={data?.franchiseEnquiry?.benefits}
+        trustBadges={data?.franchiseEnquiry?.trustBadges}
       />
     </>
   );

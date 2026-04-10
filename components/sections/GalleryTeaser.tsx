@@ -8,23 +8,30 @@ import { ArrowRight } from 'lucide-react';
 import { urlFor } from '@/lib/sanity/image';
 
 const defaultImages = [
-  { id: 1, src: '/images/cafe_interior_1775287651976.png' },
-  { id: 2, src: '/images/milk_tea_product_1775287519557.png' },
-  { id: 3, src: '/images/flavoured_tea_product_1775287539046.png' },
-  { id: 4, src: '/images/cafe_interior_1775287651976.png' },
-  { id: 5, src: '/images/flavoured_tea_product_1775287539046.png' },
-  { id: 6, src: '/images/milk_tea_product_1775287519557.png' },
+  '/images/cafe_interior_1775287651976.png',
+  '/images/milk_tea_product_1775287519557.png',
+  '/images/flavoured_tea_product_1775287539046.png',
+  '/images/cafe_interior_1775287651976.png',
+  '/images/flavoured_tea_product_1775287539046.png',
+  '/images/milk_tea_product_1775287519557.png',
 ];
 
 export function GalleryTeaser({ images: sanityImages }: { images?: Record<string, unknown>[] }) {
-  const displayImages = sanityImages?.length 
-    ? sanityImages.map((img, i) => ({ 
-        id: i, 
-        src: urlFor(img).url() 
-      })) 
+  const allImages = sanityImages?.length 
+    ? sanityImages.map((img) => urlFor(img).url()) 
     : defaultImages;
+
+  // We want 10 images in each row
+  const topRow = Array.from({ length: 10 }).map((_, i) => allImages[i % allImages.length]);
+  // Offset bottom row so it doesn't look identical to top row vertically
+  const bottomRow = Array.from({ length: 10 }).map((_, i) => allImages[(i + 3) % allImages.length]);
+
+  // Duplicate the array for seamless infinite scroll
+  const topMarquee = [...topRow, ...topRow];
+  const bottomMarquee = [...bottomRow, ...bottomRow];
+
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
@@ -40,35 +47,69 @@ export function GalleryTeaser({ images: sanityImages }: { images?: Record<string
             View Full Gallery <ArrowRight size={20} />
           </Link>
         </div>
+      </div>
 
-        {/* Masonry-ish grid layout */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-6 auto-rows-[200px] md:auto-rows-[250px]">
-          {displayImages.map((img: { id: number | string; src: string }, i: number) => (
-            <motion.div
-              key={img.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className={`relative rounded-xl overflow-hidden group cursor-pointer ${
-                i === 0 ? 'col-span-1 row-span-1' : 
-                i === 1 ? 'col-span-1 row-span-2' : 
-                i === 2 ? 'col-span-1 md:col-span-2 row-span-1' : 
-                i === 3 ? 'col-span-1 row-span-2 md:row-span-1' : 
-                i === 4 ? 'col-span-1 md:col-span-2 row-span-1' : 
-                'col-span-1 row-span-1'
-              }`}
+      {/* Marquee container */}
+      <div className="relative w-full flex flex-col gap-10 md:gap-16 mt-8 mb-4">
+        {/* Top Row: Scrolls Right to Left */}
+        <motion.div
+          className="flex gap-4 md:gap-6 w-max"
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: 'loop',
+              duration: 120,
+              ease: 'linear',
+            },
+          }}
+        >
+          {topMarquee.map((src, i) => (
+            <div
+              key={`top-${i}`}
+              className="relative w-[260px] h-[180px] md:w-[380px] md:h-[260px] rounded-xl overflow-hidden group cursor-pointer shrink-0"
             >
-              <Image
-                src={img.src}
-                alt={`T Vanamm Gallery ${img.id}`}
+              <Image 
+                src={src}
+                alt={`T Vanamm Gallery ${i}`}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                sizes="(max-width: 768px) 260px, 380px"
               />
-              <div className="absolute inset-0 bg-[#006437]/0 group-hover:bg-[#006437]/40 transition-colors duration-300" />
-            </motion.div>
+              <div className="absolute inset-0 bg-[#006437]/0 group-hover:bg-[#006437]/20 transition-colors duration-300" />
+            </div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Bottom Row: Scrolls Left to Right */}
+        <motion.div
+          className="flex gap-4 md:gap-6 w-max"
+          animate={{ x: ['-50%', '0%'] }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: 'loop',
+              duration: 120,
+              ease: 'linear',
+            },
+          }}
+        >
+          {bottomMarquee.map((src, i) => (
+            <div
+              key={`bottom-${i}`}
+              className="relative w-[260px] h-[180px] md:w-[380px] md:h-[260px] rounded-xl overflow-hidden group cursor-pointer shrink-0"
+            >
+              <Image 
+                src={src}
+                alt={`T Vanamm Gallery ${i}`}
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                sizes="(max-width: 768px) 260px, 380px"
+              />
+              <div className="absolute inset-0 bg-[#006437]/0 group-hover:bg-[#006437]/20 transition-colors duration-300" />
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

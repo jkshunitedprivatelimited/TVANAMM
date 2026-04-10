@@ -4,7 +4,7 @@ import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
 
 export function HeroSection({ 
-  headline = "India's Premium Tea & Coffee Franchise",
+  headline = "Best Tea Franchise in India",
   subtext = "Join 250+ successful franchise owners across India. Build your business with T Vanamm — A Taste of Purity."
 }: { 
   headline?: string;

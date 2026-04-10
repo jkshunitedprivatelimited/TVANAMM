@@ -17,7 +17,7 @@ const defaultStats: StatItem[] = [
   { textValue: 'Pan India', label: 'Outlets' },
 ];
 
-function Counter({ from, to, duration = 4 }: { from: number; to: number; duration?: number }) {
+function Counter({ from, to, duration = 10 }: { from: number; to: number; duration?: number }) {
   const [count, setCount] = useState(from);
   const nodeRef = useRef<HTMLSpanElement>(null);
   const inView = useInView(nodeRef, { once: true, margin: "-50px" });
@@ -27,8 +27,14 @@ function Counter({ from, to, duration = 4 }: { from: number; to: number; duratio
       let startTime: number | null = null;
       const step = (timestamp: number) => {
         if (!startTime) startTime = timestamp;
+        // linear progress from 0 to 1
         const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
-        setCount(Math.floor(progress * (to - from) + from));
+        
+        // softer easeOutQuad function so it doesn't shoot up too fast initially
+        const easeOutProgress = 1 - (1 - progress) * (1 - progress);
+        
+        setCount(Math.floor(easeOutProgress * (to - from) + from));
+        
         if (progress < 1) {
           window.requestAnimationFrame(step);
         }

@@ -9,6 +9,13 @@ export const aboutPage = {
       type: 'text',
     },
     {
+      name: 'founderImage',
+      title: 'Founder Photo',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Upload a photo of the founder for the About page.',
+    },
+    {
       name: 'founderQuote',
       title: 'Founder Quote',
       type: 'text',

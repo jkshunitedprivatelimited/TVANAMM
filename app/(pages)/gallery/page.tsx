@@ -17,7 +17,7 @@ export default async function GalleryPage() {
   // Transform sanity images using urlFor
   const formattedImages = data?.images?.map((img: Record<string, unknown>, i: number) => ({
     id: img._key || `img-${i}`,
-    category: img.categoryTag || 'All',
+    category: (img.categoryTag as string) || 'Outlets',
     src: img.image ? urlFor(img.image as Record<string, unknown>).url() : '',
     title: img.title || img.altText || `Gallery image ${i}`,
   })).filter((img: { src: string }) => img.src).reverse() || []; // Reverse to show newest first

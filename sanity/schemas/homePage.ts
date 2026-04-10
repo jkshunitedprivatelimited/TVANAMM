@@ -44,9 +44,17 @@ export const homePage = {
     },
     {
       name: 'productCategories',
-      title: 'Product Categories',
+      title: 'Product Categories (Our Menu)',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'name', title: 'Category Name', type: 'string' },
+            { name: 'image', title: 'Background Image', type: 'image', options: { hotspot: true } },
+          ],
+        },
+      ],
     },
     {
       name: 'testimonials',
@@ -116,6 +124,20 @@ export const homePage = {
           title: 'Benefits List', 
           type: 'array', 
           of: [{ type: 'string' }] 
+        },
+        {
+          name: 'trustBadges',
+          title: 'Trust & Compliance Badges',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                { name: 'name', title: 'Badge Name (e.g. MSME Registered)', type: 'string' },
+                { name: 'logo', title: 'Logo Image', type: 'image', options: { hotspot: true } },
+              ]
+            }
+          ]
         },
       ],
     },

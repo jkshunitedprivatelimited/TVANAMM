@@ -12,7 +12,7 @@ export const galleryPage = {
           type: 'object',
           fields: [
             { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
-            { name: 'categoryTag', title: 'Category Tag', type: 'string', options: { list: ['Outlets', 'Products', 'Franchise Owners'] } },
+            { name: 'categoryTag', title: 'Category Tag', type: 'string', options: { list: ['Outlets', 'Products'] } },
             { name: 'altText', title: 'Alt Text', type: 'string' },
             { name: 'title', title: 'Title', type: 'string' },
           ],
