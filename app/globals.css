@@ -4,11 +4,27 @@
 
 @layer base {
   :root {
-    --primary: 0 100 55; /* #006437 */
-    --accent: 200 169 110; /* #C8A96E */
+    --primary: 0 100 50; /* #006432 */
+    --accent: 212 175 55; /* #D4AF37 */
+    --background: 255 255 255; /* #FFFFFF */
+    --foreground: 0 0 0; /* #000000 */
   }
 
-  html {
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  }
+  .bg-glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
 }
