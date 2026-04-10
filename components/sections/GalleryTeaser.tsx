@@ -9,11 +9,11 @@ import { urlFor } from '@/lib/sanity/image';
 
 const defaultImages = [
   { id: 1, src: '/images/cafe_interior_1775287651976.png' },
-  { id: 2, src: '/images/milk_tea_product_1775287519557.png' },
-  { id: 3, src: '/images/flavoured_tea_product_1775287539046.png' },
-  { id: 4, src: '/images/cafe_interior_1775287651976.png' },
-  { id: 5, src: '/images/flavoured_tea_product_1775287539046.png' },
-  { id: 6, src: '/images/milk_tea_product_1775287519557.png' },
+  { id: 2, src: '/images/healthy-oatmeal-tvanamm-hero-3x2-1.webp' },
+  { id: 3, src: '/images/Creamy-milk-shakes.webp' },
+  { id: 4, src: '/images/Juices-and-Mocktails.webp' },
+  { id: 5, src: '/images/milk_tea_product_1775287519557.png' },
+  { id: 6, src: '/images/flavoured_tea_product_1775287539046.png' },
 ];
 
 export function GalleryTeaser({ images: sanityImages }: { images?: Record<string, unknown>[] }) {
@@ -41,33 +41,39 @@ export function GalleryTeaser({ images: sanityImages }: { images?: Record<string
           </Link>
         </div>
 
-        {/* Masonry-ish grid layout */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-6 auto-rows-[200px] md:auto-rows-[250px]">
-          {displayImages.map((img: { id: number | string; src: string }, i: number) => (
-            <motion.div
-              key={img.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className={`relative rounded-xl overflow-hidden group cursor-pointer ${
-                i === 0 ? 'col-span-1 row-span-1' : 
-                i === 1 ? 'col-span-1 row-span-2' : 
-                i === 2 ? 'col-span-1 md:col-span-2 row-span-1' : 
-                i === 3 ? 'col-span-1 row-span-2 md:row-span-1' : 
-                i === 4 ? 'col-span-1 md:col-span-2 row-span-1' : 
-                'col-span-1 row-span-1'
-              }`}
-            >
-              <Image
-                src={img.src}
-                alt={`T Vanamm Gallery ${img.id}`}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-[#006437]/0 group-hover:bg-[#006437]/40 transition-colors duration-300" />
-            </motion.div>
-          ))}
+        {/* Scrolling Marquee Gallery */}
+        <div className="relative w-full overflow-hidden mt-8 pb-12">
+          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          
+          <motion.div
+            animate={{ x: [0, -1920] }} 
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 40,
+                ease: "linear",
+              },
+            }}
+            className="flex whitespace-nowrap gap-6 md:gap-8"
+          >
+            {[...displayImages, ...displayImages, ...displayImages].map((img: { id: number | string; src: string }, i: number) => (
+              <div
+                key={`${img.id}-${i}`}
+                className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden group shrink-0 shadow-xl border border-gray-100"
+              >
+                <Image
+                  src={img.src}
+                  alt={`T Vanamm Gallery Image`}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-w-768px) 256px, 320px"
+                />
+                <div className="absolute inset-0 bg-[#006437]/0 group-hover:bg-[#006437]/20 transition-colors duration-300" />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
