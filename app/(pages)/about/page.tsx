@@ -116,11 +116,11 @@ export default function AboutPage() {
 
               <blockquote className="relative p-8 md:p-10 rounded-[2rem] bg-white shadow-xl shadow-primary/5 border border-gray-100 overflow-hidden group">
                 {/* Decorative Quotes */}
-                <span className="absolute top-4 right-8 text-8xl font-playfair text-primary/5 group-hover:text-accent/10 transition-colors duration-500 leading-none pointer-events-none">"</span>
+                <span className="absolute top-4 right-8 text-8xl font-playfair text-primary/5 group-hover:text-accent/10 transition-colors duration-500 leading-none pointer-events-none">&quot;</span>
                 <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-accent to-accent-light" />
                 
                 <p className="relative z-10 text-xl md:text-2xl font-playfair italic text-gray-800 leading-snug">
-                  "My vision is to make T VANAMM a household name across India, bringing health, happiness, and authentic flavors to every family."
+                  &quot;My vision is to make T VANAMM a household name across India, bringing health, happiness, and authentic flavors to every family.&quot;
                 </p>
                 
                 <footer className="mt-8 flex items-center justify-between border-t border-gray-50 pt-6">

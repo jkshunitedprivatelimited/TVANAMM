@@ -2,13 +2,9 @@
 
 import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
-
 export function HeroSection({ 
-  headline = "India's Premium Tea Franchise",
   subtext = "Join 250+ successful franchise owners across India. Build your business with T Vanamm — A Taste of Purity."
 }: { 
-  headline?: string;
   subtext?: string;
 }) {
   const containerVariants: Variants = {
@@ -48,7 +44,7 @@ export function HeroSection({
             variants={itemVariants}
             className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold text-white mb-8 leading-tight drop-shadow-xl flex flex-col items-center gap-2 md:gap-4"
           >
-            <span className="block text-white/90">India's Premium</span>
+            <span className="block text-white/90">India&apos;s Premium</span>
             <span className="block text-accent text-glow uppercase tracking-wide">
               Tea Franchise
             </span>

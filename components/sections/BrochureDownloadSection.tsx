@@ -38,7 +38,7 @@ export function BrochureDownloadSection() {
             </p>
             
             <ul className="space-y-5 mb-8 bg-gray-50/50 p-8 rounded-3xl border border-gray-100">
-              <h4 className="font-bold text-gray-900 mb-4 text-lg">What's inside the brochure:</h4>
+              <h4 className="font-bold text-gray-900 mb-4 text-lg">What&apos;s inside the brochure:</h4>
               {brochureBenefits.map((item, i) => (
                 <motion.li 
                   key={i} 

@@ -93,7 +93,7 @@ export function BrochureDLForm() {
           }}
           className="bg-[#006437] text-white px-6 py-3 rounded font-medium hover:bg-[#004e2a] transition-colors shadow-md"
         >
-          Click here if it didn't download
+          Click here if it didn&apos;t download
         </button>
       </div>
     );
