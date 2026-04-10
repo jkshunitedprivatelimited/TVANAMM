@@ -3,11 +3,9 @@
 import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
 export function HeroSection({ 
-  subtext = "Join 250+ successful franchise owners across India. Build your business with T Vanamm — A Taste of Purity.",
-  headline
+  subtext = "Join 250+ successful franchise owners across India. Build your business with T Vanamm — A Taste of Purity."
 }: { 
   subtext?: string;
-  headline?: string;
 }) {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },

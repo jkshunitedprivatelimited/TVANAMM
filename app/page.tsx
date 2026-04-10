@@ -26,7 +26,6 @@ export default async function Home() {
   return (
     <>
       <HeroSection 
-        headline={data?.heroHeadline} 
         subtext={data?.heroSubtext} 
       />
       <StatsBar stats={data?.stats} />
