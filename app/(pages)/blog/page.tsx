@@ -23,8 +23,9 @@ export default async function BlogPage() {
 
   return (
     <>
-      <section className="bg-[#006437] py-20 text-center">
-        <div className="container mx-auto px-4 mt-8">
+      <section className="bg-[#006437] flex flex-col justify-center pt-32 pb-12 md:pt-36 md:pb-16 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-tr from-[#004e2a] to-[#006437] z-0" />
+        <div className="container mx-auto px-4 mt-8 relative z-10">
           <h1 className="text-4xl md:text-6xl font-playfair font-bold text-white mb-4">Insights & Updates</h1>
           <p className="text-white/80 text-lg mb-4">Franchise tips, tea culture, and business growth</p>
           <div className="text-white/80 text-sm font-medium tracking-widest uppercase">
