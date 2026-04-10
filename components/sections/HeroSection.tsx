@@ -25,8 +25,10 @@ export function HeroSection({
 
   return (
     <section className="relative w-full h-screen min-h-[600px] flex items-center justify-center bg-[#006437] overflow-hidden">
-      {/* Background overlay pattern */}
-      <div className="absolute inset-0 opacity-30 bg-[url('/images/hero_background_1775287501927.png')] bg-cover bg-center mix-blend-overlay" />
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-[url('/images/herobanner.jpg')] bg-cover bg-center z-0" />
+      {/* Gradient Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-[#006437]/60 z-0" />
       
       <div className="container relative z-10 px-4 mx-auto text-center mt-16">
         <motion.div 
