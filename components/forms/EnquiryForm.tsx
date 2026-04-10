@@ -20,7 +20,7 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
-export function EnquiryForm() {
+export function EnquiryForm({ hideHeadline = false }: { hideHeadline?: boolean }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -87,9 +87,11 @@ export function EnquiryForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 md:space-y-5">
-      <h3 className="text-xl md:text-2xl font-bold font-playfair mb-4 md:mb-6 text-[#006437]">
-        Send an Enquiry
-      </h3>
+      {!hideHeadline && (
+        <h3 className="text-xl md:text-2xl font-bold font-playfair mb-4 md:mb-6 text-[#006437]">
+          Send an Enquiry
+        </h3>
+      )}
 
       {errorMessage && (
         <div className="p-3 bg-red-50 text-red-600 rounded text-sm border border-red-200">

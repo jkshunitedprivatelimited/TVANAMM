@@ -20,7 +20,7 @@ export function FranchisePopup() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -35,7 +35,7 @@ export function FranchisePopup() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[90vh] overflow-y-auto"
+            className="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[100%] overflow-y-auto"
           >
             {/* Close Button */}
             <button
@@ -52,15 +52,16 @@ export function FranchisePopup() {
                 <div className="inline-block px-3 py-1 bg-[#006437]/10 text-[#006437] text-xs font-bold tracking-wider rounded-md mb-3 uppercase">
                   Limited Opportunity
                 </div>
-                <h2 className="text-2xl font-playfair font-bold text-gray-900">
-                  Start Your Journey With T Vanamm
+                <h2 className="text-2xl font-playfair font-bold text-gray-900 leading-tight">
+                  Start Your Journey With <br/>
+                  <span className="text-[#C8A96E] uppercase tracking-wide">T VANAMM</span>
                 </h2>
-                <p className="text-gray-500 text-sm mt-2">
+                <p className="text-gray-500 text-sm mt-3">
                   Take the first step towards a profitable venture. Complete the form to download our franchise brochure.
                 </p>
               </div>
 
-              <EnquiryForm />
+              <EnquiryForm hideHeadline={true} />
             </div>
           </motion.div>
         </div>
