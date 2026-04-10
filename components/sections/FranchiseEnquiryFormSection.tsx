@@ -14,7 +14,7 @@ interface TrustBadge {
 }
 
 interface FranchiseEnquiryFormSectionProps {
-  headline?: string;
+  headline?: React.ReactNode;
   subtitle?: string;
   benefits?: string[];
   trustBadges?: TrustBadge[];
@@ -37,7 +37,7 @@ const defaultBenefits = [
 ];
 
 export function FranchiseEnquiryFormSection({ 
-  headline = 'Start Your Franchise Journey Today', 
+  headline = <>Start Your Journey with<br/><span className="text-[#C8A96E]">T VANAMM</span></>, 
   subtitle = 'Fill in your details and our expert franchise team will call you shortly with everything you need to know about setting up your highly profitable T Vanamm outlet.',
   benefits = defaultBenefits,
   trustBadges = []
@@ -45,7 +45,7 @@ export function FranchiseEnquiryFormSection({
   const displayBadges = trustBadges && trustBadges.length > 0 ? trustBadges : defaultTrustBadges;
 
   return (
-    <section id="franchise-enquiry" className="pt-16 pb-24 bg-[#006437] text-white relative">
+    <section id="franchise-enquiry" className="pt-24 md:pt-16 pb-24 bg-[#006437] text-white relative scroll-mt-16">
       <div className="container mx-auto px-4 lg:px-8">
         
         {/* Trust & Compliance Badges - Compact Rectangular Grid */}
@@ -109,7 +109,7 @@ export function FranchiseEnquiryFormSection({
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl text-gray-900"
+            className="bg-white rounded-2xl p-4 md:p-8 shadow-2xl text-gray-900"
           >
             <EnquiryForm />
           </motion.div>
