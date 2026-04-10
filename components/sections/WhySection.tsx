@@ -19,7 +19,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
   ClipboardCheck: ClipboardCheck,
   TrendingUp: TrendingUp,
 };
-
+// checking the main production 
 export interface WhyCard {
   icon: string;
   title: string;
