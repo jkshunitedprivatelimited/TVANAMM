@@ -45,7 +45,7 @@ export function FranchiseEnquiryFormSection({
   const displayBadges = trustBadges && trustBadges.length > 0 ? trustBadges : defaultTrustBadges;
 
   return (
-    <section id="franchise-enquiry" className="pt-24 md:pt-16 pb-24 bg-[#006437] text-white relative scroll-mt-16">
+    <section id="franchise-enquiry" className="pt-32 md:pt-24 pb-24 bg-[#006437] text-white relative scroll-mt-32 md:scroll-mt-24">
       <div className="container mx-auto px-4 lg:px-8">
         
         {/* Trust & Compliance Badges - Compact Rectangular Grid */}
