@@ -41,52 +41,45 @@ export default function AboutPage() {
 
   return (
     <>
-      <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] py-12 text-center overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] pb-4 text-center overflow-hidden">
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background_1775287501927.png')] bg-cover bg-center mix-blend-overlay" />
-        <div className="container relative z-10 mx-auto px-4 mt-16">
-          <div className="text-white/60 text-xs font-medium tracking-widest uppercase mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link> <span className="mx-2">&gt;</span> <span className="text-white/90">About</span>
+        <div className="container relative z-10 mx-auto px-4">
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-bold tracking-[0.2em] uppercase">
+            About Us
           </div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-5xl font-playfair font-bold text-white mb-3"
+            className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-4"
           >
-            Our Story
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C8A96E] to-[#E5CC98]">Story</span>
           </motion.h1>
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: 64 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="h-1 bg-[#C8A96E] mx-auto rounded-full mb-3"
-          />
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-white/70 text-sm max-w-md mx-auto"
+            transition={{ delay: 0.2 }}
+            className="text-white/80 text-lg font-medium max-w-2xl mx-auto mb-4 leading-relaxed"
           >
             Building India&apos;s most trusted Tea Franchise — one cup at a time.
           </motion.p>
+          <div className="flex items-center justify-center gap-3 text-white/60 text-sm font-semibold tracking-widest uppercase">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link> 
+            <span className="w-1 h-1 rounded-full bg-[#C8A96E]"></span> 
+            <span className="text-white">About</span>
+          </div>
         </div>
       </section>
 
       {/* Meet Our Visionary Founder */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-16"
-          >
-            Meet Our Visionary Founder
-          </motion.h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Column — Bio */}
             <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <h2 className="text-3xl md:text-4xl xl:text-5xl lg:whitespace-nowrap font-playfair font-bold text-[#006437] mb-8">
+                Meet Our Visionary Founder
+              </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
                 <span className="font-bold">Mrs. N. Naga Jyothi</span> founded T VANAMM in 2021 with a vision to transform the beverage industry by prioritizing health, quality, and customer satisfaction—building a trusted <span className="font-bold">Tea Franchise in India</span>.
               </p>
@@ -100,29 +93,31 @@ export default function AboutPage() {
 
             {/* Right Column — Profile Card */}
             <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-8 text-center shadow-sm">
+              <div className="text-center">
                 {founderImageUrl ? (
-                  <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-4 border-[#006437]/20">
-                    <Image src={founderImageUrl} alt="Mrs. N. Naga Jyothi" width={96} height={96} className="object-cover w-full h-full" />
+                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden mx-auto mb-6 border-4 border-[#006437]/20 shadow-lg">
+                    <Image src={founderImageUrl} alt="Mrs. N. Naga Jyothi" width={128} height={128} className="object-cover w-full h-full" />
                   </div>
                 ) : (
-                  <div className="w-24 h-24 bg-[#006437]/10 text-[#006437] font-bold text-2xl rounded-full flex items-center justify-center mx-auto mb-4">
-                    NJ
+                  <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden mx-auto mb-6 border-4 border-[#006437]/20 bg-[#006437]/5 shadow-lg">
+                    <Image src="/images/founder.jpg" alt="Mrs. N. Naga Jyothi" width={128} height={128} className="object-cover w-full h-full" />
                   </div>
                 )}
-                <h3 className="text-xl font-bold text-gray-900">Mrs. N. Naga Jyothi</h3>
-                <p className="text-[#006437] font-semibold text-sm mb-4">Founder &amp; CEO</p>
-                <blockquote className="border-l-4 border-[#006437] pl-4 text-left italic text-gray-600 text-sm leading-relaxed mb-6">
-                  &quot;My vision is to make T VANAMM a household name across India, bringing health, happiness, and authentic flavors to every family.&quot;
-                </blockquote>
-                <div className="flex justify-center gap-8">
+                <h3 className="text-2xl font-bold text-gray-900">Mrs. N. Naga Jyothi</h3>
+                <p className="text-[#006437] font-bold text-lg mb-6">Founder &amp; CEO</p>
+                <div className="relative mb-8 max-w-sm mx-auto">
+                  <blockquote className="italic text-gray-600 text-lg leading-relaxed">
+                    &quot;My vision is to make T VANAMM a household name across India, bringing health, happiness, and authentic flavors to every family.&quot;
+                  </blockquote>
+                </div>
+                <div className="flex justify-center gap-12">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-[#006437]">15+</div>
-                    <div className="text-xs text-gray-500 mt-1">Years Experience</div>
+                    <div className="text-3xl font-bold text-[#006437]">15+</div>
+                    <div className="text-xs text-gray-400 font-bold uppercase tracking-wider mt-1">Years Experience</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-[#006437]">2021</div>
-                    <div className="text-xs text-gray-500 mt-1">Company Founded</div>
+                    <div className="text-3xl font-bold text-[#006437]">2021</div>
+                    <div className="text-xs text-gray-400 font-bold uppercase tracking-wider mt-1">Company Founded</div>
                   </div>
                 </div>
               </div>
@@ -225,8 +220,8 @@ export default function AboutPage() {
                   key={i}
                   initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: false, amount: 0.3 }}
                   className="mb-12 relative md:flex md:items-start"
                 >
                   {/* Desktop: Center dot */}
@@ -239,7 +234,7 @@ export default function AboutPage() {
                     {isLeft && (
                       <div className="text-right">
                         <div className="text-[#C8A96E] font-bold text-2xl mb-2">{m.year}</div>
-                        {m.title && <div className="text-xl font-bold text-white mb-2">{m.title}</div>}
+                        {m.title && <div className="text-xl font-bold text-[#C8A96E] mb-2">{m.title}</div>}
                         <div className="text-base font-playfair text-white/90">{m.event}</div>
                       </div>
                     )}
@@ -250,7 +245,7 @@ export default function AboutPage() {
                     {!isLeft && (
                       <div className="text-left">
                         <div className="text-[#C8A96E] font-bold text-2xl mb-2">{m.year}</div>
-                        {m.title && <div className="text-xl font-bold text-white mb-2">{m.title}</div>}
+                        {m.title && <div className="text-xl font-bold text-[#C8A96E] mb-2">{m.title}</div>}
                         <div className="text-base font-playfair text-white/90">{m.event}</div>
                       </div>
                     )}
@@ -259,7 +254,7 @@ export default function AboutPage() {
                   {/* Mobile: always left-aligned */}
                   <div className="md:hidden pl-10">
                     <div className="text-[#C8A96E] font-bold text-2xl mb-2">{m.year}</div>
-                    {m.title && <div className="text-xl font-bold text-white mb-2">{m.title}</div>}
+                    {m.title && <div className="text-xl font-bold text-[#C8A96E] mb-2">{m.title}</div>}
                     <div className="text-lg font-playfair text-white/90">{m.event}</div>
                   </div>
                 </motion.div>

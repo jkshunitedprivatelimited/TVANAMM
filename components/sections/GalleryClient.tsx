@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const filters = ['Outlets', 'Products'];
 
@@ -20,12 +19,7 @@ const fallbackGallery = Array.from({ length: 12 }).map((_, i) => {
   };
 });
 
-// Fallback videos — 3 videos
-const fallbackVideos = [
-  { youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "Outlet Tour — Hyderabad" },
-  { youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "Outlet Tour — Bangalore" },
-  { youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", title: "Outlet Tour — Chennai" }
-];
+
 
 interface GalleryImage {
   id: string | number;
@@ -34,14 +28,8 @@ interface GalleryImage {
   title?: string;
 }
 
-interface GalleryVideo {
-  youtubeUrl: string;
-  title?: string;
-}
-
 interface GalleryClientProps {
   initialImages?: GalleryImage[];
-  initialVideos?: GalleryVideo[];
 }
 
 /* ===================================================================
@@ -63,28 +51,28 @@ function MarqueeWall({
   heading: string;
   description: string;
 }) {
-  // Build 3 rows of 10 images each, offset so they don't repeat vertically
+  // Ensure we max out at 15 unique images total
+  const safeImages = images.slice(0, 15);
+
+  // Build exactly 5 unique images per row, offset so they don't repeat vertically if <15 images exist
   const buildRow = (offset: number) => {
-    return Array.from({ length: 10 }).map((_, i) => images[(i + offset) % images.length]);
+    return Array.from({ length: 5 }).map((_, i) => safeImages[(i + offset) % safeImages.length]);
   };
 
   const row1 = buildRow(0);
-  const row2 = buildRow(3);
-  const row3 = buildRow(7);
+  const row2 = buildRow(7);
 
-  // Duplicate each row for seamless infinite loop
-  const marquee1 = [...row1, ...row1];
-  const marquee2 = [...row2, ...row2];
-  const marquee3 = [...row3, ...row3];
+  // Duplicate each row 4 times to safely cover Ultrawide/4k screens 
+  const marquee1 = [...row1, ...row1, ...row1, ...row1];
+  const marquee2 = [...row2, ...row2, ...row2, ...row2];
 
   const rows = [
-    { items: marquee1, direction: 'rtl' as const, duration: 50 },
-    { items: marquee2, direction: 'ltr' as const, duration: 60 },
-    { items: marquee3, direction: 'rtl' as const, duration: 55 },
+    { items: marquee1, direction: 'rtl' as const, duration: 80 },
+    { items: marquee2, direction: 'ltr' as const, duration: 90 },
   ];
 
   return (
-    <section className="py-16 bg-white overflow-hidden">
+    <section className="py-10 bg-white overflow-hidden">
       {/* Section header */}
       <div className="container mx-auto px-4 lg:px-8 mb-12">
         <div className="text-center">
@@ -108,7 +96,7 @@ function MarqueeWall({
             key={`row-${rowIndex}`}
             className="flex gap-4 md:gap-5 w-max"
             animate={{
-              x: row.direction === 'rtl' ? ['0%', '-50%'] : ['-50%', '0%'],
+              x: row.direction === 'rtl' ? ['0%', '-25%'] : ['-25%', '0%'],
             }}
             transition={{
               x: {
@@ -153,143 +141,17 @@ function MarqueeWall({
 }
 
 
-/* ===================================================================
-   VIDEO CAROUSEL — One video at a time, auto-play, prev/next
-   Clone trick for seamless infinite loop (same pattern as testimonials)
-   =================================================================== */
-function GalleryVideoCarousel({ videos }: { videos: GalleryVideo[] }) {
-  const total = videos.length;
-  const slides = useMemo(
-    () => [videos[total - 1], ...videos, videos[0]],
-    [videos, total]
-  );
-
-  const trackRef = useRef<HTMLDivElement>(null);
-  const indexRef = useRef(1);
-  const animatingRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setInterval>>();
-
-  const moveTo = useCallback((idx: number, animate: boolean) => {
-    const track = trackRef.current;
-    if (!track) return;
-    if (animate) {
-      track.style.transition = 'transform 700ms cubic-bezier(0.4, 0, 0.2, 1)';
-      animatingRef.current = true;
-    } else {
-      track.style.transition = 'none';
-    }
-    track.style.transform = `translateX(-${idx * 100}%)`;
-    indexRef.current = idx;
-  }, []);
-
-  const onEnd = useCallback((e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.target !== trackRef.current) return;
-    animatingRef.current = false;
-    const idx = indexRef.current;
-    if (idx >= total + 1) moveTo(1, false);
-    else if (idx <= 0) moveTo(total, false);
-  }, [total, moveTo]);
-
-  const next = useCallback(() => {
-    if (animatingRef.current) return;
-    moveTo(indexRef.current + 1, true);
-  }, [moveTo]);
-
-  const prev = useCallback(() => {
-    if (animatingRef.current) return;
-    moveTo(indexRef.current - 1, true);
-  }, [moveTo]);
-
-  const startTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      if (!animatingRef.current) moveTo(indexRef.current + 1, true);
-    }, 5000);
-  }, [moveTo]);
-
-  const clickNext = useCallback(() => { next(); startTimer(); }, [next, startTimer]);
-  const clickPrev = useCallback(() => { prev(); startTimer(); }, [prev, startTimer]);
-
-  useEffect(() => {
-    moveTo(1, false);
-    startTimer();
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [moveTo, startTimer]);
-
-  return (
-    <section className="py-16 bg-gray-50 border-t border-gray-100">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-playfair font-bold text-[#006437] mb-3">See Our Outlets Come to Life</h2>
-          <div className="w-16 h-1 bg-[#C8A96E] mx-auto rounded-full" />
-        </div>
-
-        {/* Carousel nav */}
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <button onClick={clickPrev} className="p-2 rounded-full bg-white shadow hover:bg-[#006437] hover:text-white transition-colors text-[#006437] border border-gray-200">
-            <ChevronLeft size={18} />
-          </button>
-          <button onClick={clickNext} className="p-2 rounded-full bg-white shadow hover:bg-[#006437] hover:text-white transition-colors text-[#006437] border border-gray-200">
-            <ChevronRight size={18} />
-          </button>
-        </div>
-
-        {/* One video at a time */}
-        <div className="overflow-hidden rounded-xl max-w-2xl mx-auto">
-          <div
-            ref={trackRef}
-            className="flex will-change-transform"
-            style={{ backfaceVisibility: 'hidden' }}
-            onTransitionEnd={onEnd}
-          >
-            {slides.map((vid, i) => {
-              let embedUrl = vid.youtubeUrl;
-              if (embedUrl?.includes('watch?v=')) {
-                embedUrl = embedUrl.replace('watch?v=', 'embed/').split('&')[0];
-              } else if (embedUrl?.includes('youtu.be/')) {
-                embedUrl = embedUrl.replace('youtu.be/', 'youtube.com/embed/').split('?')[0];
-              }
-
-              return (
-                <div
-                  key={`gvid-${i}`}
-                  className="w-full shrink-0"
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
-                  <div className="aspect-video bg-gray-200 rounded-2xl overflow-hidden shadow-xl">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={embedUrl}
-                      title={vid.title || `Video ${i + 1}`}
-                      frameBorder="0"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                  {vid.title && (
-                    <p className="text-center text-[#006437] font-playfair font-bold text-lg mt-4">{vid.title}</p>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 
 /* ===================================================================
    MAIN GALLERY PAGE
    ===================================================================*/
-export function GalleryClient({ initialImages, initialVideos }: GalleryClientProps) {
+export function GalleryClient({ initialImages }: GalleryClientProps) {
   const [activeTab, setActiveTab] = useState('Outlets');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Use provided images or fallback
   const galleryData = initialImages?.length ? initialImages : fallbackGallery;
-  const videoData = initialVideos?.length ? initialVideos : fallbackVideos;
 
   const rawOutletImages = galleryData.filter(img => img.category === 'Outlets');
   const rawProductImages = galleryData.filter(img => img.category === 'Products');
@@ -317,19 +179,30 @@ export function GalleryClient({ initialImages, initialVideos }: GalleryClientPro
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#006437] py-20 text-center">
-        <div className="container mx-auto px-4 mt-8">
-          <h1 className="text-4xl md:text-6xl font-playfair font-bold text-white mb-4">Our Outlets & Products</h1>
-          <p className="text-white/80 text-lg mb-4">See T Vanamm in action across India</p>
-          <div className="text-white/80 text-sm font-medium tracking-widest uppercase">
-            <Link href="/" className="hover:text-white">Home</Link> <span className="mx-2">&gt;</span> Gallery
+      <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] pb-4 text-center overflow-hidden">
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background_1775287501927.png')] bg-cover bg-center mix-blend-overlay" />
+        <div className="container relative z-10 mx-auto px-4">
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-bold tracking-[0.2em] uppercase">
+            Gallery
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-4">
+            Our Outlets & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C8A96E] to-[#E5CC98]">Products</span>
+          </h1>
+          <p className="text-white/80 text-lg font-medium max-w-2xl mx-auto mb-4 leading-relaxed">
+            See T Vanamm in action across India
+          </p>
+          <div className="flex items-center justify-center gap-3 text-white/60 text-sm font-semibold tracking-widest uppercase">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link> 
+            <span className="w-1 h-1 rounded-full bg-[#C8A96E]"></span> 
+            <span className="text-white">Gallery</span>
           </div>
         </div>
       </section>
 
       {/* Tab Filters */}
-      <section className="py-12 bg-gray-50 border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">
-        <div className="container mx-auto px-4 overflow-x-auto pb-4 hide-scrollbar">
+      <section className="py-4 md:py-6 bg-gray-50 border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">
+        <div className="container mx-auto px-4 overflow-x-auto hide-scrollbar">
           <div className="flex justify-center flex-nowrap min-w-max md:min-w-0 md:flex-wrap gap-2 md:gap-4">
             {filters.map((filter) => (
               <button
@@ -384,8 +257,7 @@ export function GalleryClient({ initialImages, initialVideos }: GalleryClientPro
         )}
       </AnimatePresence>
 
-      {/* Videos Section — Single-video carousel */}
-      <GalleryVideoCarousel videos={videoData} />
+
 
       {/* CTA */}
       <section className="py-20 bg-[#C8A96E]">

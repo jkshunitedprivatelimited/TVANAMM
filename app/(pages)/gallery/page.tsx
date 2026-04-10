@@ -25,7 +25,6 @@ export default async function GalleryPage() {
   return (
     <GalleryClient 
       initialImages={formattedImages} 
-      initialVideos={data?.videos || []} 
     />
   );
 }

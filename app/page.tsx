@@ -4,7 +4,7 @@ import { WhySection } from '@/components/sections/WhySection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { ProductsShowcaseSection } from '@/components/sections/ProductsShowcaseSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { GalleryTeaser } from '@/components/sections/GalleryTeaser';
+import { BrochureDownloadSection } from '@/components/sections/BrochureDownloadSection';
 import { IndiaPresenceSection } from '@/components/sections/IndiaPresenceSection';
 import { FranchiseEnquiryFormSection } from '@/components/sections/FranchiseEnquiryFormSection';
 import { getHomePage } from '@/lib/sanity/queries';
@@ -32,7 +32,7 @@ export default async function Home() {
       <ProductsShowcaseSection categories={data?.productCategories} />
       <HowItWorksSection steps={data?.howItWorksSteps} />
       <TestimonialsSection testimonials={data?.testimonials} />
-      <GalleryTeaser images={data?.galleryTeaserImages} />
+      <BrochureDownloadSection />
       <IndiaPresenceSection 
         headline={data?.indiaPresence?.headline}
         subtitle={data?.indiaPresence?.subtitle}

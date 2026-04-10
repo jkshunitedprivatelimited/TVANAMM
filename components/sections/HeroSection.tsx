@@ -4,7 +4,7 @@ import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
 
 export function HeroSection({ 
-  headline = "Best Tea Franchise in India",
+  headline = "India's best\nPremium Tea Franchise",
   subtext = "Join 250+ successful franchise owners across India. Build your business with T Vanamm — A Taste of Purity."
 }: { 
   headline?: string;
@@ -37,9 +37,18 @@ export function HeroSection({
         >
           <motion.h1 
             variants={itemVariants}
-            className="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6 leading-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6 leading-tight whitespace-pre-line"
           >
-            {headline}
+            {headline?.includes("Premium Tea Franchise") ? (
+              headline.split("Premium Tea Franchise").map((part, i, arr) => (
+                <span key={i}>
+                  {part}
+                  {i < arr.length - 1 && <span className="text-[#C8A96E]">Premium Tea Franchise</span>}
+                </span>
+              ))
+            ) : (
+              headline
+            )}
           </motion.h1>
           
           <motion.p 

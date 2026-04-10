@@ -23,6 +23,9 @@ const defaultTrustBadges = [
   { name: 'MSME Registered', logo: '/images/msme-logo.png' },
   { name: 'FSSAI Compliant', logo: '/images/fssai-logo.png' },
   { name: 'GST Registered', logo: '/images/gst-logo.png' },
+  { name: 'GMP Certified', logo: '/images/gmp.png' },
+  { name: 'ISO Certified', logo: '/images/iso.png' },
+  { name: 'Startup India', logo: '/images/si.png' },
 ];
 
 const defaultBenefits = [
@@ -50,14 +53,14 @@ export function FranchiseEnquiryFormSection({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-16 pb-8 border-b border-white/10"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-16 pb-8 border-b border-white/10"
         >
           {displayBadges.map((badge, index) => (
             <div 
               key={index}
-              className="flex items-center gap-4 bg-white/5 backdrop-blur-sm border border-white/10 p-3 px-5 rounded-xl shadow-sm transform transition-all hover:scale-[1.02] hover:bg-white/10"
+              className="flex items-center gap-2 md:gap-3 bg-white/5 backdrop-blur-sm border border-white/10 p-2 md:p-3 rounded-xl shadow-sm transform transition-all hover:scale-[1.02] hover:bg-white/10 overflow-hidden"
             >
-              <div className="relative w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg p-2 flex-shrink-0 shadow-inner">
+              <div className="relative w-10 h-10 md:w-11 md:h-11 bg-white rounded-lg p-1.5 flex-shrink-0 shadow-inner">
                 <Image 
                   src={typeof badge.logo === 'string' ? badge.logo : urlFor(badge.logo).url()} 
                   alt={badge.name} 
@@ -65,13 +68,11 @@ export function FranchiseEnquiryFormSection({
                   className="object-contain p-0.5" 
                 />
               </div>
-              <div className="flex flex-col">
-                <span className="font-bold tracking-widest uppercase text-[10px] md:text-xs text-white/90 leading-tight">
-                  {badge.name.split(' ').map((word, i) => (
-                    <span key={i} className="block">{word}</span>
-                  ))}
+              <div className="flex flex-col min-w-0">
+                <span className="font-bold uppercase text-[9px] md:text-[10px] xl:text-[11px] text-white/90 leading-tight truncate sm:whitespace-normal break-words">
+                  {badge.name}
                 </span>
-                <span className="text-[8px] text-[#C8A96E] font-medium tracking-[0.2em] uppercase mt-0.5">Verified</span>
+                <span className="text-[8px] text-[#C8A96E] font-bold tracking-widest uppercase mt-0.5">Verified</span>
               </div>
             </div>
           ))}

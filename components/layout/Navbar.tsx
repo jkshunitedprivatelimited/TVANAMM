@@ -19,9 +19,8 @@ export function Navbar() {
   const pathname = usePathname();
 
   const handleGetFranchise = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // If not on home page, maybe redirect to /contact or /#franchise-form
     if (pathname !== '/') {
-      return; // Will navigate to /#franchise-form via href
+      return;
     }
     e.preventDefault();
     const formSection = document.getElementById('franchise-enquiry');
@@ -33,17 +32,18 @@ export function Navbar() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-3 transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-1 transition-all duration-300"
       >
         <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 -ml-6 md:-ml-12 transition-transform hover:scale-105 group">
+          <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105 group">
             <Image 
-              src="/images/logo.png" 
+              src="/images/final.gif" 
               alt="T Vanamm Logo" 
-              width={60} 
-              height={60} 
+              width={55} 
+              height={55} 
               className="object-contain" 
+              unoptimized
             />
             <div className="flex flex-col">
               <span className="font-playfair font-bold text-2xl tracking-wide text-[#006437]">

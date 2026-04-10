@@ -18,21 +18,33 @@ interface HowItWorksSectionProps {
 const defaultSteps = [
   {
     number: '01',
-    icon: 'FileText',
-    title: 'Apply',
-    description: 'Fill in the franchise enquiry form with your basic details and investment capacity.',
+    icon: 'MessageSquare',
+    title: 'Connect',
+    description: 'Share your note and a few basics so we can understand your request.',
   },
   {
     number: '02',
-    icon: 'PhoneCall',
-    title: 'Connect',
-    description: 'Our expert team will call you to discuss margins, location, and the complete business model.',
+    icon: 'ClipboardCheck',
+    title: 'Review',
+    description: 'We check requirements and share a clear next-step list.',
   },
   {
     number: '03',
+    icon: 'Users',
+    title: 'Align',
+    description: 'We share working guidelines and ensure everyone is on the same page.',
+  },
+  {
+    number: '04',
+    icon: 'Settings',
+    title: 'Set Up',
+    description: 'We help organise the essentials and confirm readiness.',
+  },
+  {
+    number: '05',
     icon: 'Rocket',
-    title: 'Launch',
-    description: 'We help you launch with setup, full training, and marketing support from day one.',
+    title: 'Go Live',
+    description: 'We confirm the final checklist and move forward as planned.',
   },
 ];
 
@@ -48,8 +60,8 @@ export function HowItWorksSection({ steps = defaultSteps }: HowItWorksSectionPro
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          {/* Connecting Line (Desktop) */}
-          <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-[2px] bg-gray-200 z-0">
+          {/* Connecting Line (Desktop Large only) */}
+          <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-[2px] bg-gray-200 z-0">
             <motion.div 
               initial={{ width: 0 }}
               whileInView={{ width: '100%' }}
@@ -59,7 +71,7 @@ export function HowItWorksSection({ steps = defaultSteps }: HowItWorksSectionPro
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-6 relative z-10">
             {steps.map((step, i) => {
               // Dynamically pick the icon from Lucide
               const Icon = (LucideIcons as unknown as Record<string, React.ElementType>)[step.icon] || LucideIcons.HelpCircle;
@@ -73,14 +85,14 @@ export function HowItWorksSection({ steps = defaultSteps }: HowItWorksSectionPro
                   viewport={{ once: true, margin: "-100px" }}
                   className="flex flex-col items-center text-center group"
                 >
-                  <div className="w-24 h-24 rounded-full bg-white border-4 border-[#006437] shadow-lg flex items-center justify-center mb-6 relative group-hover:scale-110 transition-transform duration-300">
-                    <div className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-[#C8A96E] text-white flex items-center justify-center font-bold">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white border-4 border-[#006437] shadow-lg flex items-center justify-center mb-6 relative group-hover:scale-110 transition-transform duration-300">
+                    <div className="absolute -top-3 -right-3 w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#C8A96E] text-white flex items-center justify-center font-bold text-sm md:text-base shadow-sm">
                       {step.number}
                     </div>
-                    <Icon size={36} className="text-[#006437]" />
+                    <Icon size={32} className="text-[#006437]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                  <p className="text-gray-600 max-w-sm">{step.description}</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                  <p className="text-gray-600 max-w-sm text-sm">{step.description}</p>
                 </motion.div>
               );
             })}

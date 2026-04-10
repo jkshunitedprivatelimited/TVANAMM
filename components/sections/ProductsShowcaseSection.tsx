@@ -5,18 +5,18 @@ import Image from 'next/image';
 import { urlFor } from '@/lib/sanity/image';
 
 const defaultCategories = [
-  { name: 'Flavoured Teas', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Milk Teas', image: '/images/milk_tea_product_1775287519557.png' },
+  { name: 'Smoothies', image: '/images/milk_tea_product_1775287519557.png' },
+  { name: 'Thick Shake', image: '/images/milk_tea_product_1775287519557.png' },
+  { name: 'Mocktails', image: '/images/flavoured_tea_product_1775287539046.png' },
+  { name: 'Refreshing Drinks', image: '/images/flavoured_tea_product_1775287539046.png' },
+  { name: 'Ice-Creams', image: '/images/cafe_interior_1775287651976.png' },
+  { name: 'Snacks', image: '/images/cafe_interior_1775287651976.png' },
+  { name: 'Hot Beverages', image: '/images/milk_tea_product_1775287519557.png' },
+  { name: 'Special Coffees', image: '/images/milk_tea_product_1775287519557.png' },
   { name: 'Herbal Teas', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Iced Teas', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Specialty Drinks', image: '/images/milk_tea_product_1775287519557.png' },
-  { name: 'Café Bites', image: '/images/cafe_interior_1775287651976.png' },
-  { name: 'Classic Chai', image: '/images/milk_tea_product_1775287519557.png' },
-  { name: 'Green Teas', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Cold Brews', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Masala Chai', image: '/images/milk_tea_product_1775287519557.png' },
-  { name: 'Ice Cream Shakes', image: '/images/cafe_interior_1775287651976.png' },
-  { name: 'Premium Blends', image: '/images/flavoured_tea_product_1775287539046.png' },
+  { name: 'Healthy Breakfast', image: '/images/cafe_interior_1775287651976.png' },
+  { name: 'Immunity Boosters', image: '/images/flavoured_tea_product_1775287539046.png' },
+  { name: 'Healthy Juices', image: '/images/flavoured_tea_product_1775287539046.png' },
 ];
 
 export function ProductsShowcaseSection({ categories: sanityCategories }: { categories?: any[] }) {
@@ -57,10 +57,6 @@ export function ProductsShowcaseSection({ categories: sanityCategories }: { cate
 
       {/* Marquee container — full width, no container constraint */}
       <div className="relative w-full">
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-[#006437] to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-[#006437] to-transparent z-10" />
-
         {/* Scrolling row */}
         <motion.div
           className="flex gap-6 w-max"
@@ -75,21 +71,19 @@ export function ProductsShowcaseSection({ categories: sanityCategories }: { cate
           }}
         >
           {marqueeItems.map((category, i) => (
-            <div
-              key={i}
-              className="relative w-52 h-64 md:w-60 md:h-72 rounded-xl overflow-hidden group cursor-pointer shrink-0"
-            >
-              <Image 
-                src={category.image}
-                alt={category.name}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                sizes="240px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/70 transition-all duration-300" />
-              <div className="absolute inset-x-0 bottom-0 p-4 md:p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="text-base md:text-lg font-bold font-playfair text-white">{category.name}</h3>
-                <div className="w-8 h-1 bg-[#C8A96E] mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100" />
+            <div key={i} className="flex flex-col group cursor-pointer shrink-0">
+              <div className="relative w-52 h-64 md:w-60 md:h-72 rounded-xl overflow-hidden mb-4 shadow-sm border border-white/5">
+                <Image 
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  sizes="240px"
+                />
+              </div>
+              <div className="flex flex-col items-center text-center px-2">
+                <h3 className="text-base md:text-lg font-bold font-playfair text-white/90 group-hover:text-[#C8A96E] transition-colors duration-300">{category.name}</h3>
+                <div className="w-8 h-0.5 bg-[#C8A96E] mt-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </div>
           ))}

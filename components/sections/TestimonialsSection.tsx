@@ -1,36 +1,22 @@
 'use client';
 
 import { useRef, useEffect, useCallback, useMemo } from 'react';
-import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const defaultTestimonials = [
-  ...Array.from({ length: 9 }).map((_, i) => ({
-    isVideo: false,
-    quote: `Partnering with T Vanamm was a game-changer. The ROI was incredibly fast, and the support we received from day one was unmatched. Highly recommended. - Review ${i + 1}`,
-    ownerName: `Owner ${i + 1}`,
-    city: ["Hyderabad", "Bangalore", "Chennai", "Mumbai"][i % 4],
-    outletName: `Branch ${i + 1}`
-  })),
   {
     isVideo: true,
-    youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    ownerName: "Video Owner 1",
+    youtubeUrl: "https://youtu.be/F-n05TjRr08?si=aHqa5eXIhDijJfkC",
+    ownerName: "Partner 1",
     city: "Hyderabad",
-    outletName: "Kukatpally Branch"
+    outletName: "T Vanamm Outlet"
   },
   {
     isVideo: true,
-    youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    ownerName: "Video Owner 2",
-    city: "Bangalore",
-    outletName: "Indiranagar Branch"
-  },
-  {
-    isVideo: true,
-    youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    ownerName: "Video Owner 3",
+    youtubeUrl: "https://youtu.be/7nbAyv48x_M?si=bAHckm8KOTqlE3HM",
+    ownerName: "Partner 2",
     city: "Chennai",
-    outletName: "T Nagar Branch"
+    outletName: "T Vanamm Outlet"
   }
 ];
 
@@ -114,9 +100,8 @@ function VideoCarousel({ videos }: { videos: Testimonial[] }) {
   }, [moveTo, startTimer]);
 
   return (
-    <div className="mb-20">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-playfair font-bold text-gray-900">Franchise Success Stories</h3>
+    <div>
+      <div className="flex items-center justify-end mb-2">
         <div className="flex gap-2">
           <button onClick={clickPrev} className="p-2 rounded-full bg-white shadow hover:bg-[#006437] hover:text-white transition-colors text-[#006437]">
             <ChevronLeft size={20} />
@@ -127,7 +112,7 @@ function VideoCarousel({ videos }: { videos: Testimonial[] }) {
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-2xl max-w-4xl mx-auto">
+      <div className="overflow-hidden rounded-2xl max-w-2xl mx-auto">
         <div
           ref={trackRef}
           className="flex will-change-transform"
@@ -148,8 +133,8 @@ function VideoCarousel({ videos }: { videos: Testimonial[] }) {
                 className="w-full shrink-0"
                 style={{ backfaceVisibility: 'hidden' }}
               >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 flex flex-col md:flex-row">
-                  <div className="w-full md:w-[65%] aspect-video bg-gray-200 overflow-hidden shrink-0">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100">
+                  <div className="w-full aspect-video bg-gray-200 overflow-hidden">
                     <iframe
                       width="100%"
                       height="100%"
@@ -158,12 +143,6 @@ function VideoCarousel({ videos }: { videos: Testimonial[] }) {
                       frameBorder="0"
                       allowFullScreen
                     ></iframe>
-                  </div>
-                  <div className="w-full md:w-[35%] p-8 bg-white flex flex-col justify-center text-left">
-                    <h4 className="font-bold text-gray-900 text-xl mb-1">{testimonial.ownerName}</h4>
-                    <p className="text-[#006437] font-medium mb-4">{testimonial.city}</p>
-                    <div className="w-12 h-1 bg-[#C8A96E] mb-4" />
-                    <p className="text-sm text-gray-500 uppercase tracking-widest">{testimonial.outletName}</p>
                   </div>
                 </div>
               </div>
@@ -181,127 +160,53 @@ function VideoCarousel({ videos }: { videos: Testimonial[] }) {
    - 3 copies of items, resets at boundary
    - Scrolls 1 card at a time, always right-to-left
    =================================================================== */
-function ReviewCarousel({ reviews }: { reviews: Testimonial[] }) {
-  const total = reviews.length;
-  const slides = useMemo(
-    () => [...reviews, ...reviews, ...reviews],
-    [reviews]
-  );
-
-  const trackRef = useRef<HTMLDivElement>(null);
-  const indexRef = useRef(0);
-  const animatingRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setInterval>>();
-
-  // Measure exact distance between consecutive card left edges (subpixel-accurate)
-  const getCardWidth = useCallback(() => {
-    const track = trackRef.current;
-    if (!track || track.children.length < 2) return 0;
-    const first = track.children[0].getBoundingClientRect();
-    const second = track.children[1].getBoundingClientRect();
-    return second.left - first.left;
-  }, []);
-
-  const moveTo = useCallback((idx: number, animate: boolean) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const cw = getCardWidth();
-    if (animate) {
-      track.style.transition = 'transform 700ms cubic-bezier(0.4, 0, 0.2, 1)';
-      animatingRef.current = true;
-    } else {
-      track.style.transition = 'none';
-    }
-    track.style.transform = `translateX(-${idx * cw}px)`;
-    indexRef.current = idx;
-  }, [getCardWidth]);
-
-  const onEnd = useCallback((e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.target !== trackRef.current) return;
-    animatingRef.current = false;
-    const idx = indexRef.current;
-    if (idx >= total) moveTo(0, false);
-    else if (idx < 0) moveTo(total - 1, false);
-  }, [total, moveTo]);
-
-  const next = useCallback(() => {
-    if (animatingRef.current) return;
-    moveTo(indexRef.current + 1, true);
-  }, [moveTo]);
-
-  const prev = useCallback(() => {
-    if (animatingRef.current) return;
-    moveTo(indexRef.current - 1, true);
-  }, [moveTo]);
-
-  const startTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      if (!animatingRef.current) moveTo(indexRef.current + 1, true);
-    }, 3500);
-  }, [moveTo]);
-
-  const clickNext = useCallback(() => { next(); startTimer(); }, [next, startTimer]);
-  const clickPrev = useCallback(() => { prev(); startTimer(); }, [prev, startTimer]);
-
-  // Initial position + auto-play + handle resize
-  useEffect(() => {
-    moveTo(0, false);
-    startTimer();
-
-    const handleResize = () => {
-      // Re-apply current position with new card width (no animation)
-      moveTo(indexRef.current, false);
-    };
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [moveTo, startTimer]);
+/* ===================================================================
+   CUSTOMER REVIEWS GRID (STATIC 3-COLUMN)
+   =================================================================== */
+function CustomerReviewsGrid() {
+  const customerVideos = [
+    "https://youtu.be/zmuOPzwAiGI?si=_EUPo2zwCA6JVOGR",
+    "https://youtu.be/i1v6vwcdirI?si=A5Pmc2GVR4d-zhTu",
+    "https://youtu.be/T4QlLbv6Xbg?si=SWKNCfBCQ1cBElrM"
+  ];
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-playfair font-bold text-gray-900">Partner Reviews</h3>
-        <div className="flex gap-2">
-          <button onClick={clickPrev} className="p-2 rounded-full bg-white shadow hover:bg-[#006437] hover:text-white transition-colors text-[#006437]">
-            <ChevronLeft size={20} />
-          </button>
-          <button onClick={clickNext} className="p-2 rounded-full bg-white shadow hover:bg-[#006437] hover:text-white transition-colors text-[#006437]">
-            <ChevronRight size={20} />
-          </button>
+    <section className="py-24 bg-white border-t border-gray-100">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
+            Customer Reviews
+          </h2>
+          <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full" />
         </div>
-      </div>
 
-      <div className="overflow-hidden">
-        <div
-          ref={trackRef}
-          className="flex gap-6 will-change-transform"
-          style={{ backfaceVisibility: 'hidden' }}
-          onTransitionEnd={onEnd}
-        >
-          {slides.map((testimonial, idx) => (
-            <div
-              key={`text-${idx}`}
-              className="shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-white p-8 rounded-2xl border border-gray-200 flex flex-col h-auto"
-              style={{ backfaceVisibility: 'hidden' }}
-            >
-              <Quote size={32} className="text-[#C8A96E] mb-4 opacity-50 shrink-0" />
-              <p className="text-gray-700 font-medium leading-relaxed mb-6 italic flex-grow">
-                &quot;{testimonial.quote}&quot;
-              </p>
-              <div className="mt-auto pt-5 border-t border-gray-100 shrink-0">
-                <h4 className="font-bold text-gray-900">{testimonial.ownerName}</h4>
-                <p className="text-[#006437] font-medium text-sm">{testimonial.city}</p>
-                <p className="text-xs text-gray-500 uppercase tracking-widest mt-1">{testimonial.outletName}</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {customerVideos.map((url, i) => {
+          let embedUrl = url;
+          if (embedUrl.includes('watch?v=')) {
+            embedUrl = embedUrl.replace('watch?v=', 'embed/').split('&')[0];
+          } else if (embedUrl.includes('youtu.be/')) {
+            embedUrl = embedUrl.replace('youtu.be/', 'youtube.com/embed/').split('?')[0];
+          }
+
+          return (
+            <div key={i} className="bg-white p-2 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="w-full aspect-video bg-gray-200 rounded-xl overflow-hidden">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={embedUrl}
+                  title={`Customer Review ${i + 1}`}
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
-    </div>
+      </div>
+    </section>
   );
 }
 
@@ -315,18 +220,21 @@ export function TestimonialsSection({ testimonials: sanityTestimonials }: { test
   const textReviews = allTestimonials.filter(t => !t.isVideo);
 
   return (
-    <section className="py-24 bg-gray-50 border-t border-gray-100">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
-            What Our Franchise Owners Say
-          </h2>
-          <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full" />
-        </div>
+    <>
+      <section className="py-8 bg-gray-50 border-t border-gray-100">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-[#006437] mb-3">
+              Our Franchise Success Stories
+            </h2>
+            <div className="w-20 h-1 bg-[#C8A96E] mx-auto rounded-full" />
+          </div>
 
-        {videoReviews.length > 0 && <VideoCarousel videos={videoReviews} />}
-        {textReviews.length > 0 && <ReviewCarousel reviews={textReviews} />}
-      </div>
-    </section>
+          {videoReviews.length > 0 && <VideoCarousel videos={videoReviews} />}
+        </div>
+      </section>
+      
+      <CustomerReviewsGrid />
+    </>
   );
 }

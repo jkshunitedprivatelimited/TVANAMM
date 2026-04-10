@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Map } from 'lucide-react';
 
 export interface SiteSettingsData {
   tagline?: string;
@@ -40,11 +40,12 @@ export function Footer({ settings }: FooterProps) {
           <div className="flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105 group">
               <Image 
-                src="/images/logo.png" 
+                src="/images/final.gif" 
                 alt="T Vanamm Logo" 
                 width={50} 
                 height={50} 
                 className="object-contain" 
+                unoptimized
               />
               <div className="flex flex-col">
                 <span className="font-playfair font-bold text-2xl tracking-wide text-[#006437]">
@@ -60,7 +61,16 @@ export function Footer({ settings }: FooterProps) {
                 <MapPin size={18} />
                 Headquarters
               </h5>
-              <p className="pl-6 italic">{address}</p>
+              <p className="pl-6 italic mb-1">{address}</p>
+              <a 
+                href="https://maps.app.goo.gl/nKT9AUfBSQrpfqLD7" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="ml-6 inline-flex items-center gap-2 px-3 py-1.5 border border-[#C8A96E] text-[#C8A96E] hover:bg-[#C8A96E] hover:text-white transition-colors rounded-md font-medium text-xs self-start"
+              >
+                <Map size={14} />
+                Open in Google Maps
+              </a>
             </div>
           </div>
 
