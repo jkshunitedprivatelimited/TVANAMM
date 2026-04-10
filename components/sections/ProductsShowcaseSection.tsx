@@ -4,59 +4,105 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const defaultCategories = [
-  { name: 'Flavoured Teas', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Milk Teas', image: '/images/milk_tea_product_1775287519557.png' },
-  { name: 'Herbal Teas', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Iced Teas', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Specialty Drinks', image: '/images/milk_tea_product_1775287519557.png' },
-  { name: 'Café Bites', image: '/images/cafe_interior_1775287651976.png' }
+  { name: 'Milk Shakes', image: '/images/Creamy-milk-shakes.webp' },
+  { name: 'Sandwiches', image: '/images/fresh-sandwich-tvanamm-hero-3x2-1.webp' },
+  { name: 'Oatmeal', image: '/images/healthy-oatmeal-tvanamm-hero-3x2-1.webp' },
+  { name: 'Fruit Bowls', image: '/images/fruit-bowl-tvanamm-hero-3x2-1.webp' },
+  { name: 'Wheatgrass Juice', image: '/images/wheatgrass-juice-with-bunch-hero-3x2-1.webp' },
+  { name: 'Rose Milk', image: '/images/rose-milk-tvanamm-hero-3x2-1.webp' },
+  { name: 'Ice Creams', image: '/images/Ice-Creams-TVanamm.webp' },
+  { name: 'Juices & Mocktails', image: '/images/Juices-and-Mocktails.webp' },
 ];
 
 export function ProductsShowcaseSection({ categories: sanityCategories }: { categories?: string[] }) {
-  const displayCategories = sanityCategories?.length 
+  const displayCategories = sanityCategories?.length
     ? sanityCategories.map((name, i) => ({
-        name,
-        image: defaultCategories[i % defaultCategories.length].image
-      }))
+      name,
+      image: defaultCategories[i % defaultCategories.length].image
+    }))
     : defaultCategories;
-  return (
-    <section className="py-24 bg-[#006437] text-white">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-white mb-4">
-            120+ Premium Beverages
-          </h2>
-          <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
-          <p className="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed">
-            From authentic Indian teas to specialty café drinks — every cup crafted with purity. Our expansive menu ensures there is something for everyone.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
-          {displayCategories.map((category, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="relative aspect-square md:aspect-[4/3] rounded-xl overflow-hidden group cursor-pointer"
-            >
-              <Image 
-                src={category.image}
-                alt={category.name}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700 blur-0"
-                sizes="(max-w-768px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#006437]/90 via-[#006437]/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="text-lg md:text-2xl font-bold font-playfair text-white">{category.name}</h3>
-                <div className="w-8 h-1 bg-[#C8A96E] mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100" />
-              </div>
-            </motion.div>
-          ))}
+  // Duplicate for seamless infinite marquee effect
+  const marqueeItems = [...displayCategories, ...displayCategories];
+
+  return (
+    <section className="py-24 bg-primary text-white overflow-hidden relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-primary-dark/80 to-primary/90 z-0" />
+      <div className="absolute inset-0 bg-[url('/images/hero_background_1775287501927.png')] bg-cover bg-center mix-blend-overlay opacity-10 z-0" />
+
+      <div className="container mx-auto px-4 lg:px-8 relative z-10 mb-16">
+        <div className="text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-6 drop-shadow-lg"
+          >
+            Menu Categories
+          </motion.h2>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 96 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="h-1.5 bg-accent mx-auto rounded-full mb-6"
+          />
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed font-light"
+          >
+            Simple, familiar, and built to be easy to serve consistently across the network.
+          </motion.p>
         </div>
+      </div>
+
+      {/* Infinite Scroll Marquee */}
+      <div className="relative z-10 w-full mb-12 flex items-center">
+        {/* Left and Right Fade Indicators */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-primary-dark to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-primary-dark to-transparent z-20 pointer-events-none" />
+
+        <motion.div
+          animate={{ x: [0, -1920] }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 35,
+              ease: "linear",
+            },
+          }}
+          className="flex whitespace-nowrap gap-6 md:gap-8 px-4"
+        >
+          {marqueeItems.map((category, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-5 group cursor-pointer shrink-0"
+              >
+                {/* Image Container - completely clean and smaller */}
+                <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-[3px] border-white/5 bg-white/5 group-hover:border-accent/40 transition-colors duration-500">
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    sizes="(max-w-768px) 192px, 224px"
+                  />
+                </div>
+                
+                {/* Text underneath the image */}
+                <div className="text-center px-4 w-48 md:w-56">
+                  <h3 className="text-xl md:text-2xl font-bold font-playfair text-white drop-shadow-sm group-hover:text-accent transition-colors duration-300">
+                    {category.name}
+                  </h3>
+                  <div className="w-8 h-1 bg-accent mx-auto mt-2 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+                </div>
+              </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
