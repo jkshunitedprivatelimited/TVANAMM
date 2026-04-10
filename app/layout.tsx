@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteLayoutWrapper } from "@/components/layout/SiteLayoutWrapper";
 import { Analytics } from "@/components/layout/Analytics";
 import { getSiteSettings } from "@/lib/sanity/queries";
+import { SiteSettingsData } from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair' });
@@ -33,7 +34,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-gray-900 bg-white min-h-screen flex flex-col`}>
-          <SiteLayoutWrapper settings={settings as any}>
+          <SiteLayoutWrapper settings={settings as SiteSettingsData}>
             {children}
           </SiteLayoutWrapper>
           <Analytics />
