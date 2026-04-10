@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { IndiaPresenceSection } from '@/components/sections/IndiaPresenceSection';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShieldCheck, Lightbulb, Heart, TrendingUp, ShieldAlert, Users, Check } from 'lucide-react';
+import { ShieldCheck, Lightbulb, Heart, TrendingUp, ShieldAlert, Users } from 'lucide-react';
 import { client } from '@/lib/sanity/client';
 import { urlFor } from '@/lib/sanity/image';
 

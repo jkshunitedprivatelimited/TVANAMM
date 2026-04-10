@@ -217,7 +217,6 @@ export function TestimonialsSection({ testimonials: sanityTestimonials }: { test
   const allTestimonials = sanityTestimonials?.length ? sanityTestimonials : defaultTestimonials;
 
   const videoReviews = allTestimonials.filter(t => t.isVideo);
-  const textReviews = allTestimonials.filter(t => !t.isVideo);
 
   return (
     <>

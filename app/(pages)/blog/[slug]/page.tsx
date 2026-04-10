@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                 <span className="text-[#C8A96E] font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Take the next step</span>
                 <h3 className="text-3xl md:text-5xl font-playfair font-bold text-white mb-6">Inspired to Build Your Legacy?</h3>
                 <p className="text-white/70 mb-10 text-lg md:text-xl max-w-2xl mx-auto font-light">
-                  Join India's fastest-growing tea franchise network and bring the authenticated T Vanamm experience to your city.
+                  Join India&apos;s fastest-growing tea franchise network and bring the authenticated T Vanamm experience to your city.
                 </p>
                 <Link href="/#franchise-enquiry" className="inline-flex items-center justify-center gap-3 bg-white hover:bg-[#C8A96E] text-[#006437] hover:text-white px-10 py-5 rounded-full font-bold shadow-lg transition-all duration-300 transform hover:-translate-y-1 text-sm tracking-widest uppercase">
                   Explore Ownership

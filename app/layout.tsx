@@ -33,6 +33,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-gray-900 bg-white min-h-screen flex flex-col`}>
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <SiteLayoutWrapper settings={settings as any}>
             {children}
           </SiteLayoutWrapper>

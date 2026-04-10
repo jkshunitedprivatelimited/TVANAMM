@@ -44,7 +44,7 @@ export function BrochureDownloadSection() {
             </h2>
             
             <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl font-light">
-              We've compiled essential information about partnering with our growing tea franchise into one comprehensive brochure.
+              We&apos;ve compiled essential information about partnering with our growing tea franchise into one comprehensive brochure.
             </p>
 
             <div className="space-y-8 mt-12 hidden md:block">

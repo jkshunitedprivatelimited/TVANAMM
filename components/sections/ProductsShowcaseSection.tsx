@@ -19,6 +19,7 @@ const defaultCategories = [
   { name: 'Healthy Juices', image: '/images/flavoured_tea_product_1775287539046.png' },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ProductsShowcaseSection({ categories: sanityCategories }: { categories?: any[] }) {
   const displayCategories = sanityCategories?.length 
     ? sanityCategories.map((cat, i) => ({
