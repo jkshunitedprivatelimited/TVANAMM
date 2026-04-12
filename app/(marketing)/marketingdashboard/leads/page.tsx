@@ -1,5 +1,5 @@
 import { fetchLeads } from '@/app/(marketing)/_actions/leadActions';
-import { LeadsTable } from '@/app/(marketing)/marketing-dashboard/leads/LeadsTable';
+import { LeadsTable } from '@/app/(marketing)/marketingdashboard/leads/LeadsTable';
 
 export const metadata = {
   title: 'Enquiries | T VANAMM Marketing Dashboard',

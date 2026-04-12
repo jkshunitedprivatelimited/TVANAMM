@@ -53,8 +53,8 @@ export function FranchisePopup() {
                   Limited Opportunity
                 </div>
                 <h2 className="text-2xl font-playfair font-bold text-gray-900 leading-tight">
-                  Start Your Journey with <br/>
-                  <span className="text-[#C8A96E] uppercase tracking-wide">T VANAMM</span>
+                  Start Your Journey <br/>
+                  with <span className="text-[#C8A96E] uppercase tracking-wide">T VANAMM</span>
                 </h2>
                 <p className="text-gray-500 text-sm mt-3">
                   Take the first step towards a profitable venture. Complete the form to download our franchise brochure.

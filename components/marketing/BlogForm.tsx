@@ -31,7 +31,7 @@ export default function BlogForm() {
       setError(result.error);
       setIsSubmitting(false);
     } else {
-      router.push('/marketing-dashboard/blogs');
+      router.push('/marketingdashboard/blogs');
       router.refresh();
     }
   }

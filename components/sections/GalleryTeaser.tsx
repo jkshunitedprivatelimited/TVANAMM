@@ -8,12 +8,12 @@ import { ArrowRight } from 'lucide-react';
 import { urlFor } from '@/lib/sanity/image';
 
 const defaultImages = [
-  '/images/cafe_interior_1775287651976.png',
-  '/images/milk_tea_product_1775287519557.png',
-  '/images/flavoured_tea_product_1775287539046.png',
-  '/images/cafe_interior_1775287651976.png',
-  '/images/flavoured_tea_product_1775287539046.png',
-  '/images/milk_tea_product_1775287519557.png',
+  '/images/hero_background.png',
+  '/images/hero_background.png',
+  '/images/hero_background.png',
+  '/images/hero_background.png',
+  '/images/hero_background.png',
+  '/images/hero_background.png',
 ];
 
 export function GalleryTeaser({ images: sanityImages }: { images?: Record<string, unknown>[] }) {

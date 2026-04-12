@@ -11,7 +11,7 @@ export default function MarketingDashboardLayout({
   async function handleLogout() {
     'use server';
     cookies().delete('marketing_auth_token');
-    redirect('/marketing-login');
+    redirect('/marketinglogin');
   }
 
   return (
@@ -25,7 +25,7 @@ export default function MarketingDashboardLayout({
         
         <nav className="flex-1 px-4 py-6 space-y-2">
           <Link 
-            href="/marketing-dashboard" 
+            href="/marketingdashboard" 
             className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-green-100 hover:bg-green-800 transition-colors"
           >
             <LayoutDashboard className="h-5 w-5" />
@@ -33,7 +33,7 @@ export default function MarketingDashboardLayout({
           </Link>
           
           <Link 
-            href="/marketing-dashboard/blogs" 
+            href="/marketingdashboard/blogs" 
             className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-green-100 hover:bg-green-800 transition-colors"
           >
             <FileText className="h-5 w-5" />
@@ -41,7 +41,7 @@ export default function MarketingDashboardLayout({
           </Link>
 
           <Link 
-            href="/marketing-dashboard/seo" 
+            href="/marketingdashboard/seo" 
             className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-green-100 hover:bg-green-800 transition-colors"
           >
             <Search className="h-5 w-5" />
@@ -49,7 +49,7 @@ export default function MarketingDashboardLayout({
           </Link>
 
           <Link 
-            href="/marketing-dashboard/leads" 
+            href="/marketingdashboard/leads" 
             className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-green-100 hover:bg-green-800 transition-colors"
           >
             <Users className="h-5 w-5" />

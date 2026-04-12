@@ -22,6 +22,19 @@ export default function LoginForm({ action }: { action: (formData: FormData) => 
     <form action={handleSubmit} className="mt-8 space-y-6">
       <div className="space-y-4 rounded-md shadow-sm">
         <div className="relative group">
+          <label htmlFor="email" className="sr-only">
+            Marketing Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-green-800 focus:outline-none focus:ring-green-800 sm:text-sm transition-all"
+            placeholder="Marketing Email"
+          />
+        </div>
+        <div className="relative group">
           <label htmlFor="password" className="sr-only">
             Admin Password
           </label>

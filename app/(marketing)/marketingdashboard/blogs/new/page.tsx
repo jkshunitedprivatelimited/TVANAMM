@@ -11,7 +11,7 @@ export default function NewBlogPage() {
     <div className="space-y-6 max-w-5xl">
       <div className="mb-6">
         <Link 
-          href="/marketing-dashboard/blogs" 
+          href="/marketingdashboard/blogs" 
           className="inline-flex items-center space-x-2 text-gray-500 hover:text-gray-900 transition mb-4"
         >
           <ArrowLeft className="w-4 h-4" />

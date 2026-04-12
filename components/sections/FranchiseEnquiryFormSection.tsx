@@ -21,11 +21,11 @@ interface FranchiseEnquiryFormSectionProps {
 }
 
 const defaultTrustBadges = [
-  { name: 'MSME Registered', logo: '/images/msme_logo.png' },
   { name: 'FSSAI Compliant', logo: '/images/fssai_logo.png' },
-  { name: 'GST Registered', logo: '/images/gst_logo.png' },
-  { name: 'GMP Verified', logo: '/images/gmp_logo.png' },
   { name: 'ISO Certified', logo: '/images/iso_logo.png' },
+  { name: 'GMP Verified', logo: '/images/gmp_logo.png' },
+  { name: 'GST Registered', logo: '/images/gst_logo.png' },
+  { name: 'MSME Registered', logo: '/images/msme_logo.png' },
   { name: 'Startup India', logo: '/images/startupindia_logo.png' },
 ];
 
@@ -44,11 +44,31 @@ export function FranchiseEnquiryFormSection({
 }: FranchiseEnquiryFormSectionProps) {
   const displayBadges = trustBadges && trustBadges.length > 0 ? trustBadges : defaultTrustBadges;
 
-  // Function to format the headline to make "T VANAMM" gold
+  // Function to format the headline to make "T VANAMM" gold and handle the requested line break
   const formatHeadline = (text: React.ReactNode) => {
-    if (typeof text !== 'string') return text || <>Start Your Journey<br/>with <span className="text-[#C8A96E]">T VANAMM</span></>;
+    const defaultVal = (
+      <>
+        Start Your Journey <br />
+        <span className="text-[#C8A96E]">with T VANAMM</span>
+      </>
+    );
+
+    if (!text) return defaultVal;
+    if (typeof text !== 'string') return text;
     
-    // Split the text to inject the gold span for T VANAMM
+    // If it's the specific headline string, force the line break
+    if (text.toLowerCase().includes('with t vanamm')) {
+      const parts = text.split(/with T VANAMM/i);
+      return (
+        <>
+          {parts[0]} <br />
+          with <span className="text-[#C8A96E]">T VANAMM</span>
+          {parts[1]}
+        </>
+      );
+    }
+
+    // Fallback split for other mentions of T VANAMM
     const parts = text.split(/(T VANAMM)/i);
     return parts.map((part, i) => 
       part.toUpperCase() === 'T VANAMM' ? (

@@ -17,7 +17,7 @@ export function SiteLayoutWrapper({
 }) {
   const pathname = usePathname();
   const isStudio = pathname?.startsWith('/studio');
-  const isMarketing = pathname?.startsWith('/marketing-dashboard') || pathname?.startsWith('/marketing-login');
+  const isMarketing = pathname?.startsWith('/marketingdashboard') || pathname?.startsWith('/marketinglogin');
 
   if (isStudio || isMarketing) {
     return <main className="flex-grow">{children}</main>;

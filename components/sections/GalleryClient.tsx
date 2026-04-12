@@ -9,7 +9,7 @@ const filters = ['Outlets', 'Products'];
 
 // Fallback images if completely empty
 const fallbackGallery = Array.from({ length: 12 }).map((_, i) => {
-  const images = ['/images/gallery/tea_beverages.png', '/images/gallery/iced_peach_tea.png'];
+  const images = ['/images/hero_background.png', '/images/hero_background.png'];
   const titles = ['Premium Tea Assortment', 'Refreshing Iced Peach Tea'];
   return {
     id: `fallback-${i}`,
@@ -158,21 +158,21 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
   
   // Ensure Products marquee always has images — use fallback product images if CMS is empty
   const fallbackProductImages: GalleryImage[] = [
-    { id: 'fp-1', category: 'Products', src: '/images/flavoured_tea_product_1775287539046.png', title: 'Flavoured Tea' },
-    { id: 'fp-2', category: 'Products', src: '/images/milk_tea_product_1775287519557.png', title: 'Milk Tea' },
-    { id: 'fp-3', category: 'Products', src: '/images/gallery/tea_beverages.png', title: 'Tea Beverages' },
-    { id: 'fp-4', category: 'Products', src: '/images/gallery/iced_peach_tea.png', title: 'Iced Peach Tea' },
-    { id: 'fp-5', category: 'Products', src: '/images/cafe_interior_1775287651976.png', title: 'Café Experience' },
+    { id: 'fp-1', category: 'Products', src: '/images/hero_background.png', title: 'Flavoured Tea' },
+    { id: 'fp-2', category: 'Products', src: '/images/hero_background.png', title: 'Milk Tea' },
+    { id: 'fp-3', category: 'Products', src: '/images/hero_background.png', title: 'Tea Beverages' },
+    { id: 'fp-4', category: 'Products', src: '/images/hero_background.png', title: 'Iced Peach Tea' },
+    { id: 'fp-5', category: 'Products', src: '/images/hero_background.png', title: 'Café Experience' },
   ];
   const productImages = rawProductImages.length > 0 ? rawProductImages : fallbackProductImages;
 
   // Ensure Outlets marquee always has images
   const fallbackOutletImages: GalleryImage[] = [
-    { id: 'fo-1', category: 'Outlets', src: '/images/cafe_interior_1775287651976.png', title: 'Modern Interior' },
+    { id: 'fo-1', category: 'Outlets', src: '/images/hero_background.png', title: 'Modern Interior' },
     { id: 'fo-2', category: 'Outlets', src: '/images/hero_background.png', title: 'Outlet Vibes' },
-    { id: 'fo-3', category: 'Outlets', src: '/images/cafe_interior_1775287651976.png', title: 'Cozy Seating' },
+    { id: 'fo-3', category: 'Outlets', src: '/images/hero_background.png', title: 'Cozy Seating' },
     { id: 'fo-4', category: 'Outlets', src: '/images/hero_background.png', title: 'T Vanamm Outlet' },
-    { id: 'fo-5', category: 'Outlets', src: '/images/cafe_interior_1775287651976.png', title: 'Storefront' },
+    { id: 'fo-5', category: 'Outlets', src: '/images/hero_background.png', title: 'Storefront' },
   ];
   const outletImages = rawOutletImages.length > 0 ? rawOutletImages : fallbackOutletImages;
 

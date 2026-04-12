@@ -78,22 +78,37 @@ const pins = generatePins();
 interface IndiaPresenceSectionProps {
   headline?: string;
   subtitle?: string;
+  outletsCount?: string;
+  statesCount?: string;
 }
 
-export function IndiaPresenceSection({ 
-  headline = '250+ Outlets Across India', 
-  subtitle = 'And growing every month. Join our rapidly expanding network.' 
-}: IndiaPresenceSectionProps) {
+export const IndiaPresenceSection = ({ 
+  headline, 
+  subtitle = 'Join our rapidly expanding network of successful franchise partners.', 
+  outletsCount = '250', 
+  statesCount = '21' 
+}: IndiaPresenceSectionProps) => {
+  // Logic: 
+  // 1. If 'headline' exists in Sanity, use it.
+  // 2. If 'headline' is empty BUT counts exist, use "X+ Outlets across Y+ States".
+  // 3. Fallback to "Growing Across India".
+  const dynamicHeadline = (outletsCount && statesCount) 
+    ? `${outletsCount}+ Outlets across ${statesCount}+ States` 
+    : "Growing Across India";
+
+  const resolvedHeadline = headline || dynamicHeadline;
+  const resolvedSubtitle = subtitle;
+
   return (
     <section className="py-24 bg-gray-50 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-16 relative z-10">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
-            {headline}
+            {resolvedHeadline}
           </h2>
           <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            {subtitle}
+            {resolvedSubtitle}
           </p>
         </div>
 

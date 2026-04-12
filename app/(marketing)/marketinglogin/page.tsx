@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import LoginForm from '@/app/(marketing)/marketing-login/LoginForm';
+import LoginForm from '@/app/(marketing)/marketinglogin/LoginForm';
 
 export const metadata = {
   title: 'T VANAMM Marketing Dashboard | Sign In',
@@ -9,10 +9,13 @@ export const metadata = {
 export default function MarketingLoginPage() {
   async function handleLogin(formData: FormData) {
     'use server';
+    const email = formData.get('email');
     const password = formData.get('password');
+    
+    const adminEmail = process.env.MARKETING_ADMIN_EMAIL || 'digitalmarketing@tvanamm.com';
     const adminPassword = process.env.MARKETING_ADMIN_PASSWORD || 'tvanamm2026';
 
-    if (password === adminPassword) {
+    if (email === adminEmail && password === adminPassword) {
       // Set simple auth cookie
       cookies().set('marketing_auth_token', process.env.MARKETING_ADMIN_TOKEN || 'admin-dashboard-access-key', {
         httpOnly: true,
@@ -20,9 +23,9 @@ export default function MarketingLoginPage() {
         sameSite: 'lax',
         maxAge: 60 * 60 * 24 * 7, // 1 week
       });
-      redirect('/marketing-dashboard');
+      redirect('/marketingdashboard');
     } else {
-      return { error: 'Invalid password' };
+      return { error: 'Invalid email or password' };
     }
   }
 

@@ -53,7 +53,7 @@ export function BrochureDownloadSection() {
                   </div>
                   <div>
                     <h4 className="text-xl font-bold font-playfair mb-1 text-[#C8A96E]">{highlight.title}</h4>
-                    <p className="text-white/70 font-light leading-relaxed">{highlight.description}</p>
+                    <p className="text-white/90 font-light leading-relaxed">{highlight.description}</p>
                   </div>
                 </div>
               ))}

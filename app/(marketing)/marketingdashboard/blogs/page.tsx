@@ -31,7 +31,7 @@ export default async function BlogsDashboardPage() {
         </div>
         
         <Link 
-          href="/marketing-dashboard/blogs/new" 
+          href="/marketingdashboard/blogs/new" 
           className="flex items-center space-x-2 bg-green-800 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-green-700 transition"
         >
           <Plus className="w-5 h-5" />

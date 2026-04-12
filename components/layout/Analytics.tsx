@@ -3,6 +3,7 @@
 import Script from 'next/script';
 import { useEffect } from 'react';
 import clarity from '@microsoft/clarity';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
 export function Analytics() {
   useEffect(() => {
@@ -33,6 +34,7 @@ export function Analytics() {
           `,
         }}
       />
+      <VercelAnalytics />
     </>
   );
 }

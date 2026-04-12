@@ -36,6 +36,8 @@ export default async function Home() {
       <IndiaPresenceSection 
         headline={data?.indiaPresence?.headline}
         subtitle={data?.indiaPresence?.subtitle}
+        outletsCount={data?.indiaPresence?.outletsCount}
+        statesCount={data?.indiaPresence?.statesCount}
       />
       <FranchiseEnquiryFormSection 
         headline={data?.franchiseEnquiry?.headline}

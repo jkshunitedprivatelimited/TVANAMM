@@ -14,7 +14,7 @@ export default function MarketingDashboardPage() {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-        <Link href="/marketing-dashboard/blogs/new" className="block bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-green-200 transition-all group">
+        <Link href="/marketingdashboard/blogs/new" className="block bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-green-200 transition-all group">
           <div className="w-12 h-12 bg-green-100 text-green-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
             <PenSquare className="w-6 h-6" />
           </div>
@@ -22,7 +22,7 @@ export default function MarketingDashboardPage() {
           <p className="text-sm text-gray-500 mt-2">Draft and publish a new article to the blog.</p>
         </Link>
 
-        <Link href="/marketing-dashboard/blogs" className="block bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-green-200 transition-all group">
+        <Link href="/marketingdashboard/blogs" className="block bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-green-200 transition-all group">
           <div className="w-12 h-12 bg-blue-100 text-blue-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
             <FileText className="w-6 h-6" />
           </div>
@@ -30,7 +30,7 @@ export default function MarketingDashboardPage() {
           <p className="text-sm text-gray-500 mt-2">View, edit, or delete existing blog posts.</p>
         </Link>
 
-        <Link href="/marketing-dashboard/seo" className="block bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-green-200 transition-all group">
+        <Link href="/marketingdashboard/seo" className="block bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-green-200 transition-all group">
           <div className="w-12 h-12 bg-purple-100 text-purple-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
             <Settings className="w-6 h-6" />
           </div>
@@ -38,7 +38,7 @@ export default function MarketingDashboardPage() {
           <p className="text-sm text-gray-500 mt-2">Update global meta descriptions and main keywords.</p>
         </Link>
 
-        <Link href="/marketing-dashboard/leads" className="block bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-orange-200 transition-all group">
+        <Link href="/marketingdashboard/leads" className="block bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-orange-200 transition-all group">
           <div className="w-12 h-12 bg-orange-100 text-orange-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
             <Users className="w-6 h-6" />
           </div>
