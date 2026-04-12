@@ -13,7 +13,7 @@ import { Metadata } from 'next';
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getHomePage();
   return {
-    title: data?.metaTitle || 'T Vanamm — Tea & Coffee Franchise India | 250+ Outlets',
+    title: data?.metaTitle || 'T Vanamm',
     description: data?.metaDescription || 'Join T Vanamm, India\'s fastest growing tea and coffee franchise with 250+ outlets.',
   };
 }

@@ -87,11 +87,11 @@ export function HeroSection({
         transition={{ delay: 1.5, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
       >
-        <span className="text-white/70 text-sm mb-2 font-medium tracking-widest uppercase">Scroll</span>
+        <span className="text-white text-sm mb-2 font-medium tracking-widest uppercase">Scroll</span>
         <motion.div 
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          className="w-8 h-12 border-2 border-white/50 rounded-full flex justify-center p-1"
+          className="w-8 h-12 border-2 border-white rounded-full flex justify-center p-1"
         >
           <div className="w-1.5 h-3 bg-white rounded-full" />
         </motion.div>
