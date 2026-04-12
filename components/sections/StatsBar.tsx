@@ -14,7 +14,7 @@ type StatItem = {
 const defaultStats: StatItem[] = [
   { value: 250, suffix: '+', label: 'Outlets' },
   { value: 120, suffix: '+', label: 'Beverages' },
-  { textValue: 'Pan India', label: 'Outlets' },
+  { value: 10, suffix: '+', label: 'States' },
 ];
 
 function Counter({ from, to, duration = 10 }: { from: number; to: number; duration?: number }) {

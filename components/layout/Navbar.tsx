@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -17,6 +17,17 @@ const navLinks = [
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const handleGetFranchise = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (pathname !== '/') {
@@ -36,20 +47,20 @@ export function Navbar() {
       >
         <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105 group">
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0 transition-transform hover:scale-105 group">
             <Image 
               src="/images/logo_gif.gif" 
               alt="T Vanamm Logo" 
               width={55} 
               height={55} 
-              className="object-contain" 
+              className="object-contain w-10 h-10 md:w-[55px] md:h-[55px]" 
               unoptimized
             />
             <div className="flex flex-col">
-              <span className="font-playfair font-bold text-2xl tracking-wide text-[#006437]">
+              <span className="font-playfair font-bold text-xl md:text-2xl tracking-wide text-[#006437] whitespace-nowrap">
                 T Vanamm
               </span>
-              <span className="font-playfair italic text-xs text-[#006437] -mt-1 ml-4 opacity-90 group-hover:text-[#C8A96E] transition-colors">
+              <span className="font-playfair italic text-[10px] md:text-xs text-[#006437] -mt-1 ml-4 opacity-90 group-hover:text-[#C8A96E] transition-colors whitespace-nowrap">
                 &quot;A Taste of Purity&quot;
               </span>
             </div>
@@ -93,7 +104,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black/50 md:hidden"
+            className="fixed inset-0 z-[1000] md:hidden"
             onClick={() => setMobileMenuOpen(false)}
           >
             <motion.div
@@ -134,7 +145,7 @@ export function Navbar() {
                     handleGetFranchise(e);
                     setMobileMenuOpen(false);
                   }}
-                  className="flex justify-center items-center w-full bg-[#006437] text-white py-3 rounded-md font-semibold"
+                  className="flex justify-center items-center w-full bg-[#C8A96E] hover:opacity-90 transition-opacity text-white py-3 rounded-md font-semibold"
                 >
                   Get Franchise
                 </Link>

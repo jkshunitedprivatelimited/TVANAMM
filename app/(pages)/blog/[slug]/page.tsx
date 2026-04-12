@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { client } from '@/lib/sanity/client';
 import { PortableText } from '@portabletext/react';
+import { ReadyToJoinSection } from '@/components/sections/ReadyToJoinSection';
 
 export const revalidate = 60;
 
@@ -68,12 +69,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <div className="container mx-auto px-4 md:px-8 py-12 max-w-4xl">
           <div className="w-full">
             
-            {/* Breadcrumb Navigation inside card */}
-            <div className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-gray-400 mb-8 border-b border-gray-100 pb-6">
-              <Link href="/" className="hover:text-[#006437] transition-colors">Home</Link> 
-              <span className="mx-2">&rarr;</span> 
-              <Link href="/blog" className="hover:text-[#006437] transition-colors">Journal</Link>
-            </div>
+
 
             {/* Post Thumbnail Image inside article */}
             {post.coverImageUrl && (
@@ -108,12 +104,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </div>
 
         {/* Global CTA Bridge — Full Width */}
-        <section className="py-12 bg-[#C8A96E] mt-12 w-full">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-white mb-8">Ready to be part of the T Vanamm family?</h2>
-            <Link href="/#franchise-enquiry" className="inline-block px-8 py-4 bg-[#006437] text-white font-bold rounded-lg shadow-xl hover:bg-[#004e2a] transition-colors text-lg">Enquire Now</Link>
-          </div>
-        </section>
+        <ReadyToJoinSection />
       </article>
     </>
   );

@@ -36,7 +36,7 @@ export function ProductsShowcaseSection({ categories: sanityCategories }: { cate
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-white mb-4">
-            Our Menu — Crafted for Every Taste
+            Our Menu <span className="hidden md:inline">—</span> <br className="block md:hidden" /> Crafted for Every Taste
           </h2>
           <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
           <p className="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed mb-6">

@@ -72,7 +72,7 @@ export function HeroSection({
             </Link>
             <Link
               href="/about"
-              className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#006437] font-semibold rounded transition-colors text-lg"
+              className="w-full sm:w-auto px-8 py-4 bg-white text-[#006437] hover:bg-gray-100 font-semibold rounded transition-colors text-lg"
             >
               Explore Our Story
             </Link>

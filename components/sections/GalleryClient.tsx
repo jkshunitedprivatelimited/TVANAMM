@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ReadyToJoinSection } from './ReadyToJoinSection';
 
 const filters = ['Outlets', 'Products'];
 
@@ -72,14 +73,14 @@ function MarqueeWall({
   ];
 
   return (
-    <section className="py-10 bg-white overflow-hidden">
+    <section className="relative z-10 pt-6 pb-10 bg-white overflow-hidden">
       {/* Section header */}
-      <div className="container mx-auto px-4 lg:px-8 mb-12">
+      <div className="container mx-auto px-4 lg:px-8 mb-4 md:mb-8">
         <div className="text-center">
           <p className="text-[#C8A96E] font-semibold tracking-[0.3em] uppercase text-xs mb-4">
             {preheading}
           </p>
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-[#006437] mb-4">
+          <h2 className="text-2xl md:text-4xl font-playfair font-bold text-[#006437] mb-4 whitespace-nowrap">
             {heading}
           </h2>
           <div className="w-20 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
@@ -179,29 +180,25 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] pb-4 text-center overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] md:pt-[120px] pb-4 text-center overflow-hidden">
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background.png')] bg-cover bg-center mix-blend-overlay" />
         <div className="container relative z-10 mx-auto px-4">
+
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-bold tracking-[0.2em] uppercase">
             Gallery
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-4">
-            Our Outlets & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C8A96E] to-[#E5CC98]">Products</span>
+          <h1 className="text-2xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-4 leading-tight whitespace-nowrap">
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C8A96E] to-[#E5CC98]">Outlets & Products</span>
           </h1>
           <p className="text-white/80 text-lg font-medium max-w-2xl mx-auto mb-4 leading-relaxed">
             See T Vanamm in action across India
           </p>
-          <div className="flex items-center justify-center gap-3 text-white/60 text-sm font-semibold tracking-widest uppercase">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link> 
-            <span className="w-1 h-1 rounded-full bg-[#C8A96E]"></span> 
-            <span className="text-white">Gallery</span>
-          </div>
         </div>
       </section>
 
       {/* Tab Filters */}
-      <section className="py-4 md:py-6 bg-gray-50 border-b border-gray-200 sticky top-[56px] z-40 shadow-sm">
+      <section className="py-4 bg-gray-50 border-b border-gray-200 sticky top-[48px] md:top-[63px] z-40 shadow-sm">
         <div className="container mx-auto px-4 overflow-x-auto hide-scrollbar">
           <div className="flex justify-center flex-nowrap min-w-max md:min-w-0 md:flex-wrap gap-2 md:gap-4">
             {filters.map((filter) => (
@@ -223,11 +220,11 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
       {/* Content — Outlets uses grid, Products uses marquee wall */}
       <AnimatePresence mode="wait">
         {activeTab === 'Outlets' ? (
-          <motion.div
+            <motion.div
             key="outlets"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
           >
             <MarqueeWall 
@@ -239,11 +236,11 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
             />
           </motion.div>
         ) : (
-          <motion.div
+            <motion.div
             key="products"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
           >
             <MarqueeWall 
@@ -260,20 +257,32 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
 
 
       {/* CTA */}
-      <section className="py-12 bg-[#C8A96E]">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-white mb-8">Ready to be part of the T Vanamm family?</h2>
-          <Link href="/#franchise-enquiry" scroll={true} className="inline-block px-8 py-4 bg-[#006437] text-white font-bold rounded-lg shadow-xl hover:bg-[#004e2a] transition-colors text-lg">Enquire Now</Link>
-        </div>
-      </section>
+      <ReadyToJoinSection />
 
       {/* Lightbox */}
       <AnimatePresence>
         {selectedImage && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out" onClick={() => setSelectedImage(null)}>
-            <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="relative max-w-5xl max-h-[90vh] w-full h-full rounded-2xl overflow-hidden cursor-default" onClick={e => e.stopPropagation()}>
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }} 
+            className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out" 
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9 }} 
+              animate={{ scale: 1 }} 
+              exit={{ scale: 0.9 }} 
+              className="relative max-w-5xl max-h-[90vh] w-full h-full rounded-2xl overflow-hidden cursor-default" 
+              onClick={e => e.stopPropagation()}
+            >
                <Image src={selectedImage} alt="Expanded" fill className="object-contain" />
-               <button onClick={() => setSelectedImage(null)} className="absolute top-4 right-4 bg-white/20 hover:bg-white text-white hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-colors">X</button>
+               <button 
+                 onClick={() => setSelectedImage(null)} 
+                 className="absolute top-4 right-4 bg-white/20 hover:bg-white text-white hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+               >
+                 X
+               </button>
             </motion.div>
           </motion.div>
         )}

@@ -14,7 +14,7 @@ export async function updateSeoSettings(formData: FormData) {
       ? seoKeywordsString.split('\n').map(k => k.trim()).filter(Boolean) 
       : [];
 
-    const updates: any = {
+    const updates: Record<string, unknown> = {
       defaultSeoTitle,
       defaultSeoDescription,
       seoKeywords
@@ -36,7 +36,7 @@ export async function updateSeoSettings(formData: FormData) {
 
     revalidatePath('/', 'layout');
     return { success: true };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error updating SEO:', error);
     return { error: 'Failed to update SEO settings' };
   }

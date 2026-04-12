@@ -54,7 +54,7 @@ export async function createBlogPost(formData: FormData) {
     };
 
     if (thumbnailAssetId) {
-      (newPost as any).thumbnail = {
+      (newPost as Record<string, unknown>).thumbnail = {
         _type: 'image',
         asset: {
           _type: 'reference',
@@ -64,7 +64,7 @@ export async function createBlogPost(formData: FormData) {
     }
 
     if (ogImageAssetId) {
-      (newPost as any).ogImage = {
+      (newPost as Record<string, unknown>).ogImage = {
         _type: 'image',
         asset: {
           _type: 'reference',
@@ -78,9 +78,9 @@ export async function createBlogPost(formData: FormData) {
     revalidatePath('/');
     
     return { success: true };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error creating blog post:', error);
-    return { error: error.message || 'Failed to create blog post' };
+    return { error: (error as Error).message || 'Failed to create blog post' };
   }
 }
 
@@ -89,7 +89,7 @@ export async function deleteBlogPost(id: string) {
     await client.delete(id);
     revalidatePath('/blog');
     return { success: true };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error(err);
     return { error: 'Failed to delete' };
   }

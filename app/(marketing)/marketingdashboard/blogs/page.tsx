@@ -55,11 +55,11 @@ export default async function BlogsDashboardPage() {
               {blogs.length === 0 && (
                 <tr>
                   <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
-                    No blog posts found. Click "Write New Post" to start!
+                    No blog posts found. Click &quot;Write New Post&quot; to start!
                   </td>
                 </tr>
               )}
-              {blogs.map((blog: any) => (
+              {blogs.map((blog: Record<string, string>) => (
                 <tr key={blog._id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4 font-medium text-gray-900">{blog.title}</td>
                   <td className="px-6 py-4">

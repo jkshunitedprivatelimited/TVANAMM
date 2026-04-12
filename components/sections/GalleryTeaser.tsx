@@ -19,7 +19,7 @@ const defaultImages = [
 export function GalleryTeaser({ images: sanityImages }: { images?: Record<string, unknown>[] }) {
   const allImages = (sanityImages && sanityImages.length > 0)
     ? sanityImages
-        .filter(img => img && (img._type === 'image' || (img as any).asset)) // Basic check for Sanity image object
+        .filter(img => img && (img._type === 'image' || (img as Record<string, unknown>).asset)) // Basic check for Sanity image object
         .map((img) => urlFor(img).url()) 
     : defaultImages;
 

@@ -2,7 +2,7 @@ import { fetchLeads } from '@/app/(marketing)/_actions/leadActions';
 import { LeadsTable } from '@/app/(marketing)/marketingdashboard/leads/LeadsTable';
 
 export const metadata = {
-  title: 'Enquiries | T VANAMM Marketing Dashboard',
+  title: 'Enquiries | T Vanamm Marketing Dashboard',
 };
 
 export default async function LeadsPage() {

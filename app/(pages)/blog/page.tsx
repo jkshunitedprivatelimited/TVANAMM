@@ -24,13 +24,13 @@ export default async function BlogPage() {
   return (
     <>
       {/* Premium Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] pb-4 overflow-hidden text-center">
+      <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] md:pt-[120px] pb-4 overflow-hidden text-center">
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background.png')] bg-cover bg-center mix-blend-overlay" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-bold tracking-[0.2em] uppercase">
-            The Journal
+            Blog
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-4">
@@ -38,14 +38,8 @@ export default async function BlogPage() {
           </h1>
           
           <p className="text-white/80 text-base md:text-lg font-medium max-w-2xl mx-auto mb-4 leading-relaxed">
-            Explore industry trends, tea culture, and T Vanamm stories.
+            Explore industry trends, tea culture, and <span className="whitespace-nowrap">T Vanamm</span> stories.
           </p>
-          
-          <div className="flex items-center justify-center gap-3 text-white/60 text-sm font-semibold tracking-widest uppercase">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link> 
-            <span className="w-1 h-1 rounded-full bg-[#C8A96E]"></span> 
-            <span className="text-white">Blog</span>
-          </div>
         </div>
       </section>
 

@@ -1,8 +1,6 @@
 'use client';
 
-import { useScroll } from '@/hooks/useScroll';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface WhatsappFloatProps {
   phone?: string;
@@ -21,43 +19,24 @@ const WhatsAppIcon = ({ size = 30 }: { size?: number }) => (
 );
 
 export function WhatsappFloat({ phone = '919390658544' }: WhatsappFloatProps) {
-  const { scrollDirection } = useScroll();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const isHidden = isMobile && scrollDirection === 'down';
-
   return (
-    <AnimatePresence>
-      {!isHidden && (
-        <motion.a
-          href={`https://wa.me/${phone.replace(/[\s+]/g, '')}?text=Hi,%20I'm%20interested%20in%20T%20Vanamm%20franchise`}
-          target="_blank"
-          rel="noopener noreferrer"
-          initial={{ opacity: 0, scale: 0.5, y: 50 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.5, y: 50 }}
-          transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-          className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#1ebd5a] transition-colors group"
-          title="Chat with us"
-        >
-          <div className="absolute inset-0 rounded-full animate-ping bg-[#25D366] opacity-30" style={{ animationDuration: '3s' }} />
-          <WhatsAppIcon size={32} />
-          
-          {/* Tooltip */}
-          <span className="absolute right-full mr-4 bg-white text-[#006437] font-semibold text-sm px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-            Chat with us
-          </span>
-        </motion.a>
-      )}
-    </AnimatePresence>
+    <motion.a
+      href={`https://wa.me/${phone.replace(/[\s+]/g, '')}?text=Hi,%20I'm%20interested%20in%20T%20Vanamm%20franchise`}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, scale: 0.5, y: 50 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+      className="fixed bottom-[22px] md:bottom-8 right-5 md:right-6 z-[999] flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#1ebd5a] transition-colors group"
+      title="Chat with us"
+    >
+      <div className="absolute inset-0 rounded-full animate-ping bg-[#25D366] opacity-30" style={{ animationDuration: '3s' }} />
+      <WhatsAppIcon size={32} />
+      
+      {/* Tooltip */}
+      <span className="absolute right-full mr-4 bg-white text-[#006437] font-semibold text-sm px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        Chat with us
+      </span>
+    </motion.a>
   );
 }

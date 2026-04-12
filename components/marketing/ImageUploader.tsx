@@ -40,8 +40,8 @@ export default function ImageUploader({ onUploadSuccess, label = 'Upload Image' 
       if (data.error) throw new Error(data.error);
 
       onUploadSuccess(data.assetId);
-    } catch (err: any) {
-      setError(err.message || 'Error uploading file');
+    } catch (err: unknown) {
+      setError((err as Error).message || 'Error uploading file');
       setPreviewUrl(null);
     } finally {
       setIsUploading(false);

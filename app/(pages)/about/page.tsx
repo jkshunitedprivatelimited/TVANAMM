@@ -6,6 +6,7 @@ import { IndiaPresenceSection } from '@/components/sections/IndiaPresenceSection
 import Link from 'next/link';
 import Image from 'next/image';
 import { ShieldCheck, Lightbulb, Heart, TrendingUp, ShieldAlert, Users } from 'lucide-react';
+import { ReadyToJoinSection } from '@/components/sections/ReadyToJoinSection';
 import { client } from '@/lib/sanity/client';
 import { urlFor } from '@/lib/sanity/image';
 
@@ -19,7 +20,7 @@ const values = [
 ];
 
 const milestones: { year: string; title?: string; event: string }[] = [
-  { year: '2021', title: 'Company Founded', event: 'Mrs. N. Naga Jyothi establishes T VANAMM with a vision to revolutionize healthy beverages.' },
+  { year: '2021', title: 'Company Founded', event: 'Mrs. N. Naga Jyothi establishes T Vanamm with a vision to revolutionize healthy beverages.' },
   { year: '2022', title: 'Product Line Expansion', event: 'Launched premium tea collection and introduced innovative ice-cream flavors.' },
   { year: '2023', title: 'Quality Certifications', event: 'Achieved organic certification and established rigorous quality-control standards.' },
   { year: '2024', title: 'Market Growth', event: 'Expanded to 500+ customers across India with a 4.9★ rating and stronger supply chain.' },
@@ -41,7 +42,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] pb-4 text-center overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] md:pt-[120px] pb-4 text-center overflow-hidden">
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background.png')] bg-cover bg-center mix-blend-overlay" />
         <div className="container relative z-10 mx-auto px-4">
@@ -63,25 +64,20 @@ export default function AboutPage() {
           >
             Building India&apos;s most trusted Tea Franchise — one cup at a time.
           </motion.p>
-          <div className="flex items-center justify-center gap-3 text-white/60 text-sm font-semibold tracking-widest uppercase">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link> 
-            <span className="w-1 h-1 rounded-full bg-[#C8A96E]"></span> 
-            <span className="text-white">About</span>
-          </div>
         </div>
       </section>
 
       {/* Meet Our Visionary Founder */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Column — Bio */}
             <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <h2 className="text-3xl md:text-4xl xl:text-5xl lg:whitespace-nowrap font-playfair font-bold text-[#006437] mb-8">
-                Meet Our Visionary Founder
+                Meet Our <br className="block md:hidden" /> Visionary Founder
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                <span className="font-bold">Mrs. N. Naga Jyothi</span> founded T VANAMM in 2021 with a vision to transform the beverage industry by prioritizing health, quality, and customer satisfaction—building a trusted <span className="font-bold">Tea Franchise in India</span>.
+                <span className="font-bold">Mrs. N. Naga Jyothi</span> founded T Vanamm in 2021 with a vision to transform the beverage industry by prioritizing health, quality, and customer satisfaction—building a trusted <span className="font-bold">Tea Franchise in India</span>.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
                 With 15+ years of FMCG experience, she blended traditional brewing methods with modern nutrition science to craft our distinctive product line and scalable partner model.
@@ -107,7 +103,7 @@ export default function AboutPage() {
                 <p className="text-[#006437] font-bold text-lg mb-6">Founder &amp; CEO</p>
                 <div className="relative mb-8 max-w-sm mx-auto">
                   <blockquote className="italic text-gray-600 text-lg leading-relaxed">
-                    &quot;My vision is to make T VANAMM a household name across India, bringing health, happiness, and authentic flavors to every family.&quot;
+                    &quot;My vision is to make T Vanamm a household name across India, bringing health, happiness, and authentic flavors to every family.&quot;
                   </blockquote>
                 </div>
                 <div className="flex justify-center gap-12">
@@ -127,7 +123,7 @@ export default function AboutPage() {
       </section>
 
       {/* Key Achievements — Full Width */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -137,7 +133,7 @@ export default function AboutPage() {
             <h3 className="text-2xl md:text-3xl font-playfair font-bold text-[#006437] mb-8 text-center">Key Achievements</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {[
-                { stat: '500+', label: 'Customers', desc: 'Built T VANAMM from startup to 500+ customers and a growing partner network' },
+                { stat: '500+', label: 'Customers', desc: 'Built T Vanamm from startup to 500+ customers and a growing partner network' },
                 { stat: '200+', label: 'Farming Families', desc: 'Partnerships with 200+ farming families through fair-trade sourcing' },
                 { stat: '#1', label: 'Pioneer', desc: 'Pioneer in sustainable tea practices and ethical distribution' },
                 { stat: '4.9★', label: 'Satisfaction', desc: 'Maintained 4.9★ customer satisfaction—fueling an Affordable Tea Franchise growth model' },
@@ -160,18 +156,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-gray-50">
+      <section className="py-12 md:py-24 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100 hover:bg-[#006437] group transition-colors duration-300 cursor-default">
-              <h3 className="text-3xl font-playfair font-bold text-[#006437] group-hover:text-white mb-6 transition-colors duration-300">Our Vision</h3>
-              <p className="text-gray-600 group-hover:text-white/90 leading-relaxed text-lg transition-colors duration-300">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white p-6 md:p-10 rounded-2xl shadow-xl border border-gray-100 hover:bg-[#006437] group transition-colors duration-300 cursor-default">
+              <h3 className="text-3xl font-playfair font-bold text-[#006437] group-hover:text-white mb-4 md:mb-6 transition-colors duration-300">Our Vision</h3>
+              <p className="text-gray-600 group-hover:text-white/90 leading-relaxed text-base md:text-lg transition-colors duration-300">
                 To become India&apos;s most loved tea and coffee franchise — building businesses that redefine everyday experiences and empower entrepreneurs across every corner of the country.
               </p>
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} viewport={{ once: true }} className="bg-white p-10 rounded-2xl shadow-xl border border-gray-100 hover:bg-[#006437] group transition-colors duration-300 cursor-default">
-              <h3 className="text-3xl font-playfair font-bold text-[#006437] group-hover:text-white mb-6 transition-colors duration-300">Our Mission</h3>
-              <p className="text-gray-600 group-hover:text-white/90 leading-relaxed text-lg transition-colors duration-300">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} viewport={{ once: true }} className="bg-white p-6 md:p-10 rounded-2xl shadow-xl border border-gray-100 hover:bg-[#006437] group transition-colors duration-300 cursor-default">
+              <h3 className="text-3xl font-playfair font-bold text-[#006437] group-hover:text-white mb-4 md:mb-6 transition-colors duration-300">Our Mission</h3>
+              <p className="text-gray-600 group-hover:text-white/90 leading-relaxed text-base md:text-lg transition-colors duration-300">
                 To scale a premium tea and coffee franchise model built on quality, consistency, and full partner support — creating profitable opportunities for franchise owners and memorable experiences for every customer.
               </p>
             </motion.div>
@@ -179,7 +175,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-playfair font-bold text-[#006437] mb-4">Core Values</h2>
@@ -197,7 +193,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#004e2a] text-white">
+      <section className="py-12 md:py-24 bg-[#004e2a] text-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-20 max-w-3xl mx-auto">
             <h2 className="text-3xl font-playfair font-bold text-white mb-4">Our Journey</h2>
@@ -253,9 +249,9 @@ export default function AboutPage() {
 
                   {/* Mobile: always left-aligned */}
                   <div className="md:hidden pl-10">
-                    <div className="text-[#C8A96E] font-bold text-2xl mb-2">{m.year}</div>
-                    {m.title && <div className="text-xl font-bold text-[#C8A96E] mb-2">{m.title}</div>}
-                    <div className="text-lg font-playfair text-white/90">{m.event}</div>
+                    <div className="text-[#C8A96E] font-bold text-xl mb-1">{m.year}</div>
+                    {m.title && <div className="text-lg font-bold text-[#C8A96E] mb-1">{m.title}</div>}
+                    <div className="text-base font-playfair text-white/90">{m.event}</div>
                   </div>
                 </motion.div>
               );
@@ -264,14 +260,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <IndiaPresenceSection />
+      <IndiaPresenceSection headline="Growing Across India" />
 
-      <section className="py-12 bg-[#C8A96E]">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-white mb-8">Ready to be part of the T Vanamm family?</h2>
-          <Link href="/contact" className="inline-block px-8 py-4 bg-[#006437] text-white font-bold rounded-lg shadow-xl hover:bg-[#004e2a] transition-colors text-lg">Enquire Now</Link>
-        </div>
-      </section>
+      <ReadyToJoinSection />
     </>
   );
 }

@@ -2,15 +2,15 @@ import Link from 'next/link';
 import { PenSquare, FileText, Settings, Users } from 'lucide-react';
 
 export const metadata = {
-  title: 'T VANAMM Marketing Dashboard',
+  title: 'T Vanamm Marketing Dashboard',
 };
 
 export default function MarketingDashboardPage() {
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">Welcome to T VANAMM Marketing Dashboard</h1>
+      <h1 className="text-3xl font-bold text-gray-900">Welcome to T Vanamm Marketing Dashboard</h1>
       <p className="text-gray-600 max-w-2xl">
-        Manage your website's content and SEO directly from this dashboard. Changes made here will immediately reflect on the live website.
+        Manage your website&apos;s content and SEO directly from this dashboard. Changes made here will immediately reflect on the live website.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">

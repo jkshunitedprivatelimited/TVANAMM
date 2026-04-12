@@ -66,7 +66,7 @@ export function WhySection({ cards }: { cards?: WhyCard[] }) {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16 max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
-            Why Choose T VANAMM?
+            Why Choose T Vanamm?
           </h2>
           <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
           <p className="text-gray-600 text-lg leading-relaxed">

@@ -171,9 +171,9 @@ function CustomerReviewsGrid() {
   ];
 
   return (
-    <section className="py-24 bg-white border-t border-gray-100">
+    <section className="py-12 md:py-24 bg-white border-t border-gray-100">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
             Customer Reviews
           </h2>
@@ -224,7 +224,8 @@ export function TestimonialsSection({ testimonials: sanityTestimonials }: { test
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-4">
             <h2 className="text-3xl md:text-4xl font-playfair font-bold text-[#006437] mb-3">
-              Our Franchise Success Stories
+              Our Franchise <br className="block md:hidden" />
+              Success Stories
             </h2>
             <div className="w-20 h-1 bg-[#C8A96E] mx-auto rounded-full" />
           </div>

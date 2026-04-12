@@ -54,7 +54,7 @@ export function HowItWorksSection({ steps = defaultSteps }: HowItWorksSectionPro
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
-            Your Journey to Owning an Outlet
+            Your Journey <br className="block md:hidden" /> to Owning an Outlet
           </h2>
           <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full" />
         </div>

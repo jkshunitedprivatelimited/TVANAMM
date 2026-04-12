@@ -21,7 +21,7 @@ interface FranchiseEnquiryFormSectionProps {
 }
 
 const defaultTrustBadges = [
-  { name: 'FSSAI Compliant', logo: '/images/fssai_logo.png' },
+  { name: 'FSSAI Certified', logo: '/images/fssai_logo.png' },
   { name: 'ISO Certified', logo: '/images/iso_logo.png' },
   { name: 'GMP Verified', logo: '/images/gmp_logo.png' },
   { name: 'GST Registered', logo: '/images/gst_logo.png' },
@@ -44,12 +44,12 @@ export function FranchiseEnquiryFormSection({
 }: FranchiseEnquiryFormSectionProps) {
   const displayBadges = trustBadges && trustBadges.length > 0 ? trustBadges : defaultTrustBadges;
 
-  // Function to format the headline to make "T VANAMM" gold and handle the requested line break
+  // Function to format the headline to make "T Vanamm" gold and handle the requested line break
   const formatHeadline = (text: React.ReactNode) => {
     const defaultVal = (
       <>
         Start Your Journey <br />
-        <span className="text-[#C8A96E]">with T VANAMM</span>
+        <span className="text-[#C8A96E]">with T Vanamm</span>
       </>
     );
 
@@ -58,27 +58,27 @@ export function FranchiseEnquiryFormSection({
     
     // If it's the specific headline string, force the line break
     if (text.toLowerCase().includes('with t vanamm')) {
-      const parts = text.split(/with T VANAMM/i);
+      const parts = text.split(/with T Vanamm/i);
       return (
         <>
           {parts[0]} <br />
-          with <span className="text-[#C8A96E]">T VANAMM</span>
+          with <span className="text-[#C8A96E]">T Vanamm</span>
           {parts[1]}
         </>
       );
     }
 
-    // Fallback split for other mentions of T VANAMM
-    const parts = text.split(/(T VANAMM)/i);
+    // Fallback split for other mentions of T Vanamm
+    const parts = text.split(/(T Vanamm)/i);
     return parts.map((part, i) => 
-      part.toUpperCase() === 'T VANAMM' ? (
+      part.toLowerCase() === 't vanamm' ? (
         <span key={i} className="text-[#C8A96E]">{part}</span>
       ) : part
     );
   };
 
   return (
-    <section id="franchise-enquiry" className="pt-32 md:pt-24 pb-24 bg-[#006437] text-white relative scroll-mt-32 md:scroll-mt-24">
+    <section id="franchise-enquiry" className="pt-20 md:pt-24 pb-24 bg-[#006437] text-white relative scroll-mt-20 md:scroll-mt-24">
       <div className="container mx-auto px-4 lg:px-8">
         
         {/* Trust & Compliance Badges - Compact Rectangular Grid */}

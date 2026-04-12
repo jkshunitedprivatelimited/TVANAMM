@@ -86,34 +86,43 @@ export const IndiaPresenceSection = ({
   headline, 
   subtitle = 'Join our rapidly expanding network of successful franchise partners.', 
   outletsCount = '250', 
-  statesCount = '21' 
+  statesCount = '10' 
 }: IndiaPresenceSectionProps) => {
   // Logic: 
   // 1. If 'headline' exists in Sanity, use it.
   // 2. If 'headline' is empty BUT counts exist, use "X+ Outlets across Y+ States".
   // 3. Fallback to "Growing Across India".
   const dynamicHeadline = (outletsCount && statesCount) 
-    ? `${outletsCount}+ Outlets across ${statesCount}+ States` 
+    ? (
+        <>
+          {outletsCount}+ Outlets <br className="block md:hidden" /> across {statesCount}+ States
+        </>
+      )
     : "Growing Across India";
 
   const resolvedHeadline = headline || dynamicHeadline;
   const resolvedSubtitle = subtitle;
 
   return (
-    <section className="py-24 bg-gray-50 relative overflow-hidden">
+    <section className="py-12 md:py-24 bg-gray-50 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="text-center mb-16 relative z-10">
+        <div className="text-center mb-8 md:mb-16 relative z-10">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
             {resolvedHeadline}
           </h2>
+          {headline && (outletsCount || statesCount) && (
+            <div className="text-xl md:text-2xl font-bold text-[#C8A96E] mb-4">
+              {outletsCount}+ Outlets across {statesCount}+ States
+            </div>
+          )}
           <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             {resolvedSubtitle}
           </p>
         </div>
 
-        <div className="relative max-w-2xl mx-auto aspect-[4/5] md:aspect-square flex justify-center mt-12">
-          {/* Animated Badge top-right of the India Map */}
+        <div className="relative max-w-2xl mx-auto mt-12">
+          {/* Animated Badge top-right of the India Map — outside overflow-hidden */}
           <div className="absolute -top-8 md:-top-8 lg:-top-4 right-0 md:-right-4 lg:-right-16 z-20 pointer-events-none bg-white rounded-full shadow-lg p-2 md:p-3 border border-gray-100 flex items-center justify-center">
             <Image 
               src="/images/logo_gif.gif" 
@@ -125,31 +134,34 @@ export const IndiaPresenceSection = ({
             />
           </div>
 
-          {/* Accurate India Map Vector */}
-          <div className="relative z-10 w-full h-full">
-            <IndiaMapVector />
-          </div>
+          {/* Map + Pins container with overflow-hidden to clip edge pins */}
+          <div className="relative aspect-square flex justify-center overflow-hidden">
+            {/* Accurate India Map Vector */}
+            <div className="relative z-10 w-full h-full">
+              <IndiaMapVector />
+            </div>
 
-          {/* Pins */}
-          {pins.map((pin, i) => (
-            <motion.div
-              key={pin.id}
-              className="absolute"
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ delay: (i % 30) * 0.03, duration: 0.3 }}
-              viewport={{ once: true }}
-              style={{ top: pin.top, left: pin.left }}
-              title={pin.city}
-            >
-              <div className="relative">
-                <div className={`${pin.size} bg-[#006437] rounded-full shadow-sm absolute -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center`} />
-                {pin.isPing && (
-                  <div className="w-4 h-4 rounded-full bg-[#C8A96E] absolute -translate-x-1/2 -translate-y-1/2 animate-ping opacity-40 mix-blend-multiply" style={{ animationDuration: '3s', animationDelay: `${(i % 5) * 0.5}s` }} />
-                )}
-              </div>
-            </motion.div>
-          ))}
+            {/* Pins */}
+            {pins.map((pin, i) => (
+              <motion.div
+                key={pin.id}
+                className="absolute"
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ delay: (i % 30) * 0.03, duration: 0.3 }}
+                viewport={{ once: true }}
+                style={{ top: pin.top, left: pin.left }}
+                title={pin.city}
+              >
+                <div className="relative">
+                  <div className={`${pin.size} bg-[#006437] rounded-full shadow-sm absolute -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center`} />
+                  {pin.isPing && (
+                    <div className="w-4 h-4 rounded-full bg-[#C8A96E] absolute -translate-x-1/2 -translate-y-1/2 animate-ping opacity-40 mix-blend-multiply" style={{ animationDuration: '3s', animationDelay: `${(i % 5) * 0.5}s` }} />
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

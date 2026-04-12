@@ -26,8 +26,8 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ assetId: asset._id, url: asset.url });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error uploading image to Sanity:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
   }
 }

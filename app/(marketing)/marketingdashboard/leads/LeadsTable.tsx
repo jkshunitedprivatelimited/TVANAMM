@@ -43,7 +43,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
 
   // Filter + Sort leads
   const filteredLeads = useMemo(() => {
-    let result = leads.filter((lead) => {
+    const result = leads.filter((lead) => {
       // Text search
       const matchesSearch =
         !searchQuery ||

@@ -19,7 +19,7 @@ export default function MarketingDashboardLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-green-900 flex-shrink-0 flex flex-col hidden md:flex">
         <div className="h-20 flex flex-col justify-center px-6 bg-green-950">
-          <span className="text-white font-bold text-base tracking-widest">T VANAMM</span>
+          <span className="text-white font-bold text-base tracking-widest">T Vanamm</span>
           <span className="text-[#C8A96E] font-bold text-[10px] uppercase tracking-[0.2em] -mt-0.5">Marketing Dashboard</span>
         </div>
         
@@ -75,7 +75,7 @@ export default function MarketingDashboardLayout({
         {/* Mobile Header */}
         <header className="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-4 md:hidden">
           <div className="flex flex-col">
-            <span className="text-green-900 font-bold text-base tracking-widest leading-tight">T VANAMM</span>
+            <span className="text-green-900 font-bold text-base tracking-widest leading-tight">T Vanamm</span>
             <span className="text-[#006437] font-bold text-[10px] uppercase tracking-wider opacity-70">Marketing Dashboard</span>
           </div>
           <form action={handleLogout}>
