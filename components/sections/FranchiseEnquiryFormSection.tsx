@@ -9,8 +9,7 @@ import { urlFor } from '@/lib/sanity/image';
 
 interface TrustBadge {
   name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  logo: any;
+  logo: Record<string, unknown> | string;
 }
 
 interface FranchiseEnquiryFormSectionProps {
@@ -94,13 +93,13 @@ export function FranchiseEnquiryFormSection({
               key={index}
               className="flex flex-col items-center text-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 rounded-xl shadow-sm transform transition-all hover:scale-[1.02] hover:bg-white/10"
             >
-              <div className="relative w-16 h-16 md:w-20 md:h-20 bg-white rounded-xl p-2 flex-shrink-0 shadow-inner overflow-hidden">
+              <div className="relative w-16 h-16 md:w-20 md:h-20 bg-white rounded-xl p-3 flex-shrink-0 shadow-inner overflow-hidden">
                 {badge.logo ? (
                   <Image 
                     src={typeof badge.logo === 'string' ? badge.logo : urlFor(badge.logo).url()} 
                     alt={badge.name} 
                     fill 
-                    className="object-contain p-1" 
+                    className={`object-contain ${badge.name.toLowerCase().includes('fssai') ? 'p-1.5' : ''}`} 
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-gray-50 text-[#006437]/20">

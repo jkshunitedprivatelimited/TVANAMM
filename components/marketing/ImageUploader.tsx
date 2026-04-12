@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface ImageUploaderProps {
   onUploadSuccess: (assetId: string) => void;
@@ -66,7 +67,14 @@ export default function ImageUploader({ onUploadSuccess, label = 'Upload Image' 
       {previewUrl && !error && (
         <div className="mt-4">
           <p className="text-sm text-gray-500 mb-2">Preview:</p>
-          <img src={previewUrl} alt="Preview" className="h-32 object-contain rounded border border-gray-200" />
+          <Image 
+            src={previewUrl} 
+            alt="Preview" 
+            width={300} 
+            height={128} 
+            className="h-32 w-auto object-contain rounded border border-gray-200" 
+            unoptimized
+          />
         </div>
       )}
     </div>

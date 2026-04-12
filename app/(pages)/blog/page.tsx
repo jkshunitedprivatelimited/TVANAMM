@@ -1,4 +1,4 @@
-import Link from 'next/link';
+
 import { client } from '@/lib/sanity/client';
 import { BlogGrid } from '@/components/sections/BlogGrid';
 

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { IndiaPresenceSection } from '@/components/sections/IndiaPresenceSection';
-import Link from 'next/link';
+
 import Image from 'next/image';
 import { ShieldCheck, Lightbulb, Heart, TrendingUp, ShieldAlert, Users } from 'lucide-react';
 import { ReadyToJoinSection } from '@/components/sections/ReadyToJoinSection';
