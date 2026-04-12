@@ -38,7 +38,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105 group">
             <Image 
-              src="/images/final.gif" 
+              src="/images/logo_gif.gif" 
               alt="T Vanamm Logo" 
               width={55} 
               height={55} 

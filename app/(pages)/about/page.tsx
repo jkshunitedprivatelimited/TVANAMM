@@ -43,7 +43,7 @@ export default function AboutPage() {
     <>
       <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] pb-4 text-center overflow-hidden">
         {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background_1775287501927.png')] bg-cover bg-center mix-blend-overlay" />
+        <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background.png')] bg-cover bg-center mix-blend-overlay" />
         <div className="container relative z-10 mx-auto px-4">
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-bold tracking-[0.2em] uppercase">
             About Us
@@ -266,7 +266,7 @@ export default function AboutPage() {
 
       <IndiaPresenceSection />
 
-      <section className="py-20 bg-[#C8A96E]">
+      <section className="py-12 bg-[#C8A96E]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-playfair font-bold text-white mb-8">Ready to be part of the T Vanamm family?</h2>
           <Link href="/contact" className="inline-block px-8 py-4 bg-[#006437] text-white font-bold rounded-lg shadow-xl hover:bg-[#004e2a] transition-colors text-lg">Enquire Now</Link>

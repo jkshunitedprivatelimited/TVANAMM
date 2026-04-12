@@ -44,3 +44,17 @@ export async function getNewLeads(startDate: string, endDate: string) {
 
   return data;
 }
+
+export async function getAllLeads() {
+  const { data, error } = await supabaseAdmin
+    .from('leads')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Supabase fetch error:', error);
+    throw error;
+  }
+
+  return data;
+}

@@ -21,12 +21,12 @@ interface FranchiseEnquiryFormSectionProps {
 }
 
 const defaultTrustBadges = [
-  { name: 'MSME Registered', logo: '/images/msme-logo.png' },
-  { name: 'FSSAI Compliant', logo: '/images/fssai-logo.png' },
-  { name: 'GST Registered', logo: '/images/gst-logo.png' },
-  { name: 'GMP Certified', logo: '/images/gmp.png' },
-  { name: 'ISO Certified', logo: '/images/iso.png' },
-  { name: 'Startup India', logo: '/images/si.png' },
+  { name: 'MSME Registered', logo: '/images/msme_logo.png' },
+  { name: 'FSSAI Compliant', logo: '/images/fssai_logo.png' },
+  { name: 'GST Registered', logo: '/images/gst_logo.png' },
+  { name: 'GMP Verified', logo: '/images/gmp_logo.png' },
+  { name: 'ISO Certified', logo: '/images/iso_logo.png' },
+  { name: 'Startup India', logo: '/images/startupindia_logo.png' },
 ];
 
 const defaultBenefits = [
@@ -37,12 +37,25 @@ const defaultBenefits = [
 ];
 
 export function FranchiseEnquiryFormSection({ 
-  headline = <>Start Your Journey with<br/><span className="text-[#C8A96E]">T VANAMM</span></>, 
+  headline,
   subtitle = 'Fill in your details and our expert franchise team will call you shortly with everything you need to know about setting up your highly profitable T Vanamm outlet.',
   benefits = defaultBenefits,
   trustBadges = []
 }: FranchiseEnquiryFormSectionProps) {
   const displayBadges = trustBadges && trustBadges.length > 0 ? trustBadges : defaultTrustBadges;
+
+  // Function to format the headline to make "T VANAMM" gold
+  const formatHeadline = (text: React.ReactNode) => {
+    if (typeof text !== 'string') return text || <>Start Your Journey<br/>with <span className="text-[#C8A96E]">T VANAMM</span></>;
+    
+    // Split the text to inject the gold span for T VANAMM
+    const parts = text.split(/(T VANAMM)/i);
+    return parts.map((part, i) => 
+      part.toUpperCase() === 'T VANAMM' ? (
+        <span key={i} className="text-[#C8A96E]">{part}</span>
+      ) : part
+    );
+  };
 
   return (
     <section id="franchise-enquiry" className="pt-32 md:pt-24 pb-24 bg-[#006437] text-white relative scroll-mt-32 md:scroll-mt-24">
@@ -59,18 +72,24 @@ export function FranchiseEnquiryFormSection({
           {displayBadges.map((badge, index) => (
             <div 
               key={index}
-              className="flex items-center gap-2 md:gap-3 bg-white/5 backdrop-blur-sm border border-white/10 p-2 md:p-3 rounded-xl shadow-sm transform transition-all hover:scale-[1.02] hover:bg-white/10 overflow-hidden"
+              className="flex flex-col items-center text-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 p-3 md:p-4 rounded-xl shadow-sm transform transition-all hover:scale-[1.02] hover:bg-white/10"
             >
-              <div className="relative w-14 h-14 md:w-16 md:h-16 bg-white rounded-lg p-1.5 flex-shrink-0 shadow-inner">
-                <Image 
-                  src={typeof badge.logo === 'string' ? badge.logo : urlFor(badge.logo).url()} 
-                  alt={badge.name} 
-                  fill 
-                  className="object-contain" 
-                />
+              <div className="relative w-16 h-16 md:w-20 md:h-20 bg-white rounded-xl p-2 flex-shrink-0 shadow-inner overflow-hidden">
+                {badge.logo ? (
+                  <Image 
+                    src={typeof badge.logo === 'string' ? badge.logo : urlFor(badge.logo).url()} 
+                    alt={badge.name} 
+                    fill 
+                    className="object-contain p-1" 
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gray-50 text-[#006437]/20">
+                    <span className="text-[10px] font-bold">LOGO</span>
+                  </div>
+                )}
               </div>
-              <div className="flex flex-col min-w-0 justify-center">
-                <span className="font-bold uppercase text-[9px] md:text-[10px] xl:text-[11px] text-white/90 leading-tight truncate sm:whitespace-normal break-words">
+              <div className="flex flex-col items-center">
+                <span className="font-bold uppercase text-[10px] md:text-[11px] text-white/90 leading-tight">
                   {badge.name}
                 </span>
                 <span className="text-[8px] text-[#C8A96E] font-bold tracking-widest uppercase mt-0.5">Verified</span>
@@ -86,10 +105,9 @@ export function FranchiseEnquiryFormSection({
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-5xl font-playfair font-bold text-white mb-6 leading-tight">
-              {headline}
+            <h2 className="text-3xl md:text-5xl font-playfair font-bold text-white mb-8 leading-tight">
+              {formatHeadline(headline)}
             </h2>
-            <div className="w-24 h-1 bg-[#C8A96E] rounded-full mb-8" />
             <p className="text-white/80 text-lg mb-8 leading-relaxed">
               {subtitle}
             </p>

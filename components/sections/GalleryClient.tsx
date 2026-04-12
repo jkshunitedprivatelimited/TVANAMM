@@ -169,9 +169,9 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
   // Ensure Outlets marquee always has images
   const fallbackOutletImages: GalleryImage[] = [
     { id: 'fo-1', category: 'Outlets', src: '/images/cafe_interior_1775287651976.png', title: 'Modern Interior' },
-    { id: 'fo-2', category: 'Outlets', src: '/images/hero_background_1775287501927.png', title: 'Outlet Vibes' },
+    { id: 'fo-2', category: 'Outlets', src: '/images/hero_background.png', title: 'Outlet Vibes' },
     { id: 'fo-3', category: 'Outlets', src: '/images/cafe_interior_1775287651976.png', title: 'Cozy Seating' },
-    { id: 'fo-4', category: 'Outlets', src: '/images/hero_background_1775287501927.png', title: 'T Vanamm Outlet' },
+    { id: 'fo-4', category: 'Outlets', src: '/images/hero_background.png', title: 'T Vanamm Outlet' },
     { id: 'fo-5', category: 'Outlets', src: '/images/cafe_interior_1775287651976.png', title: 'Storefront' },
   ];
   const outletImages = rawOutletImages.length > 0 ? rawOutletImages : fallbackOutletImages;
@@ -181,7 +181,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] pb-4 text-center overflow-hidden">
         {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background_1775287501927.png')] bg-cover bg-center mix-blend-overlay" />
+        <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background.png')] bg-cover bg-center mix-blend-overlay" />
         <div className="container relative z-10 mx-auto px-4">
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-bold tracking-[0.2em] uppercase">
             Gallery
@@ -201,7 +201,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
       </section>
 
       {/* Tab Filters */}
-      <section className="py-4 md:py-6 bg-gray-50 border-b border-gray-200 sticky top-[72px] z-40 shadow-sm">
+      <section className="py-4 md:py-6 bg-gray-50 border-b border-gray-200 sticky top-[56px] z-40 shadow-sm">
         <div className="container mx-auto px-4 overflow-x-auto hide-scrollbar">
           <div className="flex justify-center flex-nowrap min-w-max md:min-w-0 md:flex-wrap gap-2 md:gap-4">
             {filters.map((filter) => (
@@ -260,10 +260,10 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
 
 
       {/* CTA */}
-      <section className="py-20 bg-[#C8A96E]">
+      <section className="py-12 bg-[#C8A96E]">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-white mb-8">Like what you see? Own your outlet today.</h2>
-          <Link href="/#franchise-enquiry" scroll={true} className="inline-block px-8 py-4 bg-[#006437] text-white font-bold rounded-lg shadow-xl hover:bg-[#004e2a] transition-colors text-lg">Get in Touch</Link>
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-white mb-8">Ready to be part of the T Vanamm family?</h2>
+          <Link href="/#franchise-enquiry" scroll={true} className="inline-block px-8 py-4 bg-[#006437] text-white font-bold rounded-lg shadow-xl hover:bg-[#004e2a] transition-colors text-lg">Enquire Now</Link>
         </div>
       </section>
 

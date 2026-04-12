@@ -20,7 +20,7 @@ const brochureHighlights = [
 export function BrochureDownloadSection() {
   return (
     <section className="py-24 bg-[#006437] text-white border-t border-gray-100 overflow-hidden relative">
-      <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background_1775287501927.png')] bg-cover bg-center mix-blend-overlay" />
+      <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background.png')] bg-cover bg-center mix-blend-overlay" />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -37,10 +37,8 @@ export function BrochureDownloadSection() {
               <span className="text-white/90 uppercase tracking-widest text-xs">Official Document</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-playfair font-bold text-white mb-6 leading-tight">
-              <span className="block mb-2">Explore the</span>
-              <span className="block mb-2 text-[#C8A96E]">T Vanamm</span>
-              <span className="block">Opportunity.</span>
+            <h2 className="text-3xl md:text-5xl lg:text-5xl font-playfair font-bold text-white mb-6 leading-tight">
+              Explore the <span className="text-[#C8A96E]">T Vanamm</span> Opportunity.
             </h2>
             
             <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl font-light">
@@ -54,7 +52,7 @@ export function BrochureDownloadSection() {
                     {highlight.icon}
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold font-playfair mb-1">{highlight.title}</h4>
+                    <h4 className="text-xl font-bold font-playfair mb-1 text-[#C8A96E]">{highlight.title}</h4>
                     <p className="text-white/70 font-light leading-relaxed">{highlight.description}</p>
                   </div>
                 </div>

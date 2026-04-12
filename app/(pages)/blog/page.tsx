@@ -26,7 +26,7 @@ export default async function BlogPage() {
       {/* Premium Hero Section */}
       <section className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[100px] pb-4 overflow-hidden text-center">
         {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background_1775287501927.png')] bg-cover bg-center mix-blend-overlay" />
+        <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background.png')] bg-cover bg-center mix-blend-overlay" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs font-bold tracking-[0.2em] uppercase">

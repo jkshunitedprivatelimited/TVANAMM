@@ -17,14 +17,19 @@ const defaultImages = [
 ];
 
 export function GalleryTeaser({ images: sanityImages }: { images?: Record<string, unknown>[] }) {
-  const allImages = sanityImages?.length 
-    ? sanityImages.map((img) => urlFor(img).url()) 
+  const allImages = (sanityImages && sanityImages.length > 0)
+    ? sanityImages
+        .filter(img => img && (img._type === 'image' || (img as any).asset)) // Basic check for Sanity image object
+        .map((img) => urlFor(img).url()) 
     : defaultImages;
 
+  // Fallback to default if all mapping failed
+  const finalImages = allImages.length > 0 ? allImages : defaultImages;
+
   // We want 10 images in each row
-  const topRow = Array.from({ length: 10 }).map((_, i) => allImages[i % allImages.length]);
+  const topRow = Array.from({ length: 10 }).map((_, i) => finalImages[i % finalImages.length]);
   // Offset bottom row so it doesn't look identical to top row vertically
-  const bottomRow = Array.from({ length: 10 }).map((_, i) => allImages[(i + 3) % allImages.length]);
+  const bottomRow = Array.from({ length: 10 }).map((_, i) => finalImages[(i + 3) % finalImages.length]);
 
   // Duplicate the array for seamless infinite scroll
   const topMarquee = [...topRow, ...topRow];

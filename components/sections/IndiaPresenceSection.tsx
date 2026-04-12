@@ -101,7 +101,7 @@ export function IndiaPresenceSection({
           {/* Animated Badge top-right of the India Map */}
           <div className="absolute -top-8 md:-top-8 lg:-top-4 right-0 md:-right-4 lg:-right-16 z-20 pointer-events-none bg-white rounded-full shadow-lg p-2 md:p-3 border border-gray-100 flex items-center justify-center">
             <Image 
-              src="/images/final.gif" 
+              src="/images/logo_gif.gif" 
               alt="T Vanamm Badge" 
               width={120} 
               height={120} 
