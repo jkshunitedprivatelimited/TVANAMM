@@ -96,7 +96,7 @@ export default function AboutPage() {
                   </div>
                 ) : (
                   <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden mx-auto mb-6 border-4 border-[#006437]/20 bg-[#006437]/5 shadow-lg">
-                    <Image src="/images/founder.jpg" alt="Mrs. N. Naga Jyothi" width={128} height={128} className="object-cover w-full h-full" />
+                    <Image src="/images/Josnnasri.jpeg" alt="Mrs. N. Naga Jyothi" width={128} height={128} className="object-cover w-full h-full" />
                   </div>
                 )}
                 <h3 className="text-2xl font-bold text-gray-900">Mrs. N. Naga Jyothi</h3>
