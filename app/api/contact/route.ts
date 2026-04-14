@@ -86,52 +86,49 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Failed to save your enquiry. Please try again.' }, { status: 500 });
     }
 
-    // Step 5: Send emails (non-blocking - don't crash if emails fail)
+    // Step 5: Send emails (Parallel and non-blocking - don't crash if emails fail)
     if (process.env.RESEND_API_KEY) {
       try {
-        // Admin notification
-        console.log('[Contact API] Sending admin notification email...');
-        const adminHtml = await render(LeadNotificationEmail({
+        console.log('[Contact API] Preparing to send emails...');
+        
+        const adminEmailPromise = render(LeadNotificationEmail({
           fullName: validatedData.fullName,
           phone: validatedData.phone,
           email: validatedData.email,
           city: validatedData.city,
           message: validatedData.message
-        }));
-
-        const adminRes = await resend.emails.send({
+        })).then(html => resend.emails.send({
           from: process.env.SES_FROM_EMAIL || 'T Vanamm <onboarding@resend.dev>',
           to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
           replyTo: validatedData.email,
           subject: `New Franchise Lead — ${validatedData.fullName} from ${validatedData.city}`,
-          html: adminHtml
-        });
-        
-        if (adminRes.error) {
-          console.error('[Contact API] ADMIN EMAIL ERROR:', adminRes.error);
-        } else {
-          console.log('[Contact API] Admin email sent successfully:', adminRes.data?.id);
-        }
-
-        // User confirmation
-        console.log('[Contact API] Sending user confirmation email...');
-        const userHtml = await render(UserConfirmationEmail({
-          fullName: validatedData.fullName
+          html: html
         }));
 
-        const userRes = await resend.emails.send({
+        const userEmailPromise = render(UserConfirmationEmail({
+          fullName: validatedData.fullName
+        })).then(html => resend.emails.send({
           from: process.env.SES_FROM_EMAIL || 'T Vanamm <onboarding@resend.dev>',
           to: validatedData.email,
           replyTo: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
           subject: `Thank you for your interest in T Vanamm Franchise`,
-          html: userHtml
+          html: html
+        }));
+
+        // Fire both emails in parallel to save time
+        const results = await Promise.allSettled([adminEmailPromise, userEmailPromise]);
+        
+        results.forEach((result, index) => {
+          const type = index === 0 ? 'ADMIN' : 'USER';
+          if (result.status === 'rejected') {
+            console.error(`[Contact API] ${type} EMAIL REQUEST FAILED:`, result.reason);
+          } else if (result.value.error) {
+            console.error(`[Contact API] ${type} EMAIL ERROR:`, result.value.error);
+          } else {
+            console.log(`[Contact API] ${type} email sent successfully:`, result.value.data?.id);
+          }
         });
 
-        if (userRes.error) {
-          console.error('[Contact API] USER EMAIL ERROR:', userRes.error);
-        } else {
-          console.log('[Contact API] User email sent successfully:', userRes.data?.id);
-        }
       } catch (emailError) {
         // Log email error but don't fail the request — the lead is already saved
         console.error('[Contact API] EMAIL ERROR (lead was still saved):', emailError);
