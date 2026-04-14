@@ -1,4 +1,3 @@
-import React from 'react';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Ratelimit } from '@upstash/ratelimit';
@@ -7,6 +6,7 @@ import { insertLead, FormType } from '@/lib/supabase/queries';
 import resend from '@/lib/email/resend';
 import LeadNotificationEmail from '@/lib/email/templates/LeadNotification';
 import UserConfirmationEmail from '@/lib/email/templates/UserConfirmation';
+import { render } from '@react-email/components';
 
 const contactSchema = z.object({
   fullName: z.string().min(2),
@@ -91,18 +91,20 @@ export async function POST(request: Request) {
       try {
         // Admin notification
         console.log('[Contact API] Sending admin notification email...');
+        const adminHtml = await render(LeadNotificationEmail({
+          fullName: validatedData.fullName,
+          phone: validatedData.phone,
+          email: validatedData.email,
+          city: validatedData.city,
+          message: validatedData.message
+        }));
+
         const adminRes = await resend.emails.send({
           from: process.env.SES_FROM_EMAIL || 'T Vanamm <onboarding@resend.dev>',
           to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
           reply_to: validatedData.email,
           subject: `New Franchise Lead — ${validatedData.fullName} from ${validatedData.city}`,
-          react: LeadNotificationEmail({
-            fullName: validatedData.fullName,
-            phone: validatedData.phone,
-            email: validatedData.email,
-            city: validatedData.city,
-            message: validatedData.message
-          })
+          html: adminHtml
         });
         
         if (adminRes.error) {
@@ -113,14 +115,16 @@ export async function POST(request: Request) {
 
         // User confirmation
         console.log('[Contact API] Sending user confirmation email...');
+        const userHtml = await render(UserConfirmationEmail({
+          fullName: validatedData.fullName
+        }));
+
         const userRes = await resend.emails.send({
           from: process.env.SES_FROM_EMAIL || 'T Vanamm <onboarding@resend.dev>',
           to: validatedData.email,
           reply_to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
           subject: `Thank you for your interest in T Vanamm Franchise`,
-          react: UserConfirmationEmail({
-            fullName: validatedData.fullName
-          })
+          html: userHtml
         });
 
         if (userRes.error) {
