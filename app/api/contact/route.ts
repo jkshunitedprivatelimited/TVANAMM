@@ -1,3 +1,4 @@
+import React from 'react';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Ratelimit } from '@upstash/ratelimit';
@@ -101,7 +102,7 @@ export async function POST(request: Request) {
             email: validatedData.email,
             city: validatedData.city,
             message: validatedData.message
-          }) as React.ReactElement
+          })
         });
         
         if (adminRes.error) {
@@ -119,7 +120,7 @@ export async function POST(request: Request) {
           subject: `Thank you for your interest in T Vanamm Franchise`,
           react: UserConfirmationEmail({
             fullName: validatedData.fullName
-          }) as React.ReactElement
+          })
         });
 
         if (userRes.error) {
