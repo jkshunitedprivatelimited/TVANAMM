@@ -48,8 +48,9 @@ export async function getNewLeads(startDate: string, endDate: string) {
 export async function getAllLeads() {
   const { data, error } = await supabaseAdmin
     .from('leads')
-    .select('*')
-    .order('created_at', { ascending: false });
+    .select('id, full_name, phone, email, city, message, form_type, created_at')
+    .order('created_at', { ascending: false })
+    .limit(100);
 
   if (error) {
     console.error('Supabase fetch error:', error);

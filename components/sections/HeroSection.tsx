@@ -2,6 +2,7 @@
 
 import { motion, Variants } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function HeroSection({ 
   headline = "India's best\nPremium Tea Franchise",
@@ -25,10 +26,22 @@ export function HeroSection({
 
   return (
     <section className="relative w-full h-screen min-h-[600px] flex items-center justify-center bg-[#006437] overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 bg-[url('/images/herobanner.png')] bg-cover bg-center z-0" />
-      {/* Gradient Overlay for Text Readability (Lightened to remove blurred/tinted look) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent z-0" />
+      {/* Background Image Optimized */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/herobanner.png"
+          alt="T Vanamm Hero Banner"
+          fill
+          priority
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPj/HwADBwJ/X97X8AAAAABJRU5ErkJggg=="
+          className="object-cover object-center"
+          sizes="100vw"
+          quality={85}
+        />
+      </div>
+      {/* Gradient Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent z-1" />
       
       <div className="container relative z-10 px-4 mx-auto text-center mt-16">
         <motion.div 
