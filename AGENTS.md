@@ -7,8 +7,8 @@ root. It is the single source of truth.
 
 ## Critical Rules — Never Violate
 
-1. Tech stack is fixed — Next.js 14, TypeScript, Tailwind, Sanity, Supabase, AWS
-   SES, Upstash, Cloudflare Turnstile. Never suggest or use alternatives.
+1. Tech stack is fixed — Next.js 14, TypeScript, Tailwind, Sanity, Supabase, Resend,
+   Upstash, Cloudflare Turnstile. Never suggest or use alternatives.
 2. Never mention JKSH United anywhere except footer copyright line.
 3. Never hardcode content — everything goes through Sanity CMS.
 4. Never use raw <img> tags — always use Next.js Image component.
