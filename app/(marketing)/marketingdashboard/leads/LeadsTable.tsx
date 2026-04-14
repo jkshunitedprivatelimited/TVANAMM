@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { Download, Search, Users, FileText, Phone, MapPin, Calendar, ArrowUpDown, Filter, X, Trash2, Loader2 } from 'lucide-react';
+import { Download, Search, Phone, MapPin, Calendar, ArrowUpDown, Filter, X, Trash2, Loader2 } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import type { Lead } from '@/app/(marketing)/_actions/leadActions';
 import { deleteLeadAction } from '@/app/(marketing)/_actions/leadActions';
