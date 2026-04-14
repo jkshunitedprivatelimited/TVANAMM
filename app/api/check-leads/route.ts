@@ -18,12 +18,12 @@ export async function GET() {
         type: l.form_type,
         created_at: l.created_at
       }))
-    });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
     console.error('[Check Leads API] Error:', error);
     return NextResponse.json({
       success: false,
-      error: error.message
+      error: message
     }, { status: 500 });
   }
 }

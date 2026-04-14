@@ -57,14 +57,13 @@ export async function GET() {
       success: true, 
       message: 'Test email sent successfully! Please check ' + adminEmail,
       data: response.data 
-    });
-
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
     console.error('[Test Email API] Catch block error:', error);
     return NextResponse.json({ 
       success: false, 
       message: 'Internal error while sending test email',
-      error: error.message 
+      error: message 
     }, { status: 500 });
   }
 }
