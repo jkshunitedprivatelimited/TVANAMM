@@ -4,29 +4,14 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { urlFor } from '@/lib/sanity/image';
 
-const defaultCategories = [
-  { name: 'Smoothies', image: '/images/milk_tea_product_1775287519557.png' },
-  { name: 'Thick Shake', image: '/images/milk_tea_product_1775287519557.png' },
-  { name: 'Mocktails', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Refreshing Drinks', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Ice-Creams', image: '/images/cafe_interior_1775287651976.png' },
-  { name: 'Snacks', image: '/images/cafe_interior_1775287651976.png' },
-  { name: 'Hot Beverages', image: '/images/milk_tea_product_1775287519557.png' },
-  { name: 'Special Coffees', image: '/images/milk_tea_product_1775287519557.png' },
-  { name: 'Herbal Teas', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Healthy Breakfast', image: '/images/cafe_interior_1775287651976.png' },
-  { name: 'Immunity Boosters', image: '/images/flavoured_tea_product_1775287539046.png' },
-  { name: 'Healthy Juices', image: '/images/flavoured_tea_product_1775287539046.png' },
-];
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ProductsShowcaseSection({ categories: sanityCategories }: { categories?: any[] }) {
-  const displayCategories = sanityCategories?.length 
-    ? sanityCategories.map((cat, i) => ({
-        name: cat.name || `Category ${i + 1}`,
-        image: cat.image ? urlFor(cat.image).url() : defaultCategories[i % defaultCategories.length].image
-      }))
-    : defaultCategories;
+  if (!sanityCategories?.length) return null;
+
+  const displayCategories = sanityCategories.map((cat, i) => ({
+    name: cat.name || `Category ${i + 1}`,
+    image: cat.image ? urlFor(cat.image).url() : '/images/logo.png' // Minimal fallback to logo if individual image missing
+  }));
 
   // Duplicate the array for seamless infinite scroll
   const marqueeItems = [...displayCategories, ...displayCategories];
