@@ -102,7 +102,7 @@ export async function POST(request: Request) {
         const adminRes = await resend.emails.send({
           from: process.env.SES_FROM_EMAIL || 'T Vanamm <onboarding@resend.dev>',
           to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
-          reply_to: validatedData.email,
+          replyTo: validatedData.email,
           subject: `New Franchise Lead — ${validatedData.fullName} from ${validatedData.city}`,
           html: adminHtml
         });
@@ -122,7 +122,7 @@ export async function POST(request: Request) {
         const userRes = await resend.emails.send({
           from: process.env.SES_FROM_EMAIL || 'T Vanamm <onboarding@resend.dev>',
           to: validatedData.email,
-          reply_to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
+          replyTo: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
           subject: `Thank you for your interest in T Vanamm Franchise`,
           html: userHtml
         });

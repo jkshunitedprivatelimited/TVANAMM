@@ -23,7 +23,7 @@ export async function GET() {
     const response = await resend.emails.send({
       from: fromEmail,
       to: adminEmail,
-      reply_to: adminEmail,
+      replyTo: adminEmail,
       subject: 'T Vanamm — Email Configuration Successful',
       html: `
         <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
