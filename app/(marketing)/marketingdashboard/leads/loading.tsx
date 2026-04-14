@@ -1,4 +1,4 @@
-import { Loader2, Search } from 'lucide-react';
+// No imports needed
 
 export default function LeadsLoading() {
   return (

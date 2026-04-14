@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { Download, Search, Users, FileText, Phone, Mail, MapPin, Calendar, ArrowUpDown, Filter, X, Trash2, Loader2 } from 'lucide-react';
+import { Download, Search, Users, FileText, Phone, MapPin, Calendar, ArrowUpDown, Filter, X, Trash2, Loader2 } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import type { Lead } from '@/app/(marketing)/_actions/leadActions';
 import { deleteLeadAction } from '@/app/(marketing)/_actions/leadActions';
@@ -16,7 +16,7 @@ type SortOrder = 'asc' | 'desc';
 
 export function LeadsTable({ leads }: LeadsTableProps) {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -143,22 +143,6 @@ export function LeadsTable({ leads }: LeadsTableProps) {
     }
   };
 
-  const getTypeBadge = (formType: string) => {
-    if (formType === 'general_enquiry') {
-      return (
-        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-green-100 text-green-800">
-          <Users className="w-3 h-3" />
-          Enquiry
-        </span>
-      );
-    }
-    return (
-      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-blue-100 text-blue-800">
-        <FileText className="w-3 h-3" />
-        {formType.replace('_', ' ')}
-      </span>
-    );
-  };
 
   const SortButton = ({ field, label }: { field: SortField; label: string }) => (
     <button
