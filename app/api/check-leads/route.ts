@@ -18,6 +18,7 @@ export async function GET() {
         type: l.form_type,
         created_at: l.created_at
       }))
+    });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     console.error('[Check Leads API] Error:', error);

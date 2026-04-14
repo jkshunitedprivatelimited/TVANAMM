@@ -58,6 +58,7 @@ export async function GET() {
       success: true, 
       message: 'Test email sent successfully! Please check ' + adminEmail,
       data: response.data 
+    });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     console.error('[Test Email API] Catch block error:', error);
