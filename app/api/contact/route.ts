@@ -89,63 +89,49 @@ export async function POST(request: Request) {
     // Step 5: Send emails (Parallel and non-blocking - don't crash if emails fail)
     if (process.env.RESEND_API_KEY) {
       try {
-        console.log('[Contact API] DEBUG: Starting email block');
-        console.log('[Contact API] DEBUG: SES_FROM_EMAIL =', process.env.SES_FROM_EMAIL);
-        
-        console.log('[Contact API] DEBUG: Rendering templates...');
         const adminEmailPromise = render(LeadNotificationEmail({
           fullName: validatedData.fullName,
           phone: validatedData.phone,
           email: validatedData.email,
           city: validatedData.city,
           message: validatedData.message
-        })).then(html => {
-          console.log('[Contact API] DEBUG: Admin template rendered (length):', html.length);
-          return resend.emails.send({
-            from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@tvanamm.com>',
-            to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
-            replyTo: validatedData.email,
-            subject: `New Franchise Lead — ${validatedData.fullName} from ${validatedData.city}`,
-            html: html
-          });
-        });
+        })).then(html => resend.emails.send({
+          from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@tvanamm.com>',
+          to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
+          replyTo: validatedData.email,
+          subject: `New Franchise Lead — ${validatedData.fullName} from ${validatedData.city}`,
+          html: html
+        }));
 
         const userEmailPromise = render(UserConfirmationEmail({
           fullName: validatedData.fullName
-        })).then(html => {
-          console.log('[Contact API] DEBUG: User template rendered (length):', html.length);
-          return resend.emails.send({
-            from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@tvanamm.com>',
-            to: validatedData.email,
-            replyTo: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
-            subject: `Thank you for your interest in T Vanamm Franchise`,
-            html: html
-          });
-        });
+        })).then(html => resend.emails.send({
+          from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@tvanamm.com>',
+          to: validatedData.email,
+          replyTo: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
+          subject: `Thank you for your interest in T Vanamm Franchise`,
+          html: html
+        }));
 
-        console.log('[Contact API] DEBUG: Dispatched email promises, waiting...');
-        
         // Fire both emails in parallel to save time
         const results = await Promise.allSettled([adminEmailPromise, userEmailPromise]);
-        
-        console.log('[Contact API] DEBUG: Promise.allSettled complete');
         
         results.forEach((result, index) => {
           const type = index === 0 ? 'ADMIN' : 'USER';
           if (result.status === 'rejected') {
-            console.error(`[Contact API] DEBUG: ${type} EMAIL REQUEST FAILED:`, result.reason);
+            console.error(`[Contact API] ${type} EMAIL REQUEST FAILED:`, result.reason);
           } else if (result.value.error) {
-            console.error(`[Contact API] DEBUG: ${type} EMAIL ERROR:`, result.value.error);
+            console.error(`[Contact API] ${type} EMAIL ERROR:`, result.value.error);
           } else {
-            console.log(`[Contact API] DEBUG: ${type} email sent successfully:`, result.value.data?.id);
+            console.log(`[Contact API] ${type} email sent successfully:`, result.value.data?.id);
           }
         });
 
       } catch (emailError) {
-        console.error('[Contact API] DEBUG: CRITICAL EMAIL BLOCK ERROR:', emailError);
+        console.error('[Contact API] EMAIL ERROR (lead was still saved):', emailError);
       }
     } else {
-      console.warn('[Contact API] DEBUG: RESEND_API_KEY missing, emails bypassed.');
+      console.warn('[Contact API] RESEND_API_KEY missing, emails bypassed.');
     }
 
     return NextResponse.json({ success: true });
