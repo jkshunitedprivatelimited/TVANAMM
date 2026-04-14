@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const adminEmail = process.env.SES_TO_EMAIL || 'tvanamm@gmail.com';
-  const fromEmail = process.env.SES_FROM_EMAIL || 'no-reply@send.tvanamm.com';
+  const fromEmail = process.env.SES_FROM_EMAIL || 'no-reply@tvanamm.com';
 
   console.log('[Test Email API] Starting test send...');
   console.log(`[Test Email API] From: ${fromEmail}`);

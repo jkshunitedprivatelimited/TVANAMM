@@ -102,7 +102,7 @@ export async function POST(request: Request) {
         })).then(html => {
           console.log('[Contact API] DEBUG: Admin template rendered (length):', html.length);
           return resend.emails.send({
-            from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@send.tvanamm.com>',
+            from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@tvanamm.com>',
             to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
             replyTo: validatedData.email,
             subject: `New Franchise Lead — ${validatedData.fullName} from ${validatedData.city}`,
@@ -115,7 +115,7 @@ export async function POST(request: Request) {
         })).then(html => {
           console.log('[Contact API] DEBUG: User template rendered (length):', html.length);
           return resend.emails.send({
-            from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@send.tvanamm.com>',
+            from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@tvanamm.com>',
             to: validatedData.email,
             replyTo: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
             subject: `Thank you for your interest in T Vanamm Franchise`,
