@@ -26,7 +26,7 @@ export function HeroSection({
   return (
     <section className="relative w-full h-screen min-h-[600px] flex items-center justify-center bg-[#006437] overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-[url('/images/herobanner.jpg')] bg-cover bg-center z-0" />
+      <div className="absolute inset-0 bg-[url('/images/herobanner.png')] bg-cover bg-center z-0" />
       {/* Gradient Overlay for Text Readability (Lightened to remove blurred/tinted look) */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent z-0" />
       

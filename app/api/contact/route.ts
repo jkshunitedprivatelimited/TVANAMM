@@ -90,7 +90,7 @@ export async function POST(request: Request) {
       try {
         // Admin notification
         console.log('[Contact API] Sending admin notification email...');
-        await resend.emails.send({
+        const adminRes = await resend.emails.send({
           from: process.env.SES_FROM_EMAIL || 'T Vanamm <onboarding@resend.dev>',
           to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
           subject: `New Franchise Lead — ${validatedData.fullName} from ${validatedData.city}`,
@@ -102,11 +102,16 @@ export async function POST(request: Request) {
             message: validatedData.message
           }) as React.ReactElement
         });
-        console.log('[Contact API] Admin email sent.');
+        
+        if (adminRes.error) {
+          console.error('[Contact API] ADMIN EMAIL ERROR:', adminRes.error);
+        } else {
+          console.log('[Contact API] Admin email sent successfully:', adminRes.data?.id);
+        }
 
         // User confirmation
         console.log('[Contact API] Sending user confirmation email...');
-        await resend.emails.send({
+        const userRes = await resend.emails.send({
           from: process.env.SES_FROM_EMAIL || 'T Vanamm <onboarding@resend.dev>',
           to: validatedData.email,
           subject: `Thank you for your interest in T Vanamm Franchise`,
@@ -114,7 +119,12 @@ export async function POST(request: Request) {
             fullName: validatedData.fullName
           }) as React.ReactElement
         });
-        console.log('[Contact API] User confirmation email sent.');
+
+        if (userRes.error) {
+          console.error('[Contact API] USER EMAIL ERROR:', userRes.error);
+        } else {
+          console.log('[Contact API] User email sent successfully:', userRes.data?.id);
+        }
       } catch (emailError) {
         // Log email error but don't fail the request — the lead is already saved
         console.error('[Contact API] EMAIL ERROR (lead was still saved):', emailError);
