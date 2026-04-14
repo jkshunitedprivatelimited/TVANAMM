@@ -58,3 +58,16 @@ export async function getAllLeads() {
 
   return data;
 }
+export async function deleteLeadById(id: string) {
+  const { error } = await supabaseAdmin
+    .from('leads')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error('Supabase delete error:', error);
+    throw error;
+  }
+
+  return true;
+}

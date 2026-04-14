@@ -5,6 +5,8 @@ export const metadata = {
   title: 'Enquiries | T Vanamm Marketing Dashboard',
 };
 
+export const revalidate = 0;
+
 export default async function LeadsPage() {
   const leads = await fetchLeads();
 

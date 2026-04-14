@@ -40,7 +40,8 @@ export default async function BlogsDashboardPage() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-200 text-sm font-semibold text-gray-700">
@@ -68,8 +69,8 @@ export default async function BlogsDashboardPage() {
                     </span>
                   </td>
                   <td className="px-6 py-4 text-gray-600">{blog.author || 'T Vanamm'}</td>
-                  <td className="px-6 py-4 text-gray-500">
-                    {blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString() : 'Draft'}
+                  <td className="px-6 py-4 text-gray-500" suppressHydrationWarning>
+                    {blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString('en-GB') : 'Draft'}
                   </td>
                   <td className="px-6 py-4 text-right">
                     <form action={async () => {
@@ -89,6 +90,46 @@ export default async function BlogsDashboardPage() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Card List */}
+        <div className="md:hidden divide-y divide-gray-100">
+          {blogs.length === 0 && (
+            <div className="px-6 py-12 text-center text-gray-500">
+              No blog posts found.
+            </div>
+          )}
+          {blogs.map((blog: Record<string, string>) => (
+            <div key={blog._id} className="p-4 space-y-3">
+              <div className="flex justify-between items-start gap-4">
+                <h3 className="font-semibold text-gray-900 leading-tight flex-1">{blog.title}</h3>
+                <form action={async () => {
+                  'use server';
+                  await deleteBlogPost(blog._id);
+                }}>
+                  <button 
+                    type="submit" 
+                    className="text-red-500 p-2 rounded-md bg-red-50"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </form>
+              </div>
+              
+              <div className="flex items-center justify-between text-sm">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800">
+                  {blog.category || 'Uncategorized'}
+                </span>
+                <span className="text-gray-500 text-xs" suppressHydrationWarning>
+                  {blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Draft'}
+                </span>
+              </div>
+              
+              <div className="text-xs text-gray-400">
+                Author: {blog.author || 'T Vanamm'}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

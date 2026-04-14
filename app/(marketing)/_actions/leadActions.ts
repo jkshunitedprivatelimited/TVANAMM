@@ -1,6 +1,7 @@
 'use server';
 
-import { getAllLeads } from '@/lib/supabase/queries';
+import { getAllLeads, deleteLeadById } from '@/lib/supabase/queries';
+import { revalidatePath } from 'next/cache';
 
 export interface Lead {
   id: string;
@@ -21,5 +22,16 @@ export async function fetchLeads(): Promise<Lead[]> {
   } catch (error) {
     console.error('[fetchLeads] Error:', error);
     return [];
+  }
+}
+
+export async function deleteLeadAction(id: string) {
+  try {
+    await deleteLeadById(id);
+    revalidatePath('/marketingdashboard/leads');
+    return { success: true };
+  } catch (error) {
+    console.error('[deleteLeadAction] Error:', error);
+    return { success: false, error: 'Failed to delete enquiry' };
   }
 }

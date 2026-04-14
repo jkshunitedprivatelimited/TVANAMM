@@ -25,7 +25,7 @@ export default async function SEODashboardPage() {
         <h1 className="text-3xl font-bold text-gray-900">Global SEO</h1>
       </div>
 
-      <form action={async (formData) => { 'use server'; await updateSeoSettings(formData); }} className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-200 space-y-6">
+      <form action={async (formData) => { 'use server'; await updateSeoSettings(formData); }} className="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-sm border border-gray-200 space-y-6">
         <div className="space-y-2 text-sm text-gray-600 pb-4 border-b border-gray-100">
           These settings tell Google and other search engines what your website is about. They act as the default fallback for all pages.
         </div>

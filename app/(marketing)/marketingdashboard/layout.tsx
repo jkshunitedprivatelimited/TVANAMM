@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { LayoutDashboard, FileText, Search, Users, LogOut } from 'lucide-react';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { MobileNav } from './MobileNav';
 
 export default function MarketingDashboardLayout({
   children,
@@ -85,9 +86,12 @@ export default function MarketingDashboardLayout({
           </form>
         </header>
 
-        <div className="flex-1 p-6 md:p-8">
+        <div className="flex-1 p-4 md:p-8">
           {children}
         </div>
+
+        {/* Bottom Navigation for Mobile */}
+        <MobileNav />
       </main>
     </div>
   );

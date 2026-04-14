@@ -7,9 +7,11 @@ export const metadata = {
 
 export default function MarketingDashboardPage() {
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">Welcome to T Vanamm Marketing Dashboard</h1>
-      <p className="text-gray-600 max-w-2xl">
+    <div className="space-y-4 md:space-y-6">
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+        Welcome to T Vanamm Dashboard
+      </h1>
+      <p className="text-gray-600 text-sm md:text-base max-w-2xl">
         Manage your website&apos;s content and SEO directly from this dashboard. Changes made here will immediately reflect on the live website.
       </p>
 
