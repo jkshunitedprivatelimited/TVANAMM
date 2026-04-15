@@ -99,6 +99,7 @@ export function FranchiseEnquiryFormSection({
                     src={typeof badge.logo === 'string' ? badge.logo : urlFor(badge.logo).url()} 
                     alt={badge.name} 
                     fill 
+                    sizes="(max-width: 768px) 64px, 80px"
                     className={`object-contain ${badge.name.toLowerCase().includes('fssai') ? 'p-1.5' : ''}`} 
                   />
                 ) : (

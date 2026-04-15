@@ -44,8 +44,8 @@ const generatePins = () => {
   for (let i = 0; i < 3; i++) {
     generated.push({
       id: `wb-${i}`,
-      top: `${55 + random() * 2}%`,
-      left: `${55 + random() * 2}%`,
+      top: `${(55 + random() * 2).toFixed(6)}%`,
+      left: `${(55 + random() * 2).toFixed(6)}%`,
       city: 'West Bengal',
       size: 'w-2 h-2',
       isPing: true
@@ -61,8 +61,8 @@ const generatePins = () => {
     if (isInsideIndia(top, left)) {
       generated.push({
         id: `pin-${generated.length}`,
-        top: `${top}%`,
-        left: `${left}%`,
+        top: `${top.toFixed(6)}%`,
+        left: `${left.toFixed(6)}%`,
         city: 'T Vanamm Outlet',
         size: 'w-1.5 h-1.5',
         isPing: random() > 0.85
@@ -129,6 +129,7 @@ export const IndiaPresenceSection = ({
               alt="T Vanamm Badge" 
               width={120} 
               height={120} 
+              style={{ height: 'auto' }}
               className="object-contain rounded-full w-16 h-16 md:w-[120px] md:h-[120px]" 
               unoptimized
             />

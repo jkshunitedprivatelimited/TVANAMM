@@ -40,6 +40,7 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
                   src={featured.coverImageUrl} 
                   alt={featured.title} 
                   fill 
+                  sizes="(max-width: 1024px) 100vw, 55vw"
                   className="object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out" 
                 />
               ) : (
@@ -93,7 +94,7 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
           >
             <Link href={`/blog/${post.slug.current}`} className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] mb-5 block bg-[#004e2a] shadow-lg group-hover:shadow-2xl transition-all duration-500">
               {post.coverImageUrl ? (
-                <Image src={post.coverImageUrl} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                <Image src={post.coverImageUrl} alt={post.title} fill sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-[#C8A96E]/30 font-playfair italic p-4 text-center text-sm">
                   Inside T Vanamm

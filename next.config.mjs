@@ -25,6 +25,19 @@ const nextConfig = {
       },
     ];
   },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Permissions-Policy',
+            value: 'compute-pressure=*, picture-in-picture=*, accelerometer=*, autoplay=*, clipboard-write=*, encrypted-media=*, gyroscope=*, web-share=*'
+          }
+        ],
+      },
+    ];
+  },
 };
 
 const sentryConfig = {

@@ -37,6 +37,9 @@ export default function LegalPolicyPage() {
 
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">2.2 Intellectual Property</h3>
             <p>The &quot;T Vanamm&quot; name, logos, taglines (&quot;A Taste of Purity&quot;), and all related design materials are the intellectual property of JKSH United Private Limited.</p>
+
+            <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">2.3 Image Representation</h3>
+            <p>Certain images on this website are for illustrative and representational purposes only. Some images may not be owned by T Vanamm or may be stock imagery used to reflect the brand&apos;s aesthetic and products. Actual products, outlets, and experiences may vary.</p>
           </section>
 
           {/* Refund & Cancellation Section */}

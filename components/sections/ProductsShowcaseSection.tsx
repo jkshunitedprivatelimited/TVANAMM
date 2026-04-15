@@ -4,14 +4,28 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { urlFor } from '@/lib/sanity/image';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function ProductsShowcaseSection({ categories: sanityCategories }: { categories?: any[] }) {
-  if (!sanityCategories?.length) return null;
+const defaultCategories = [
+  { name: 'Hot Beverages', image: '/images/hero_background.png' },
+  { name: 'Herbal Teas', image: '/images/hero_background.png' },
+  { name: 'Special Coffees', image: '/images/hero_background.png' },
+  { name: 'Refreshing Drinks', image: '/images/hero_background.png' },
+  { name: 'Mocktails', image: '/images/hero_background.png' },
+  { name: 'Healthy Juices', image: '/images/hero_background.png' },
+  { name: 'Immunity Boosters', image: '/images/hero_background.png' },
+  { name: 'Smoothies', image: '/images/hero_background.png' },
+  { name: 'Thick Shake', image: '/images/hero_background.png' },
+  { name: 'Ice-Creams', image: '/images/hero_background.png' },
+  { name: 'Healthy Breakfast', image: '/images/hero_background.png' },
+  { name: 'Snacks', image: '/images/hero_background.png' },
+];
 
-  const displayCategories = sanityCategories.map((cat, i) => ({
-    name: cat.name || `Category ${i + 1}`,
-    image: cat.image ? urlFor(cat.image).url() : '/images/logo.png' // Minimal fallback to logo if individual image missing
-  }));
+export function ProductsShowcaseSection({ categories: sanityCategories }: { categories?: any[] }) {
+  const displayCategories = sanityCategories?.length 
+    ? sanityCategories.map((cat, i) => ({
+        name: cat.name || `Category ${i + 1}`,
+        image: cat.image ? urlFor(cat.image).url() : '/images/hero_background.png' 
+      }))
+    : defaultCategories;
 
   // Duplicate the array for seamless infinite scroll
   const marqueeItems = [...displayCategories, ...displayCategories];

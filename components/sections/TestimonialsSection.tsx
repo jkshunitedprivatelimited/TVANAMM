@@ -141,6 +141,7 @@ function VideoCarousel({ videos }: { videos: Testimonial[] }) {
                       src={embedUrl}
                       title={`Testimonial from ${testimonial.ownerName}`}
                       frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
                       allowFullScreen
                     ></iframe>
                   </div>
@@ -198,6 +199,7 @@ function CustomerReviewsGrid() {
                   src={embedUrl}
                   title={`Customer Review ${i + 1}`}
                   frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
                   allowFullScreen
                 ></iframe>
               </div>

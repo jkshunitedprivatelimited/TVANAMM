@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             {/* Post Thumbnail Image inside article */}
             {post.coverImageUrl && (
               <div className="relative w-full h-[300px] md:h-[500px] mb-12 rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                <Image src={post.coverImageUrl} alt={post.title} fill className="object-cover" priority />
+                <Image src={post.coverImageUrl} alt={post.title} fill sizes="(max-width: 768px) 100vw, 896px" className="object-cover" priority />
               </div>
             )}
 

@@ -7,8 +7,4 @@
     --primary: 0 100 55; /* #006437 */
     --accent: 200 169 110; /* #C8A96E */
   }
-
-  html {
-    scroll-behavior: smooth;
-  }
 }
