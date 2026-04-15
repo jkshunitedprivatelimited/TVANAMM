@@ -50,17 +50,17 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2 flex-shrink-0 transition-transform hover:scale-105 group">
             <Image 
               src="/images/logo_gif.gif" 
-              alt="T Vanamm Logo" 
+              alt="T VANAMM Logo" 
               width={55} 
               height={55} 
               className="object-contain w-10 h-10 md:w-[55px] md:h-[55px]" 
               unoptimized
             />
             <div className="flex flex-col">
-              <span className="font-playfair font-bold text-xl md:text-2xl tracking-wide text-[#006437] whitespace-nowrap">
-                T Vanamm
+              <span className="font-playfair font-bold text-lg md:text-2xl tracking-wide text-[#006437] whitespace-nowrap leading-none mb-0.5">
+                T VANAMM
               </span>
-              <span className="font-playfair italic text-[10px] md:text-xs text-[#006437] -mt-1 ml-4 opacity-90 group-hover:text-[#C8A96E] transition-colors whitespace-nowrap">
+              <span className="font-playfair italic text-[9px] md:text-xs text-[#006437] opacity-90 group-hover:text-[#C8A96E] transition-colors whitespace-nowrap">
                 &quot;A Taste of Purity&quot;
               </span>
             </div>
@@ -116,7 +116,7 @@ export function Navbar() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-100">
-                <span className="font-playfair font-bold text-[#006437] text-xl">T Vanamm</span>
+                <span className="font-playfair font-bold text-[#006437] text-xl">T VANAMM</span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 text-gray-500 hover:text-[#006437] rounded-md"

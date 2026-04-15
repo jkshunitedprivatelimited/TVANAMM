@@ -37,18 +37,18 @@ const defaultBenefits = [
 
 export function FranchiseEnquiryFormSection({ 
   headline,
-  subtitle = 'Fill in your details and our expert franchise team will call you shortly with everything you need to know about setting up your highly profitable T Vanamm outlet.',
+  subtitle = 'Fill in your details and our expert franchise team will call you shortly with everything you need to know about setting up your highly profitable T VANAMM outlet.',
   benefits = defaultBenefits,
   trustBadges = []
 }: FranchiseEnquiryFormSectionProps) {
   const displayBadges = trustBadges && trustBadges.length > 0 ? trustBadges : defaultTrustBadges;
 
-  // Function to format the headline to make "T Vanamm" gold and handle the requested line break
+  // Function to format the headline to make "T VANAMM" gold and handle the requested line break
   const formatHeadline = (text: React.ReactNode) => {
     const defaultVal = (
       <>
         Start Your Journey <br />
-        <span className="text-[#C8A96E]">with T Vanamm</span>
+        with <span className="text-[#C8A96E]">T VANAMM</span>
       </>
     );
 
@@ -56,19 +56,20 @@ export function FranchiseEnquiryFormSection({
     if (typeof text !== 'string') return text;
     
     // If it's the specific headline string, force the line break
+    // FIX: use lowercase for the includes check
     if (text.toLowerCase().includes('with t vanamm')) {
-      const parts = text.split(/with T Vanamm/i);
+      const parts = text.split(/with T VANAMM/i);
       return (
         <>
           {parts[0]} <br />
-          with <span className="text-[#C8A96E]">T Vanamm</span>
+          with <span className="text-[#C8A96E]">T VANAMM</span>
           {parts[1]}
         </>
       );
     }
 
-    // Fallback split for other mentions of T Vanamm
-    const parts = text.split(/(T Vanamm)/i);
+    // Fallback split for other mentions of T VANAMM
+    const parts = text.split(/(T VANAMM)/i);
     return parts.map((part, i) => 
       part.toLowerCase() === 't vanamm' ? (
         <span key={i} className="text-[#C8A96E]">{part}</span>
@@ -76,8 +77,16 @@ export function FranchiseEnquiryFormSection({
     );
   };
 
+  const formattedSubtitle = typeof subtitle === 'string' ? (
+    subtitle.split(/(T VANAMM)/i).map((part, i) => 
+      part.toLowerCase() === 't vanamm' ? (
+        <span key={i} className="text-[#C8A96E] font-medium">{part}</span>
+      ) : part
+    )
+  ) : subtitle;
+
   return (
-    <section id="franchise-enquiry" className="pt-20 md:pt-24 pb-24 bg-[#006437] text-white relative scroll-mt-20 md:scroll-mt-24">
+    <section id="franchise-enquiry" className="py-12 md:py-24 bg-[#006437] text-white relative scroll-mt-20 md:scroll-mt-24">
       <div className="container mx-auto px-4 lg:px-8">
         
         {/* Trust & Compliance Badges - Compact Rectangular Grid */}
@@ -118,18 +127,18 @@ export function FranchiseEnquiryFormSection({
           ))}
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-5xl font-playfair font-bold text-white mb-8 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-playfair font-bold text-white mb-6 md:mb-8 leading-tight px-2">
               {formatHeadline(headline)}
             </h2>
-            <p className="text-white/80 text-lg mb-8 leading-relaxed">
-              {subtitle}
+            <p className="text-white/80 text-base md:text-lg mb-8 leading-relaxed px-2">
+              {formattedSubtitle}
             </p>
             
             <ul className="space-y-4 mb-8">

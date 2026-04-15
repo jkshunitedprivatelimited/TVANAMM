@@ -1,4 +1,4 @@
-# T Vanamm Project Rules
+# T VANAMM Project Rules
 
 ## READ FIRST
 
@@ -17,7 +17,7 @@ root. It is the single source of truth.
 7. All API routes are server-side only — no secrets on client.
 8. WhatsApp float button must exist on every single page.
 9. Mobile-first design — test at 375px, 768px, 1280px.
-10. No Lorem Ipsum — all placeholder text must be real T Vanamm content.
+10. No Lorem Ipsum — all placeholder text must be real T VANAMM content.
 
 ## Code Style
 

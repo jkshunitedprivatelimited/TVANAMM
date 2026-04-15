@@ -7,7 +7,7 @@ import { schemaTypes } from '@/sanity/schemas';
 
 const config = defineConfig({
   name: 'default',
-  title: 'T Vanamm Admin',
+  title: 'T VANAMM Admin',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID as string,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   basePath: '/studio',

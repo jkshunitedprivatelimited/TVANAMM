@@ -7,7 +7,7 @@ export function CookieConsent() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('tvanamm_cookie_consent');
+    const consent = localStorage.getItem('T VANAMM_cookie_consent');
     if (!consent) {
       // Show immediately or after a short delay
       const timer = setTimeout(() => setShow(true), 1500);
@@ -16,7 +16,7 @@ export function CookieConsent() {
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem('tvanamm_cookie_consent', 'accepted');
+    localStorage.setItem('T VANAMM_cookie_consent', 'accepted');
     setShow(false);
     // Ideally here we trigger or unblock GA4 config, assuming GTM waits for this or we load it directly
     if (typeof window !== 'undefined') {
@@ -25,7 +25,7 @@ export function CookieConsent() {
   };
 
   const handleDecline = () => {
-    localStorage.setItem('tvanamm_cookie_consent', 'declined');
+    localStorage.setItem('T VANAMM_cookie_consent', 'declined');
     setShow(false);
   };
 

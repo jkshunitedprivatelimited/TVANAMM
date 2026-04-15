@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/studio/'],
     },
-    sitemap: 'https://tvanamm.com/sitemap.xml',
+    sitemap: 'https://T VANAMM.com/sitemap.xml',
   };
 }

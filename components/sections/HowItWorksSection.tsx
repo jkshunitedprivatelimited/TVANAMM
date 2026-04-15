@@ -50,11 +50,11 @@ const defaultSteps = [
 
 export function HowItWorksSection({ steps = defaultSteps }: HowItWorksSectionProps) {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
-            Your Journey <br className="block md:hidden" /> to Owning an Outlet
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4 leading-tight px-2">
+            Your Journey <br className="block md:hidden" /> to <span className="text-[#C8A96E]">Owning an Outlet</span>
           </h2>
           <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full" />
         </div>
@@ -91,8 +91,8 @@ export function HowItWorksSection({ steps = defaultSteps }: HowItWorksSectionPro
                     </div>
                     <Icon size={32} className="text-[#006437]" />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                  <p className="text-gray-600 max-w-sm text-sm">{step.description}</p>
+                  <h3 className="text-lg md:text-2xl font-bold text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-gray-600 max-w-sm text-[13px] md:text-sm px-4 md:px-0">{step.description}</p>
                 </motion.div>
               );
             })}

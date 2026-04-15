@@ -2,14 +2,14 @@ import Link from 'next/link';
 import { PenSquare, FileText, Settings, Users } from 'lucide-react';
 
 export const metadata = {
-  title: 'T Vanamm Marketing Dashboard',
+  title: 'T VANAMM Marketing Dashboard',
 };
 
 export default function MarketingDashboardPage() {
   return (
     <div className="space-y-4 md:space-y-6">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
-        Welcome to T Vanamm Dashboard
+        Welcome to T VANAMM Dashboard
       </h1>
       <p className="text-gray-600 text-sm md:text-base max-w-2xl">
         Manage your website&apos;s content and SEO directly from this dashboard. Changes made here will immediately reflect on the live website.

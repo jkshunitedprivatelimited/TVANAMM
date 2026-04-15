@@ -41,7 +41,7 @@ export function GalleryTeaser({ images: sanityImages }: { images?: Record<string
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
-              See T Vanamm in Action
+              See <span className="text-[#C8A96E]">T VANAMM</span> in Action
             </h2>
             <div className="w-24 h-1 bg-[#C8A96E] rounded-full" />
           </div>
@@ -76,7 +76,7 @@ export function GalleryTeaser({ images: sanityImages }: { images?: Record<string
             >
               <Image 
                 src={src}
-                alt={`T Vanamm Gallery ${i}`}
+                alt={`T VANAMM Gallery ${i}`}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                 sizes="(max-width: 768px) 260px, 380px"
@@ -106,7 +106,7 @@ export function GalleryTeaser({ images: sanityImages }: { images?: Record<string
             >
               <Image 
                 src={src}
-                alt={`T Vanamm Gallery ${i}`}
+                alt={`T VANAMM Gallery ${i}`}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                 sizes="(max-width: 768px) 260px, 380px"

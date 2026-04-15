@@ -70,7 +70,7 @@ export const siteSettings = {
       title: 'Default SEO Title',
       type: 'string',
       group: 'seo',
-      description: 'Used as the main title tag (e.g. T Vanamm | Franchise Enquiry)',
+      description: 'Used as the main title tag (e.g. T VANAMM | Franchise Enquiry)',
     },
     {
       name: 'defaultSeoDescription',

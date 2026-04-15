@@ -56,7 +56,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
               {post.title}
             </h1>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/80 font-medium tracking-wide">
-              <span>By {post.author || 'T Vanamm Editorial'}</span>
+              <span>By {post.author || 'T VANAMM Editorial'}</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C8A96E]" />
               <span>{formattedDate}</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C8A96E]" />

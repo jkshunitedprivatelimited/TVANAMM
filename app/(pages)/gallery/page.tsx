@@ -6,8 +6,8 @@ import { Metadata } from 'next';
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getGalleryPage();
   return {
-    title: data?.metaTitle || 'Gallery | T Vanamm Outlets & Products',
-    description: data?.metaDescription || 'Browse photos and videos of T Vanamm outlets, premium tea products, and successful franchise owners across India.',
+    title: data?.metaTitle || 'Gallery | T VANAMM Outlets & Products',
+    description: data?.metaDescription || 'Browse photos and videos of T VANAMM outlets, premium tea products, and successful franchise owners across India.',
   };
 }
 

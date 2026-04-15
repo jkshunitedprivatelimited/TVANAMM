@@ -49,7 +49,7 @@ function MarqueeWall({
   images: GalleryImage[]; 
   onImageClick: (src: string) => void;
   preheading: string;
-  heading: string;
+  heading: React.ReactNode;
   description: string;
 }) {
   // Ensure we max out at 15 unique images total
@@ -172,7 +172,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
     { id: 'fo-1', category: 'Outlets', src: '/images/hero_background.png', title: 'Modern Interior' },
     { id: 'fo-2', category: 'Outlets', src: '/images/hero_background.png', title: 'Outlet Vibes' },
     { id: 'fo-3', category: 'Outlets', src: '/images/hero_background.png', title: 'Cozy Seating' },
-    { id: 'fo-4', category: 'Outlets', src: '/images/hero_background.png', title: 'T Vanamm Outlet' },
+    { id: 'fo-4', category: 'Outlets', src: '/images/hero_background.png', title: 'T VANAMM Outlet' },
     { id: 'fo-5', category: 'Outlets', src: '/images/hero_background.png', title: 'Storefront' },
   ];
   const outletImages = rawOutletImages.length > 0 ? rawOutletImages : fallbackOutletImages;
@@ -192,7 +192,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C8A96E] to-[#E5CC98]">Outlets & Products</span>
           </h1>
           <p className="text-white/80 text-lg font-medium max-w-2xl mx-auto mb-4 leading-relaxed">
-            See T Vanamm in action across India
+            See T VANAMM in action across India
           </p>
         </div>
       </section>
@@ -231,7 +231,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
               images={outletImages} 
               onImageClick={setSelectedImage} 
               preheading="Our Locations"
-              heading="T Vanamm Across India"
+              heading={<>T VANAMM <span className="text-[#C8A96E]">Across India</span></>}
               description="Step into our beautifully designed outlets, offering a warm, inviting ambiance for your perfect tea experience."
             />
           </motion.div>
@@ -248,7 +248,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
               onImageClick={setSelectedImage} 
               preheading="Our Signature Collection"
               heading="Premium Beverages & More"
-              description="120+ handcrafted items prepared with detailed SOPs — ensuring the same perfect taste across every T Vanamm outlet."
+              description="120+ handcrafted items prepared with detailed SOPs — ensuring the same perfect taste across every T VANAMM outlet."
             />
           </motion.div>
         )}

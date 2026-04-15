@@ -24,7 +24,7 @@ export async function GET() {
       from: fromEmail,
       to: adminEmail,
       replyTo: adminEmail,
-      subject: 'T Vanamm — Email Configuration Successful',
+      subject: 'T VANAMM — Email Configuration Successful',
       html: `
         <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
           <h1 style="color: #006437;">Resend Connectivity Test</h1>

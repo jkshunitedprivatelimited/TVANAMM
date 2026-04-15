@@ -45,7 +45,7 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-[#C8A96E]/40 font-playfair italic text-3xl p-6 text-center bg-gradient-to-br from-[#006437] to-[#00381f]">
-                  T Vanamm Insights
+                  T VANAMM Insights
                 </div>
               )}
               {/* Subtle overlay gradient */}
@@ -97,7 +97,7 @@ export function BlogGrid({ posts }: { posts: Post[] }) {
                 <Image src={post.coverImageUrl} alt={post.title} fill sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center text-[#C8A96E]/30 font-playfair italic p-4 text-center text-sm">
-                  Inside T Vanamm
+                  Inside T VANAMM
                 </div>
               )}
               <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />

@@ -76,7 +76,7 @@ export function BrochureDownloadForm() {
         </div>
         <h3 className="text-2xl font-bold text-[#006437] mb-3">Almost There!</h3>
         <p className="text-gray-600 mb-8 max-w-sm mx-auto">
-          Your request was successful. Click the button below to download the official T Vanamm Franchise Brochure.
+          Your request was successful. Click the button below to download the official T VANAMM Franchise Brochure.
         </p>
         <a 
           href="/brochure.pdf" 

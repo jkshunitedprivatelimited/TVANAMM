@@ -38,7 +38,7 @@ export default async function BlogPage() {
           </h1>
           
           <p className="text-white/80 text-base md:text-lg font-medium max-w-2xl mx-auto mb-4 leading-relaxed">
-            Explore industry trends, tea culture, and <span className="whitespace-nowrap">T Vanamm</span> stories.
+            Explore industry trends, tea culture, and <span className="whitespace-nowrap">T VANAMM</span> stories.
           </p>
         </div>
       </section>

@@ -54,11 +54,12 @@ export function FranchisePopup() {
                 </div>
                 <h2 className="text-2xl font-playfair font-bold text-gray-900 leading-tight">
                   Start Your Journey <br/>
-                  with <span className="text-[#C8A96E] tracking-wide">T Vanamm</span>
+                  with <span className="text-[#C8A96E] tracking-wide">T VANAMM</span>
                 </h2>
-                <p className="text-gray-500 text-sm mt-3">
-                  Take the first step towards a profitable venture. Complete the form to download our franchise brochure.
-                </p>
+                <div className="text-black text-sm mt-4 space-y-1 leading-relaxed">
+                  <p className="font-medium text-black">Take the first step towards a profitable venture.</p>
+                  <p>Complete the form to download our franchise brochure.</p>
+                </div>
               </div>
 
               <EnquiryForm hideHeadline={true} />

@@ -68,7 +68,7 @@ export default async function BlogsDashboardPage() {
                       {blog.category || 'Uncategorized'}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-gray-600">{blog.author || 'T Vanamm'}</td>
+                  <td className="px-6 py-4 text-gray-600">{blog.author || 'T VANAMM'}</td>
                   <td className="px-6 py-4 text-gray-500" suppressHydrationWarning>
                     {blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString('en-GB') : 'Draft'}
                   </td>
@@ -126,7 +126,7 @@ export default async function BlogsDashboardPage() {
               </div>
               
               <div className="text-xs text-gray-400">
-                Author: {blog.author || 'T Vanamm'}
+                Author: {blog.author || 'T VANAMM'}
               </div>
             </div>
           ))}

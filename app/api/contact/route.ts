@@ -96,7 +96,7 @@ export async function POST(request: Request) {
           city: validatedData.city,
           message: validatedData.message
         })).then(html => resend.emails.send({
-          from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@tvanamm.com>',
+          from: process.env.SES_FROM_EMAIL || 'T VANAMM <no-reply@tvanamm.com>',
           to: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
           replyTo: validatedData.email,
           subject: `New Franchise Lead — ${validatedData.fullName} from ${validatedData.city}`,
@@ -106,10 +106,10 @@ export async function POST(request: Request) {
         const userEmailPromise = render(UserConfirmationEmail({
           fullName: validatedData.fullName
         })).then(html => resend.emails.send({
-          from: process.env.SES_FROM_EMAIL || 'T Vanamm <no-reply@tvanamm.com>',
+          from: process.env.SES_FROM_EMAIL || 'T VANAMM <no-reply@tvanamm.com>',
           to: validatedData.email,
           replyTo: process.env.SES_TO_EMAIL || 'tvanamm@gmail.com',
-          subject: `Thank you for your interest in T Vanamm Franchise`,
+          subject: `Thank you for your interest in T VANAMM Franchise`,
           html: html
         }));
 

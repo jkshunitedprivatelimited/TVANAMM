@@ -42,7 +42,7 @@ export async function GET(request: Request) {
     // Send email with attachment
     const dateStr = format(now, 'dd-MM-yyyy');
     await resend.emails.send({
-      from: process.env.SES_FROM_EMAIL || 'T Vanamm Reports <onboarding@resend.dev>',
+      from: process.env.SES_FROM_EMAIL || 'T VANAMM Reports <onboarding@resend.dev>',
       to: 'telecallers@tvanamm.com',
       subject: `Daily Lead Report - ${dateStr}`,
       text: `Please find the attached lead report for the last 24 hours.\n\nTotal New Leads: ${leads.length}`,

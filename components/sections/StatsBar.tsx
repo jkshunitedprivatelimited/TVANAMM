@@ -69,17 +69,17 @@ export function StatsBar({ stats: sanityStats }: { stats?: SanityStatItem[] }) {
   }) : defaultStats;
 
   return (
-    <section className="bg-[#004e2a] py-8 md:py-10 relative z-20 shadow-xl border-y border-[#006437]/50">
+    <section className="bg-[#004e2a] py-8 md:py-12 relative z-20 shadow-xl border-y border-[#006437]/50">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-center md:justify-evenly gap-6 md:gap-4 md:divide-x divide-white/10 text-center">
+        <div className="flex flex-col md:flex-row justify-center md:justify-evenly gap-8 md:gap-4 md:divide-x divide-white/10 text-center">
           {displayStats.map((stat: StatItem, i: number) => (
             <div key={i} className="flex flex-col items-center justify-center flex-1">
-              <div className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-white mb-1.5 md:mb-2">
+              <div className="text-3xl md:text-5xl font-playfair font-bold text-white mb-1 md:mb-2">
                 {stat.prefix}
                 {stat.value ? <Counter from={0} to={stat.value} /> : stat.textValue}
                 {stat.suffix}
               </div>
-              <div className="text-[#C8A96E] font-medium tracking-wide uppercase text-xs md:text-sm">{stat.label}</div>
+              <div className="text-[#C8A96E] font-medium tracking-wide uppercase text-[10px] md:text-sm">{stat.label}</div>
             </div>
           ))}
         </div>

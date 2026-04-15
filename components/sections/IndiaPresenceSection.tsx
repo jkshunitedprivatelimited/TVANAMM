@@ -63,7 +63,7 @@ const generatePins = () => {
         id: `pin-${generated.length}`,
         top: `${top.toFixed(6)}%`,
         left: `${left.toFixed(6)}%`,
-        city: 'T Vanamm Outlet',
+        city: 'T VANAMM Outlet',
         size: 'w-1.5 h-1.5',
         isPing: random() > 0.85
       });
@@ -95,19 +95,31 @@ export const IndiaPresenceSection = ({
   const dynamicHeadline = (outletsCount && statesCount) 
     ? (
         <>
-          {outletsCount}+ Outlets <br className="block md:hidden" /> across {statesCount}+ States
+          {outletsCount}+ Outlets <br className="block md:hidden" /> <span className="text-[#C8A96E]">across {statesCount}+ States</span>
         </>
       )
-    : "Growing Across India";
+    : 'Growing Across India';
 
-  const resolvedHeadline = headline || dynamicHeadline;
+  const formatHeadline = (text: React.ReactNode) => {
+    if (!text) return dynamicHeadline;
+    if (typeof text !== 'string') return text;
+
+    const parts = text.split(/(Across India)/i);
+    return parts.map((part, i) => 
+      part.toLowerCase() === 'across india' ? (
+        <span key={i} className="text-[#C8A96E]">{part}</span>
+      ) : part
+    );
+  };
+
+  const resolvedHeadline = formatHeadline(headline);
   const resolvedSubtitle = subtitle;
 
   return (
     <section className="py-12 md:py-24 bg-gray-50 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-8 md:mb-16 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4 leading-tight px-2">
             {resolvedHeadline}
           </h2>
           {headline && (outletsCount || statesCount) && (
@@ -116,17 +128,17 @@ export const IndiaPresenceSection = ({
             </div>
           )}
           <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg leading-relaxed px-4 md:px-0">
             {resolvedSubtitle}
           </p>
         </div>
 
-        <div className="relative max-w-2xl mx-auto mt-12">
+        <div className="relative max-w-2xl mx-auto mt-16 md:mt-12">
           {/* Animated Badge top-right of the India Map — outside overflow-hidden */}
-          <div className="absolute -top-8 md:-top-8 lg:-top-4 right-0 md:-right-4 lg:-right-16 z-20 pointer-events-none bg-white rounded-full shadow-lg p-2 md:p-3 border border-gray-100 flex items-center justify-center">
+          <div className="absolute -top-12 md:-top-8 lg:-top-4 right-0 md:-right-4 lg:-right-16 z-20 pointer-events-none bg-white rounded-full shadow-lg p-2 md:p-3 border border-gray-100 flex items-center justify-center">
             <Image 
               src="/images/logo_gif.gif" 
-              alt="T Vanamm Badge" 
+              alt="T VANAMM Badge" 
               width={120} 
               height={120} 
               style={{ height: 'auto' }}

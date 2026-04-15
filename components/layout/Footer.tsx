@@ -29,19 +29,21 @@ export function Footer({ settings }: FooterProps) {
   const email = settings?.email || 'tvanamm@gmail.com';
   const instagramHandles = settings?.instagramHandles || ['tvanamm.info', 'tvanamm.official'];
   const address = settings?.address || 'Floor #4, Flat No. #406, Alluri Trade Center, Near KPHB Metro (Pillar #761), Hyderabad, Telangana — 500072';
-  const businessHours = settings?.businessHours || 'Mon – Sat: 10:00 AM – 6:00 PM IST';
+  const businessHours = settings?.businessHours || 'Mon – Sat:\n10:00 AM – 6:00 PM IST';
   const telecallers = settings?.telecallerNumbers || [];
 
   return (
     <footer className="bg-white text-gray-800 pt-16 pb-8 border-t border-gray-100">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand & Address */}
-          <div className="flex flex-col gap-4">
+        {/* Changed to lg:grid-cols-5 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+          
+          {/* Brand & Address - Added lg:col-span-2 and lg:pr-8 */}
+          <div className="flex flex-col gap-4 lg:col-span-2 lg:pr-8">
             <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105 group">
               <Image 
                 src="/images/logo_gif.gif" 
-                alt="T Vanamm Logo" 
+                alt="T VANAMM Logo" 
                 width={50} 
                 height={50} 
                 className="object-contain" 
@@ -49,24 +51,27 @@ export function Footer({ settings }: FooterProps) {
               />
               <div className="flex flex-col">
                 <span className="font-playfair font-bold text-2xl tracking-wide text-[#006437]">
-                  T Vanamm
+                  T VANAMM
                 </span>
                 <span className="font-playfair italic text-[10px] text-[#006437] -mt-1 ml-4 opacity-90 group-hover:text-[#C8A96E] transition-colors">
-                  &quot;A Taste of Purity&quot;
+                  "A Taste of Purity"
                 </span>
               </div>
             </Link>
-            <div className="flex flex-col gap-2 mt-2 max-w-xs text-sm text-gray-600">
+            
+            {/* Removed max-w-xs from this div */}
+            <div className="flex flex-col gap-2 mt-2 text-sm text-gray-600">
               <h5 className="font-bold text-[#006437] flex items-center gap-2">
                 <MapPin size={18} />
                 Headquarters
               </h5>
-              <p className="pl-6 italic mb-1">{address}</p>
+              {/* Added text-balance and leading-relaxed */}
+              <p className="pl-6 italic mb-1 text-balance leading-relaxed">{address}</p>
               <a 
                 href="https://maps.app.goo.gl/nKT9AUfBSQrpfqLD7" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="ml-6 inline-flex items-center gap-2 px-3 py-1.5 border border-[#C8A96E] text-[#C8A96E] hover:bg-[#C8A96E] hover:text-white transition-colors rounded-md font-medium text-xs self-start"
+                className="ml-6 mt-2 inline-flex items-center gap-2 px-3 py-1.5 border border-[#C8A96E] text-[#C8A96E] hover:bg-[#C8A96E] hover:text-white transition-colors rounded-md font-medium text-xs self-start"
               >
                 <Map size={14} />
                 Open in Google Maps
@@ -105,7 +110,7 @@ export function Footer({ settings }: FooterProps) {
               </li>
               <li className="flex items-center gap-3">
                 <Clock size={16} className="text-[#006437]" />
-                <span>{businessHours}</span>
+                <span className="whitespace-pre-line">{businessHours}</span>
               </li>
             </ul>
           </div>
@@ -137,7 +142,7 @@ export function Footer({ settings }: FooterProps) {
         {/* Legal Line */}
         <div className="border-t border-gray-200 pt-8 mt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs">
-            © {new Date().getFullYear()} T Vanamm. All rights reserved. A brand of JKSH United Private Limited.
+            © {new Date().getFullYear()} T VANAMM. All rights reserved. A brand of JKSH United Private Limited.
           </p>
         </div>
       </div>

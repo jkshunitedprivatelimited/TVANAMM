@@ -1,7 +1,7 @@
 
 
 export const metadata = {
-  title: 'Legal & Privacy Policy | T Vanamm',
+  title: 'Legal & Privacy Policy | T VANAMM',
 };
 
 export default function LegalPolicyPage() {
@@ -15,7 +15,7 @@ export default function LegalPolicyPage() {
           <section id="privacy-policy">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">1. Privacy Policy</h2>
             <p><strong>Last updated: 2025</strong></p>
-            <p>Welcome to T Vanamm, a brand of JKSH United Private Limited. This privacy policy outlines how we collect, use, and protect your information when you visit our franchise enquiry website.</p>
+            <p>Welcome to T VANAMM, a brand of JKSH United Private Limited. This privacy policy outlines how we collect, use, and protect your information when you visit our franchise enquiry website.</p>
             
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">1.1 Information We Collect</h3>
             <p>When you submit a franchise enquiry or contact form, we collect: Full Name, Phone Number, Email Address, City, and IP Address.</p>
@@ -36,17 +36,17 @@ export default function LegalPolicyPage() {
             <p>Submitting an enquiry does <strong>not</strong> constitute a binding agreement or a guarantee of franchise allotment. Allotments are subject to internal company approval.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">2.2 Intellectual Property</h3>
-            <p>The &quot;T Vanamm&quot; name, logos, taglines (&quot;A Taste of Purity&quot;), and all related design materials are the intellectual property of JKSH United Private Limited.</p>
+            <p>The &quot;T VANAMM&quot; name, logos, taglines (&quot;A Taste of Purity&quot;), and all related design materials are the intellectual property of JKSH United Private Limited.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">2.3 Image Representation</h3>
-            <p>Certain images on this website are for illustrative and representational purposes only. Some images may not be owned by T Vanamm or may be stock imagery used to reflect the brand&apos;s aesthetic and products. Actual products, outlets, and experiences may vary.</p>
+            <p>Certain images on this website are for illustrative and representational purposes only. Some images may not be owned by T VANAMM or may be stock imagery used to reflect the brand&apos;s aesthetic and products. Actual products, outlets, and experiences may vary.</p>
           </section>
 
           {/* Refund & Cancellation Section */}
           <section id="refund-policy">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">3. Refund & Cancellation Policy</h2>
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">3.1 No Online Payments</h3>
-            <p>The T Vanamm website is strictly for informational and enquiry purposes. <strong>No payments are processed, requested, or collected directly through this website.</strong></p>
+            <p>The T VANAMM website is strictly for informational and enquiry purposes. <strong>No payments are processed, requested, or collected directly through this website.</strong></p>
 
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">3.2 Offline Transactions</h3>
             <p>Specific refund and cancellation terms for franchise fees will be clearly outlined in your physical Franchise Agreement document during the offline onboarding process.</p>

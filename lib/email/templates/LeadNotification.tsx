@@ -33,7 +33,7 @@ export default function LeadNotificationEmail({
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>New Franchise Enquiry</Heading>
-          <Text style={text}>A new lead has been submitted on the T Vanamm website.</Text>
+          <Text style={text}>A new lead has been submitted on the T VANAMM website.</Text>
           <Hr style={hr} />
           
           <Section style={details}>
@@ -49,7 +49,7 @@ export default function LeadNotificationEmail({
           
           <Hr style={hr} />
           <Text style={footer}>
-            This is an automated message from the T Vanamm Website.
+            This is an automated message from the T VANAMM Website.
           </Text>
         </Container>
       </Body>

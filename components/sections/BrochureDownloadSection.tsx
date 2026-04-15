@@ -38,7 +38,9 @@ export function BrochureDownloadSection() {
             </div>
             
             <h2 className="text-3xl md:text-5xl lg:text-5xl font-playfair font-bold text-white mb-6 leading-tight">
-              Explore the <span className="text-[#C8A96E]">T Vanamm</span> Opportunity.
+              Explore <br />
+              <span className="text-[#C8A96E]">T VANAMM</span> <br />
+              Opportunity.
             </h2>
             
             <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl font-light">
@@ -72,7 +74,7 @@ export function BrochureDownloadSection() {
               
               <div className="text-center mb-8 relative z-10">
                 <h3 className="text-2xl font-playfair font-bold text-[#006437] mb-2">
-                  Get the Brochure Now
+                  Get the <span className="text-[#C8A96E]">Brochure</span> Now
                 </h3>
                 <p className="text-gray-500 text-sm">
                   Fill in your details below to instantly access the PDF.

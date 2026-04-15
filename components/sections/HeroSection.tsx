@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export function HeroSection({ 
   headline = "India's best\nPremium Tea Franchise",
-  subtext = "Join 250+ successful franchise owners across India. Build your business with T Vanamm — A Taste of Purity."
+  subtext = "Join 250+ successful franchise owners across India. Build your business with T VANAMM — A Taste of Purity."
 }: { 
   headline?: string;
   subtext?: string;
@@ -25,12 +25,12 @@ export function HeroSection({
   };
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] flex items-center justify-center bg-[#006437] overflow-hidden">
+    <section className="relative w-full h-[85vh] md:h-screen min-h-[500px] md:min-h-[600px] flex items-center justify-center bg-[#006437] overflow-hidden">
       {/* Background Image Optimized */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/herobanner.png"
-          alt="T Vanamm Hero Banner"
+          alt="T VANAMM Hero Banner"
           fill
           priority
           placeholder="blur"
@@ -43,7 +43,7 @@ export function HeroSection({
       {/* Gradient Overlay for Text Readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent z-1" />
       
-      <div className="container relative z-10 px-4 mx-auto text-center mt-16">
+      <div className="container relative z-10 px-4 mx-auto text-center mt-12 md:mt-16">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -52,25 +52,28 @@ export function HeroSection({
         >
           <motion.h1 
             variants={itemVariants}
-            className="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6 leading-tight whitespace-pre-line"
+            className="text-[1.9rem] xs:text-[2.2rem] sm:text-4xl md:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6 leading-[1.2] md:leading-tight max-w-4xl mx-auto"
           >
             {headline?.includes("Premium Tea Franchise") ? (
-              headline.split("Premium Tea Franchise").map((part, i, arr) => (
-                <span key={i}>
-                  {part}
-                  {i < arr.length - 1 && <span className="text-[#C8A96E]">Premium Tea Franchise</span>}
-                </span>
-              ))
+              <div className="flex flex-col gap-1 md:block">
+                <span className="block md:inline whitespace-nowrap">India's Best</span>
+                <span className="hidden md:inline"> </span>
+                <span className="text-[#C8A96E] block md:inline whitespace-nowrap">Premium Tea Franchise</span>
+              </div>
             ) : (
-              headline
+              headline?.replace(/\n/g, ' ')
             )}
           </motion.h1>
           
           <motion.p 
             variants={itemVariants}
-            className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-light leading-relaxed"
+            className="text-[15px] sm:text-base md:text-xl text-white mb-10 max-w-[42ch] md:max-w-2xl mx-auto font-light leading-relaxed"
           >
-            {subtext}
+            Join 250+ successful franchise owners across India.
+            <br className="md:hidden" />
+            Build your business with <span className="text-[#C8A96E] font-medium">T VANAMM</span> 
+            <br className="md:hidden" />
+            — A Taste of Purity.
           </motion.p>
           
           <motion.div 

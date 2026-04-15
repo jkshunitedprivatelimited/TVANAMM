@@ -62,15 +62,17 @@ export function WhySection({ cards }: { cards?: WhyCard[] }) {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-12 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16 max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4">
-            Why Choose T Vanamm?
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4 leading-tight">
+            Why Choose <span className="text-[#C8A96E]">T VANAMM</span>?
           </h2>
           <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Our commitment to quality, tradition, and innovation sets us apart as a leading Tea Franchise in India—an Affordable and Profitable Chai Franchise model for partners.
+          <p className="text-gray-600 text-base md:text-lg leading-relaxed px-2">
+            Our commitment to quality, tradition, and innovation sets us apart as a leading Tea Franchise in India.
+            <br className="hidden md:block" />
+            An Affordable and Profitable Chai Franchise model for partners.
           </p>
         </div>
 
@@ -87,7 +89,7 @@ export function WhySection({ cards }: { cards?: WhyCard[] }) {
               <motion.div 
                 key={i}
                 variants={cardVariants}
-                className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-[#006437]/10 transition-all duration-300 border border-gray-100 group flex flex-col items-center justify-center text-center"
+                className="bg-white p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-[#006437]/10 transition-all duration-300 border border-gray-100 group flex flex-col items-center justify-center text-center"
               >
                 <div className="w-16 h-16 bg-[#006437]/10 text-[#006437] rounded-full flex items-center justify-center mb-5 group-hover:bg-[#006437] group-hover:text-white transition-colors duration-300 shrink-0">
                   <IconComponent size={28} />

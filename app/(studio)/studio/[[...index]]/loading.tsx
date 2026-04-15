@@ -5,7 +5,7 @@ export default function StudioLoading() {
         {/* Simple animated brand logo/placeholder */}
         <div className="w-20 h-20 rounded-full border-4 border-[#C8A96E]/20 border-t-[#C8A96E] animate-spin" />
         <div className="text-center">
-          <h2 className="text-white font-playfair text-2xl font-bold tracking-widest mb-1 italic">T Vanamm</h2>
+          <h2 className="text-white font-playfair text-2xl font-bold tracking-widest mb-1 italic">T VANAMM</h2>
           <p className="text-[#C8A96E] text-[10px] uppercase tracking-[0.3em] font-bold">Content Studio Loading...</p>
         </div>
       </div>

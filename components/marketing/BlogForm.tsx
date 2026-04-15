@@ -54,7 +54,7 @@ export default function BlogForm() {
 
       <div className="space-y-2">
         <label htmlFor="author" className="block text-sm font-medium text-gray-700">Author Name</label>
-        <input required type="text" id="author" name="author" className="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 py-2 px-3 border" placeholder="e.g. T Vanamm Team" />
+        <input required type="text" id="author" name="author" className="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 py-2 px-3 border" placeholder="e.g. T VANAMM Team" />
       </div>
 
       <div className="space-y-2">
@@ -80,7 +80,7 @@ export default function BlogForm() {
 
       <div className="space-y-2">
         <label htmlFor="metaTitle" className="block text-sm font-medium text-gray-700">Meta Title (Optional)</label>
-        <input type="text" id="metaTitle" name="metaTitle" className="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 py-2 px-3 border" placeholder="e.g. 5 Tea Franchise Tips | T Vanamm" />
+        <input type="text" id="metaTitle" name="metaTitle" className="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 py-2 px-3 border" placeholder="e.g. 5 Tea Franchise Tips | T VANAMM" />
       </div>
 
       <div className="space-y-2">

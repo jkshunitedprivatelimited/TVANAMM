@@ -7,7 +7,7 @@ export function ReadyToJoinSection() {
     <section className="relative z-10 py-12 md:py-16 bg-[#C8A96E] overflow-hidden">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-white mb-8 leading-tight">
-          Ready to be part of <br className="block md:hidden" /> the <span className="text-[#006437] whitespace-nowrap">T Vanamm</span> family?
+          Ready to be part of <br className="block md:hidden" /> the <span className="text-[#006437] whitespace-nowrap">T VANAMM</span> family?
         </h2>
         <Link 
           href="/#franchise-enquiry" 

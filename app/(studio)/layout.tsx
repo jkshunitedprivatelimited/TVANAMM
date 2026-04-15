@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'T Vanamm | Content Studio',
+  title: 'T VANAMM | Content Studio',
   description: 'Sanity Admin Studio',
 }
 

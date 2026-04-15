@@ -7,8 +7,8 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
 
 export default defineConfig({
   basePath: '/studio',
-  name: 'T_Vanamm_Studio',
-  title: 'T Vanamm Admin Studio',
+  name: 'T_VANAMM_Studio',
+  title: 'T VANAMM Admin Studio',
 
   projectId,
   dataset,

@@ -20,7 +20,7 @@ const values = [
 ];
 
 const milestones: { year: string; title?: string; event: string }[] = [
-  { year: '2021', title: 'Company Founded', event: 'Mrs. N. Naga Jyothi establishes T Vanamm with a vision to revolutionize healthy beverages.' },
+  { year: '2021', title: 'Company Founded', event: 'Mrs. N. Naga Jyothi establishes T VANAMM with a vision to revolutionize healthy beverages.' },
   { year: '2022', title: 'Product Line Expansion', event: 'Launched premium tea collection and introduced innovative ice-cream flavors.' },
   { year: '2023', title: 'Quality Certifications', event: 'Achieved organic certification and established rigorous quality-control standards.' },
   { year: '2024', title: 'Market Growth', event: 'Expanded to 500+ customers across India with a 4.9★ rating and stronger supply chain.' },
@@ -74,10 +74,10 @@ export default function AboutPage() {
             {/* Left Column — Bio */}
             <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <h2 className="text-3xl md:text-4xl xl:text-5xl lg:whitespace-nowrap font-playfair font-bold text-[#006437] mb-8">
-                Meet Our <br className="block md:hidden" /> Visionary Founder
+                Meet Our <br className="block md:hidden" /> <span className="text-[#C8A96E]">Visionary Founder</span>
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                <span className="font-bold">Mrs. N. Naga Jyothi</span> founded T Vanamm in 2021 with a vision to transform the beverage industry by prioritizing health, quality, and customer satisfaction—building a trusted <span className="font-bold">Tea Franchise in India</span>.
+                <span className="font-bold">Mrs. N. Naga Jyothi</span> founded T VANAMM in 2021 with a vision to transform the beverage industry by prioritizing health, quality, and customer satisfaction—building a trusted <span className="font-bold">Tea Franchise in India</span>.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
                 With 15+ years of FMCG experience, she blended traditional brewing methods with modern nutrition science to craft our distinctive product line and scalable partner model.
@@ -100,10 +100,10 @@ export default function AboutPage() {
                   </div>
                 )}
                 <h3 className="text-2xl font-bold text-gray-900">Mrs. N. Naga Jyothi</h3>
-                <p className="text-[#006437] font-bold text-lg mb-6">Founder &amp; CEO</p>
+                <p className="text-[#006437] font-bold text-lg mb-6 uppercase tracking-wider">Founder & Managing Director</p>
                 <div className="relative mb-8 max-w-sm mx-auto">
                   <blockquote className="italic text-gray-600 text-lg leading-relaxed">
-                    &quot;My vision is to make T Vanamm a household name across India, bringing health, happiness, and authentic flavors to every family.&quot;
+                    &quot;My vision is to make T VANAMM a household name across India, bringing health, happiness, and authentic flavors to every family.&quot;
                   </blockquote>
                 </div>
                 <div className="flex justify-center gap-12">
@@ -130,10 +130,10 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl md:text-3xl font-playfair font-bold text-[#006437] mb-8 text-center">Key Achievements</h3>
+             <h3 className="text-2xl md:text-3xl font-playfair font-bold text-[#006437] mb-8 text-center">Key <span className="text-[#C8A96E]">Achievements</span></h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {[
-                { stat: '500+', label: 'Customers', desc: 'Built T Vanamm from startup to 500+ customers and a growing partner network' },
+                { stat: '500+', label: 'Customers', desc: 'Built T VANAMM from startup to 500+ customers and a growing partner network' },
                 { stat: '200+', label: 'Farming Families', desc: 'Partnerships with 200+ farming families through fair-trade sourcing' },
                 { stat: '#1', label: 'Pioneer', desc: 'Pioneer in sustainable tea practices and ethical distribution' },
                 { stat: '4.9★', label: 'Satisfaction', desc: 'Maintained 4.9★ customer satisfaction—fueling an Affordable Tea Franchise growth model' },
@@ -178,7 +178,7 @@ export default function AboutPage() {
       <section className="py-12 md:py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-playfair font-bold text-[#006437] mb-4">Core Values</h2>
+            <h2 className="text-3xl font-playfair font-bold text-[#006437] mb-4">Core <span className="text-[#C8A96E]">Values</span></h2>
             <div className="w-16 h-1 bg-[#C8A96E] mx-auto rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -196,7 +196,7 @@ export default function AboutPage() {
       <section className="py-12 md:py-24 bg-[#004e2a] text-white overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-20 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-playfair font-bold text-white mb-4">Our Journey</h2>
+            <h2 className="text-3xl font-playfair font-bold text-white mb-4">Our <span className="text-[#C8A96E]">Journey</span></h2>
             <div className="w-16 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
             <p className="text-white/90 text-lg">
               From a visionary idea to a trusted Tea Franchise in India — built on quality, training, and partner success.

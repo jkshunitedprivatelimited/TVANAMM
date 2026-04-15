@@ -22,7 +22,7 @@ export default function UserConfirmationEmail({
   return (
     <Html>
       <Head />
-      <Preview>Thank you for your interest in T Vanamm</Preview>
+      <Preview>Thank you for your interest in T VANAMM</Preview>
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>Thank You, {fullName}</Heading>
@@ -40,12 +40,12 @@ export default function UserConfirmationEmail({
           </Section>
 
           <Text style={text}>
-            In the meantime, feel free to follow us on <Link href="https://instagram.com/tvanamm.info" style={link}>Instagram</Link> for the latest updates.
+            In the meantime, feel free to follow us on <Link href="https://instagram.com/T VANAMM.info" style={link}>Instagram</Link> for the latest updates.
           </Text>
           
           <Hr style={hr} />
           <Text style={footer}>
-            T Vanamm | A Taste of Purity<br/>
+            T VANAMM | A Taste of Purity<br/>
             Hyderabad, Telangana
           </Text>
         </Container>

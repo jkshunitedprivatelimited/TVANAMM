@@ -89,7 +89,7 @@ export function EnquiryForm({ hideHeadline = false }: { hideHeadline?: boolean }
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 md:space-y-5">
       {!hideHeadline && (
         <h3 className="text-xl md:text-2xl font-bold font-playfair mb-4 md:mb-6 text-[#006437]">
-          Send an Enquiry
+          Send an <span className="text-[#C8A96E]">Enquiry</span>
         </h3>
       )}
 

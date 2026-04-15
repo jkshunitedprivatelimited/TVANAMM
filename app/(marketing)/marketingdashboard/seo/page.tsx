@@ -40,7 +40,7 @@ export default async function SEODashboardPage() {
             name="defaultSeoTitle" 
             defaultValue={settings?.defaultSeoTitle || ''}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 py-2.5 px-3 border" 
-            placeholder="e.g. T Vanamm | India's Best Tea Franchise" 
+            placeholder="e.g. T VANAMM | India's Best Tea Franchise" 
           />
         </div>
 
