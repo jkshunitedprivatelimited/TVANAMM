@@ -19,7 +19,7 @@ const defaultCategories = [
   { name: 'Snacks', image: '/images/hero_background.png' },
 ];
 
-export function ProductsShowcaseSection({ categories: sanityCategories }: { categories?: any[] }) {
+export function ProductsShowcaseSection({ categories: sanityCategories }: { categories?: { name?: string; image?: Record<string, unknown> }[] }) {
   const displayCategories = sanityCategories?.length 
     ? sanityCategories.map((cat, i) => ({
         name: cat.name || `Category ${i + 1}`,
