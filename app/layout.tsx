@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
   return {
     title: {
-      default: settings?.defaultSeoTitle || "T VANAMM — India's best Premium Tea Franchise",
+      default: settings?.defaultSeoTitle || "T VANAMM   India's best Premium Tea Franchise",
       template: "%s | T VANAMM",
     },
     description: settings?.defaultSeoDescription || settings?.tagline || "Join 250+ successful T VANAMM franchise owners across India. Premium tea and coffee franchise with full training, support and proven business model. Apply today.",
