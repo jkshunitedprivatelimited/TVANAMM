@@ -20,7 +20,7 @@ const values = [
 ];
 
 const milestones: { year: string; title?: string; event: string }[] = [
-  { year: '2021', title: 'Company Founded', event: 'Mrs. N. Naga Jyothi establishes T VANAMM with a vision to revolutionize healthy beverages.' },
+  { year: '2021', title: 'Company Founded', event: 'Mrs. Bhavishya establishes T VANAMM with a vision to revolutionize healthy beverages.' },
   { year: '2022', title: 'Product Line Expansion', event: 'Launched premium tea collection and introduced innovative ice-cream flavors.' },
   { year: '2023', title: 'Quality Certifications', event: 'Achieved organic certification and established rigorous quality control standards.' },
   { year: '2024', title: 'Market Growth', event: 'Expanded to 500+ customers across India with a 4.9★ rating and stronger supply chain.' },
@@ -77,7 +77,7 @@ export default function AboutPage() {
                 Meet Our <br className="block md:hidden" /> <span className="text-[#C8A96E]">Visionary Founder</span>
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                <span className="font-bold">Mrs. N. Naga Jyothi</span> founded T VANAMM in 2021 with a vision to transform the beverage industry by prioritizing health, quality, and customer satisfaction building a trusted <span className="font-bold">Tea Franchise in India</span>.
+                <span className="font-bold">Mrs. Bhavishya</span> founded T VANAMM in 2021 with a vision to transform the beverage industry by prioritizing health, quality, and customer satisfaction building a trusted <span className="font-bold">Tea Franchise in India</span>.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
                 With 15+ years of FMCG experience, she blended traditional brewing methods with modern nutrition science to craft our distinctive product line and scalable partner model.
@@ -92,11 +92,11 @@ export default function AboutPage() {
               <div className="text-center">
                 {founderImageUrl ? (
                   <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden mx-auto mb-6 border-4 border-[#006437]/20 shadow-lg">
-                    <Image src={founderImageUrl} alt="Mrs. N. Naga Jyothi" width={128} height={128} className="object-cover w-full h-full" />
+                    <Image src={founderImageUrl} alt="Mrs. Bhavishya" width={128} height={128} className="object-cover w-full h-full" />
                   </div>
                 ) : (
                   <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden mx-auto mb-6 border-4 border-[#006437]/20 bg-[#006437]/5 shadow-lg">
-                    <Image src="/images/Josnnasri.jpeg" alt="Mrs. N. Naga Jyothi" width={128} height={128} className="object-cover w-full h-full" />
+                    <Image src="/images/Josnnasri.jpeg" alt="Mrs. Bhavishya" width={128} height={128} className="object-cover w-full h-full" />
                   </div>
                 )}
                 <h3 className="text-2xl font-bold text-gray-900">Mrs. Bhavishya</h3>
