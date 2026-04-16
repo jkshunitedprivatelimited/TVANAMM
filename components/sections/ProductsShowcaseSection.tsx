@@ -14,7 +14,7 @@ const defaultCategories = [
   { name: 'Immunity Boosters', image: '/images/hero_background.png' },
   { name: 'Smoothies', image: '/images/hero_background.png' },
   { name: 'Thick Shake', image: '/images/hero_background.png' },
-  { name: 'Ice-Creams', image: '/images/hero_background.png' },
+  { name: 'Ice Creams', image: '/images/hero_background.png' },
   { name: 'Healthy Breakfast', image: '/images/hero_background.png' },
   { name: 'Snacks', image: '/images/hero_background.png' },
 ];
@@ -41,7 +41,7 @@ export function ProductsShowcaseSection({ categories: sanityCategories }: { cate
           <p className="text-white/80 max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-8 px-2">
             12+ curated sections. 120+ handcrafted items.
             <br className="hidden md:block" />
-            Every single item backed by a detailed SOP — ensuring any team member delivers the same perfect taste, every time.
+            Every single item backed by a detailed SOP   ensuring any team member delivers the same perfect taste, every time.
           </p>
           <div className="flex items-center justify-center gap-8">
             <div className="text-center">
@@ -57,7 +57,7 @@ export function ProductsShowcaseSection({ categories: sanityCategories }: { cate
         </div>
       </div>
 
-      {/* Marquee container — full width, no container constraint */}
+      {/* Marquee container   full width, no container constraint */}
       <div className="relative w-full">
         {/* Scrolling row */}
         <motion.div

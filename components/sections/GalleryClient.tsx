@@ -157,7 +157,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
   const rawOutletImages = galleryData.filter(img => img.category === 'Outlets');
   const rawProductImages = galleryData.filter(img => img.category === 'Products');
   
-  // Ensure Products marquee always has images — use fallback product images if CMS is empty
+  // Ensure Products marquee always has images   use fallback product images if CMS is empty
   const fallbackProductImages: GalleryImage[] = [
     { id: 'fp-1', category: 'Products', src: '/images/hero_background.png', title: 'Flavoured Tea' },
     { id: 'fp-2', category: 'Products', src: '/images/hero_background.png', title: 'Milk Tea' },
@@ -217,7 +217,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
         </div>
       </section>
 
-      {/* Content — Outlets uses grid, Products uses marquee wall */}
+      {/* Content   Outlets uses grid, Products uses marquee wall */}
       <AnimatePresence mode="wait">
         {activeTab === 'Outlets' ? (
             <motion.div
@@ -248,7 +248,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
               onImageClick={setSelectedImage} 
               preheading="Our Signature Collection"
               heading="Premium Beverages & More"
-              description="120+ handcrafted items prepared with detailed SOPs — ensuring the same perfect taste across every T VANAMM outlet."
+              description="120+ handcrafted items prepared with detailed SOPs   ensuring the same perfect taste across every T VANAMM outlet."
             />
           </motion.div>
         )}

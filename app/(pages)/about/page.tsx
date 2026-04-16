@@ -22,7 +22,7 @@ const values = [
 const milestones: { year: string; title?: string; event: string }[] = [
   { year: '2021', title: 'Company Founded', event: 'Mrs. N. Naga Jyothi establishes T VANAMM with a vision to revolutionize healthy beverages.' },
   { year: '2022', title: 'Product Line Expansion', event: 'Launched premium tea collection and introduced innovative ice-cream flavors.' },
-  { year: '2023', title: 'Quality Certifications', event: 'Achieved organic certification and established rigorous quality-control standards.' },
+  { year: '2023', title: 'Quality Certifications', event: 'Achieved organic certification and established rigorous quality control standards.' },
   { year: '2024', title: 'Market Growth', event: 'Expanded to 500+ customers across India with a 4.9★ rating and stronger supply chain.' },
   { year: '2025', title: 'Future Vision', event: 'Scaling nationwide presence and launching Affordable Tea Franchise opportunities.' }
 ];
@@ -62,7 +62,7 @@ export default function AboutPage() {
             transition={{ delay: 0.2 }}
             className="text-white/80 text-lg font-medium max-w-2xl mx-auto mb-4 leading-relaxed"
           >
-            Building India&apos;s most trusted Tea Franchise — one cup at a time.
+            Building India&apos;s most trusted Tea Franchise   one cup at a time.
           </motion.p>
         </div>
       </section>
@@ -77,13 +77,13 @@ export default function AboutPage() {
                 Meet Our <br className="block md:hidden" /> <span className="text-[#C8A96E]">Visionary Founder</span>
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                <span className="font-bold">Mrs. N. Naga Jyothi</span> founded T VANAMM in 2021 with a vision to transform the beverage industry by prioritizing health, quality, and customer satisfaction—building a trusted <span className="font-bold">Tea Franchise in India</span>.
+                <span className="font-bold">Mrs. N. Naga Jyothi</span> founded T VANAMM in 2021 with a vision to transform the beverage industry by prioritizing health, quality, and customer satisfaction building a trusted <span className="font-bold">Tea Franchise in India</span>.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
                 With 15+ years of FMCG experience, she blended traditional brewing methods with modern nutrition science to craft our distinctive product line and scalable partner model.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Her leadership centers on transparency, innovation, and community impact—from direct trade relationships to sustainable sourcing and SOP-driven quality.
+                Her leadership centers on transparency, innovation, and community impact from direct trade relationships to sustainable sourcing and SOP driven quality.
               </p>
             </motion.div>
 
@@ -136,7 +136,7 @@ export default function AboutPage() {
                 { stat: '500+', label: 'Customers', desc: 'Built T VANAMM from startup to 500+ customers and a growing partner network' },
                 { stat: '200+', label: 'Farming Families', desc: 'Partnerships with 200+ farming families through fair-trade sourcing' },
                 { stat: '#1', label: 'Pioneer', desc: 'Pioneer in sustainable tea practices and ethical distribution' },
-                { stat: '4.9★', label: 'Satisfaction', desc: 'Maintained 4.9★ customer satisfaction—fueling an Affordable Tea Franchise growth model' },
+                { stat: '4.9★', label: 'Satisfaction', desc: 'Maintained 4.9★ customer satisfaction fueling an Affordable Tea Franchise growth model' },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -162,13 +162,13 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white p-6 md:p-10 rounded-2xl shadow-xl border border-gray-100 hover:bg-[#006437] group transition-colors duration-300 cursor-default">
               <h3 className="text-3xl font-playfair font-bold text-[#006437] group-hover:text-white mb-4 md:mb-6 transition-colors duration-300">Our Vision</h3>
               <p className="text-gray-600 group-hover:text-white/90 leading-relaxed text-base md:text-lg transition-colors duration-300">
-                To become India&apos;s most loved tea and coffee franchise — building businesses that redefine everyday experiences and empower entrepreneurs across every corner of the country.
+                To become India&apos;s most loved tea and coffee franchise   building businesses that redefine everyday experiences and empower entrepreneurs across every corner of the country.
               </p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} viewport={{ once: true }} className="bg-white p-6 md:p-10 rounded-2xl shadow-xl border border-gray-100 hover:bg-[#006437] group transition-colors duration-300 cursor-default">
               <h3 className="text-3xl font-playfair font-bold text-[#006437] group-hover:text-white mb-4 md:mb-6 transition-colors duration-300">Our Mission</h3>
               <p className="text-gray-600 group-hover:text-white/90 leading-relaxed text-base md:text-lg transition-colors duration-300">
-                To scale a premium tea and coffee franchise model built on quality, consistency, and full partner support — creating profitable opportunities for franchise owners and memorable experiences for every customer.
+                To scale a premium tea and coffee franchise model built on quality, consistency, and full partner support   creating profitable opportunities for franchise owners and memorable experiences for every customer.
               </p>
             </motion.div>
           </div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-playfair font-bold text-white mb-4">Our <span className="text-[#C8A96E]">Journey</span></h2>
             <div className="w-16 h-1 bg-[#C8A96E] mx-auto rounded-full mb-6" />
             <p className="text-white/90 text-lg">
-              From a visionary idea to a trusted Tea Franchise in India — built on quality, training, and partner success.
+              From a visionary idea to a trusted Tea Franchise in India   built on quality, training, and partner success.
             </p>
           </div>
           {/* Alternating Timeline */}
