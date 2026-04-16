@@ -73,10 +73,7 @@ export default async function BlogsDashboardPage() {
                     {blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString('en-GB') : 'Draft'}
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <form action={async () => {
-                      'use server';
-                      await deleteBlogPost(blog._id);
-                    }}>
+                    <form action={deleteBlogPost.bind(null, blog._id)}>
                       <button 
                         type="submit" 
                         className="text-red-500 hover:text-red-700 p-2 rounded-md hover:bg-red-50 transition"
@@ -103,10 +100,7 @@ export default async function BlogsDashboardPage() {
             <div key={blog._id} className="p-4 space-y-3">
               <div className="flex justify-between items-start gap-4">
                 <h3 className="font-semibold text-gray-900 leading-tight flex-1">{blog.title}</h3>
-                <form action={async () => {
-                  'use server';
-                  await deleteBlogPost(blog._id);
-                }}>
+                <form action={deleteBlogPost.bind(null, blog._id)}>
                   <button 
                     type="submit" 
                     className="text-red-500 p-2 rounded-md bg-red-50"

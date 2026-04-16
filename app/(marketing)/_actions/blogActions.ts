@@ -88,6 +88,7 @@ export async function deleteBlogPost(id: string) {
   try {
     await client.delete(id);
     revalidatePath('/blog');
+    revalidatePath('/marketingdashboard/blogs');
     return { success: true };
   } catch (err: unknown) {
     console.error(err);

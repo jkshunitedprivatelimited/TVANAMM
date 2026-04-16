@@ -1,6 +1,7 @@
 'use client';
 export const dynamic = 'force-dynamic';
 
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { EnquiryForm } from '@/components/forms/EnquiryForm';
 import Image from 'next/image';
@@ -43,6 +44,20 @@ export function FranchiseEnquiryFormSection({
 }: FranchiseEnquiryFormSectionProps) {
   const displayBadges = trustBadges && trustBadges.length > 0 ? trustBadges : defaultTrustBadges;
 
+  // Catch the hash on mount and wait for Framer Motion to render before scrolling
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#franchise-enquiry') {
+      const timeoutId = setTimeout(() => {
+        const element = document.getElementById('franchise-enquiry');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      
+      return () => clearTimeout(timeoutId);
+    }
+  }, []);
+
   // Function to format the headline to make "T VANAMM" gold and handle the requested line break
   const formatHeadline = (text: React.ReactNode) => {
     const defaultVal = (
@@ -56,7 +71,6 @@ export function FranchiseEnquiryFormSection({
     if (typeof text !== 'string') return text;
     
     // If it's the specific headline string, force the line break
-    // FIX: use lowercase for the includes check
     if (text.toLowerCase().includes('with t vanamm')) {
       const parts = text.split(/with T VANAMM/i);
       return (

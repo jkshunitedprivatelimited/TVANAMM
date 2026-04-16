@@ -99,7 +99,7 @@ export default function AboutPage() {
                     <Image src="/images/Josnnasri.jpeg" alt="Mrs. N. Naga Jyothi" width={128} height={128} className="object-cover w-full h-full" />
                   </div>
                 )}
-                <h3 className="text-2xl font-bold text-gray-900">Mrs. N. Naga Jyothi</h3>
+                <h3 className="text-2xl font-bold text-gray-900">Mrs. Bhavishya</h3>
                 <p className="text-[#006437] font-bold text-lg mb-6 uppercase tracking-wider">Founder & Managing Director</p>
                 <div className="relative mb-8 max-w-sm mx-auto">
                   <blockquote className="italic text-gray-600 text-lg leading-relaxed">
