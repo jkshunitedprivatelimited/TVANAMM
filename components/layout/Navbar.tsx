@@ -56,14 +56,13 @@ export function Navbar() {
               className="object-contain w-10 h-10 md:w-[55px] md:h-[55px]" 
               unoptimized
             />
-            <div className="flex flex-col">
-              <span className="font-playfair font-bold text-lg md:text-2xl tracking-wide text-[#006437] whitespace-nowrap leading-none mb-0.5">
-                T VANAMM
-              </span>
-              <span className="font-playfair italic text-[9px] md:text-xs text-[#006437] opacity-90 group-hover:text-[#C8A96E] transition-colors whitespace-nowrap">
-                &quot;A Taste of Purity&quot;
-              </span>
-            </div>
+            <Image 
+              src="/images/gif_left_pic.png" 
+              alt="T VANAMM - A Taste of Purity" 
+              width={150} 
+              height={50} 
+              className="object-contain h-8 md:h-11 w-auto" 
+            />
           </Link>
 
           {/* Desktop Nav */}

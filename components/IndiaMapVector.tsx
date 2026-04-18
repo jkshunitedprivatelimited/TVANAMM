@@ -186,7 +186,7 @@ const mapData = [
 ];
 
 export function IndiaMapVector() {
-  const [hoveredState, setHoveredState] = useState(null);
+  const [hoveredState, setHoveredState] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isClient, setIsClient] = useState(false);
 
@@ -194,7 +194,7 @@ export function IndiaMapVector() {
     setIsClient(true);
   }, []);
 
-  const handleMouseMove = (e, stateName) => {
+  const handleMouseMove = (e: React.MouseEvent, stateName: string) => {
     setHoveredState(stateName);
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
