@@ -100,7 +100,7 @@ export function FranchiseEnquiryFormSection({
   ) : subtitle;
 
   return (
-    <section id="franchise-enquiry" className="py-12 md:py-24 bg-[#006437] text-white relative scroll-mt-20 md:scroll-mt-24">
+    <section aria-label="Franchise Enquiry Form" id="franchise-enquiry" className="py-12 md:py-24 bg-[#006437] text-white relative scroll-mt-20 md:scroll-mt-24">
       <div className="container mx-auto px-4 lg:px-8">
         
         {/* Trust & Compliance Badges - Compact Rectangular Grid */}

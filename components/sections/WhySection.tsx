@@ -62,7 +62,7 @@ export function WhySection({ cards }: { cards?: WhyCard[] }) {
   };
 
   return (
-    <section className="py-12 md:py-24 bg-gray-50">
+    <section aria-label="Why Choose T VANAMM" className="py-12 md:py-24 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16 max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4 leading-tight">

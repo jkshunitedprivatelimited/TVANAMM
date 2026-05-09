@@ -18,7 +18,7 @@ export function SiteLayoutWrapper({
 }) {
   const pathname = usePathname();
   const isStudio = pathname?.startsWith('/studio');
-  const isMarketing = pathname?.startsWith('/marketingdashboard') || pathname?.startsWith('/marketinglogin');
+
 
   useEffect(() => {
     // Prevent browser from restoring scroll position on refresh
@@ -44,14 +44,14 @@ export function SiteLayoutWrapper({
     return () => clearTimeout(timeoutId);
   }, [pathname]);
 
-  if (isStudio || isMarketing) {
+  if (isStudio) {
     return <main className="flex-grow">{children}</main>;
   }
 
   return (
     <>
       <Navbar />
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         {children}
       </main>
       <Footer settings={settings} />

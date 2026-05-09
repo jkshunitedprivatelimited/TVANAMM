@@ -44,10 +44,11 @@ export function Navbar() {
     <>
       <header
         className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-1 transition-all duration-300"
+        role="banner"
       >
         <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0 transition-transform hover:scale-105 group">
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0 transition-transform hover:scale-105 group" aria-label="T VANAMM — Go to homepage">
             <Image 
               src="/images/logo_gif.gif" 
               alt="T VANAMM Logo" 
@@ -62,16 +63,18 @@ export function Navbar() {
               width={150} 
               height={50} 
               className="object-contain h-8 md:h-11 w-auto" 
+              priority
             />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 className="text-base font-semibold transition-colors text-[#006437] hover:text-[#C8A96E]"
+                {...(pathname === link.href ? { 'aria-current': 'page' as const } : {})}
               >
                 {link.name}
               </Link>
@@ -89,7 +92,9 @@ export function Navbar() {
           <button
             className="md:hidden p-2 rounded-md text-[#006437]"
             onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open menu"
+            aria-label="Open navigation menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-menu"
           >
             <Menu size={24} />
           </button>
@@ -105,6 +110,9 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[1000] md:hidden"
             onClick={() => setMobileMenuOpen(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
           >
             <motion.div
               initial={{ x: '100%' }}
@@ -113,29 +121,32 @@ export function Navbar() {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               className="absolute right-0 top-0 bottom-0 w-3/4 max-w-sm bg-white shadow-2xl flex flex-col"
               onClick={(e) => e.stopPropagation()}
+              id="mobile-nav-menu"
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-100">
                 <span className="font-playfair font-bold text-[#006437] text-xl">T VANAMM</span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 text-gray-500 hover:text-[#006437] rounded-md"
+                  aria-label="Close navigation menu"
                 >
                   <X size={24} />
                 </button>
               </div>
 
-              <div className="flex flex-col gap-4 p-6">
+              <nav className="flex flex-col gap-4 p-6" aria-label="Mobile navigation">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className="text-lg font-medium text-gray-800 hover:text-[#006437]"
+                    {...(pathname === link.href ? { 'aria-current': 'page' as const } : {})}
                   >
                     {link.name}
                   </Link>
                 ))}
-              </div>
+              </nav>
 
               <div className="mt-auto p-6 border-t border-gray-100">
                 <Link

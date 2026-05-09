@@ -69,7 +69,7 @@ export function StatsBar({ stats: sanityStats }: { stats?: SanityStatItem[] }) {
   }) : defaultStats;
 
   return (
-    <section className="bg-[#004e2a] py-8 md:py-12 relative z-20 shadow-xl border-y border-[#006437]/50">
+    <section aria-label="Key Statistics" className="bg-[#004e2a] py-8 md:py-12 relative z-20 shadow-xl border-y border-[#006437]/50">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-center md:justify-evenly gap-8 md:gap-4 md:divide-x divide-white/10 text-center">
           {displayStats.map((stat: StatItem, i: number) => (

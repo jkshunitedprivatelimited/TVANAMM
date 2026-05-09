@@ -27,20 +27,24 @@ export default function UserConfirmationEmail({
         <Container style={container}>
           <Heading style={h1}>Thank You, {fullName}</Heading>
           <Text style={text}>
-            We have received your franchise enquiry. Our dedicated franchise team is reviewing your details and will get in touch with you shortly.
+            We have received your franchise enquiry and appreciate your interest in T VANAMM. Our dedicated franchise management team is currently reviewing your details and will connect with you within 24–48 business hours.
           </Text>
           
           <Section style={card}>
             <Text style={{...text, fontWeight: 'bold'}}>What happens next?</Text>
             <Text style={text}>
-              1. Our team will call you to discuss your location and requirements.<br/>
-              2. We will share the detailed ROI and investment breakdown.<br/>
-              3. You&apos;ll be invited to visit our nearest outlet or headquarters.
+              1. A member of our franchise management team will contact you to discuss your preferred location and investment capacity.<br/>
+              2. We will share the details and investment breakdown.<br/>
+              3. You&apos;ll receive an invitation to visit our nearest operational outlet or corporate headquarters for a detailed walkthrough.
             </Text>
           </Section>
 
           <Text style={text}>
-            In the meantime, feel free to follow us on <Link href="https://instagram.com/T VANAMM.info" style={link}>Instagram</Link> for the latest updates.
+            In the meantime, we invite you to follow us on Instagram to stay updated with the latest developments from T VANAMM:
+          </Text>
+          <Text style={text}>
+            • <Link href="https://instagram.com/tvanamm.info" style={link}>@tvanamm.info</Link><br/>
+            • <Link href="https://instagram.com/tvanamm.official" style={link}>@tvanamm.official</Link>
           </Text>
           
           <Hr style={hr} />

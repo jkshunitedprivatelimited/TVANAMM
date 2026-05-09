@@ -31,7 +31,7 @@ export function ProductsShowcaseSection({ categories: sanityCategories }: { cate
   const marqueeItems = [...displayCategories, ...displayCategories];
 
   return (
-    <section className="py-12 md:py-24 bg-[#006437] text-white overflow-hidden">
+    <section aria-label="Our Products" className="py-12 md:py-24 bg-[#006437] text-white overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-white mb-4 leading-tight">

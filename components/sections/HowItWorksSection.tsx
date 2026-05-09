@@ -50,7 +50,7 @@ const defaultSteps = [
 
 export function HowItWorksSection({ steps = defaultSteps }: HowItWorksSectionProps) {
   return (
-    <section className="py-12 md:py-24 bg-white relative overflow-hidden">
+    <section aria-label="How It Works" className="py-12 md:py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4 leading-tight px-2">

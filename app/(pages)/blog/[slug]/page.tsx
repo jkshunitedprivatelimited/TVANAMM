@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { client } from '@/lib/sanity/client';
 import { PortableText } from '@portabletext/react';
 import { ReadyToJoinSection } from '@/components/sections/ReadyToJoinSection';
@@ -18,6 +19,28 @@ async function getPost(slug: string) {
       body
     }
   `, { slug });
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const post = await getPost(params.slug);
+  
+  if (!post) {
+    return { title: 'Post Not Found | T VANAMM' };
+  }
+
+  return {
+    title: `${post.title} | T VANAMM Blog`,
+    description: post.excerpt || 'Read the latest insights and updates from T VANAMM.',
+    alternates: { canonical: `/blog/${params.slug}` },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: post.coverImageUrl ? [{ url: post.coverImageUrl }] : [],
+      type: 'article',
+      publishedTime: post._createdAt,
+      authors: [post.author || 'T VANAMM Editorial'],
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
@@ -40,8 +63,34 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     year: 'numeric'
   });
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    image: post.coverImageUrl ? [post.coverImageUrl] : [],
+    datePublished: post._createdAt,
+    dateModified: post._createdAt,
+    author: [{
+      '@type': 'Person',
+      name: post.author || 'T VANAMM Editorial',
+    }],
+    publisher: {
+      '@type': 'Organization',
+      name: 'T VANAMM',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://tvanamm.com/images/logo_gif.gif'
+      }
+    },
+    description: post.excerpt
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <article className="bg-[#fcfaf8] pb-24">
         {/* Compact Hero Section matched to About/Gallery */}
         <header className="relative bg-gradient-to-br from-[#006437] via-[#005530] to-[#004025] pt-[120px] pb-10 text-center overflow-hidden">

@@ -1,5 +1,11 @@
-
+import { Metadata } from 'next';
 import { client } from '@/lib/sanity/client';
+
+export const metadata: Metadata = {
+  title: 'Blog | Insights & Updates',
+  description: 'Explore industry trends, tea culture, and T VANAMM stories. Stay updated with the latest from India\'s fastest growing premium tea franchise.',
+  alternates: { canonical: '/blog' },
+};
 import { BlogGrid } from '@/components/sections/BlogGrid';
 
 export const revalidate = 60; // optionally cache for 60 seconds

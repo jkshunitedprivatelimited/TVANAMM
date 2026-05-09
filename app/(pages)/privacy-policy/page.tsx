@@ -1,7 +1,9 @@
+import { Metadata } from 'next';
 
-
-export const metadata = {
-  title: 'Legal & Privacy Policy | T VANAMM',
+export const metadata: Metadata = {
+  title: 'Legal & Privacy Policy',
+  description: 'Read the legal, privacy, terms, and refund policies for T VANAMM and JKSH United Private Limited.',
+  alternates: { canonical: '/privacy-policy' },
 };
 
 export default function LegalPolicyPage() {
@@ -21,7 +23,7 @@ export default function LegalPolicyPage() {
             <p>When you submit a franchise enquiry or contact form, we collect: Full Name, Phone Number, Email Address, City, and IP Address.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">1.2 Data Storage and Security</h3>
-            <p>Your data is securely stored in Supabase (secured by row-level security). We absolutely do not sell, trade, or rent your personal data to third parties.</p>
+            <p>Your enquiry details are securely transmitted via email to our management team using encrypted channels. We do not store your personal data in any external database. We absolutely do not sell, trade, or rent your personal data to third parties.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-2">1.3 Cookie Policy</h3>
             <p>We use analytical cookies (Google Analytics 4, GTM, Microsoft Clarity) solely to improve user experience. You can opt out via your browser settings.</p>

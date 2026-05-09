@@ -5,17 +5,31 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { EnquiryForm } from '../forms/EnquiryForm';
 
+const POPUP_DISMISSED_KEY = 'tvanamm_popup_dismissed';
+const DISMISS_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours
+
 export function FranchisePopup() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Delay the popup slightly so it doesn't instantly snap in their face
+    // Check if user already dismissed the popup recently
+    const dismissedAt = localStorage.getItem(POPUP_DISMISSED_KEY);
+    if (dismissedAt) {
+      const elapsed = Date.now() - parseInt(dismissedAt, 10);
+      if (elapsed < DISMISS_DURATION_MS) return; // Don't show again within 24h
+    }
+
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 1500);
     
     return () => clearTimeout(timer);
   }, []);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    localStorage.setItem(POPUP_DISMISSED_KEY, Date.now().toString());
+  };
 
   return (
     <AnimatePresence>
@@ -27,7 +41,7 @@ export function FranchisePopup() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
           />
 
           {/* Modal */}
@@ -36,10 +50,13 @@ export function FranchisePopup() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden z-10"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Franchise Enquiry"
           >
             {/* Close Button */}
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={handleClose}
               className="absolute top-4 right-4 p-2 bg-gray-100 text-gray-500 hover:text-gray-800 hover:bg-gray-200 rounded-full transition-colors z-20"
               aria-label="Close popup"
             >

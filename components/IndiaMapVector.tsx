@@ -231,24 +231,7 @@ export function IndiaMapVector() {
         </g>
       </svg>
 
-      <AnimatePresence>
-        {isClient && hoveredState && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed z-[100] pointer-events-none px-4 py-2 bg-white/95 backdrop-blur-md border border-[#C8A96E]/50 rounded-xl shadow-xl flex items-center gap-3"
-            style={{ 
-              left: mousePosition.x + 20, 
-              top: mousePosition.y + 20,
-            }}
-          >
-             <div className="w-2.5 h-2.5 rounded-full bg-[#006437] animate-pulse" />
-             <span className="text-[#006437] font-bold font-playfair tracking-wide whitespace-nowrap text-lg">{hoveredState}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </div>
   );
 }

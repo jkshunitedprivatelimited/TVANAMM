@@ -25,7 +25,7 @@ export function HeroSection({
   };
 
   return (
-    <section className="relative w-full h-[100svh] md:h-screen min-h-[600px] flex items-start justify-center pt-16 md:pt-20 bg-[#006437] overflow-hidden">
+    <section aria-label="Hero" className="relative w-full h-[100svh] md:h-screen min-h-[600px] flex items-start justify-center pt-16 md:pt-20 bg-[#006437] overflow-hidden">
       {/* Background Image Optimized */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -35,7 +35,7 @@ export function HeroSection({
           priority
           className="object-cover object-[center_65%]"
           sizes="100vw"
-          quality={85}
+          quality={60}
         />
       </div>
       

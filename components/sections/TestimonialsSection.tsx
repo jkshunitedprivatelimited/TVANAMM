@@ -207,7 +207,7 @@ function CustomerReviewsGrid() {
   ];
 
   return (
-    <section className="py-12 md:py-24 bg-white border-t border-gray-100">
+    <section className="py-12 md:py-24 bg-gray-50 border-t border-gray-100">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-8 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4 leading-tight px-2">

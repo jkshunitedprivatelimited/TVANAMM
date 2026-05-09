@@ -19,7 +19,7 @@ const brochureHighlights = [
 
 export function BrochureDownloadSection() {
   return (
-    <section className="py-24 bg-[#006437] text-white border-t border-gray-100 overflow-hidden relative">
+    <section aria-label="Download Franchise Brochure" className="py-24 bg-[#006437] text-white border-t border-gray-100 overflow-hidden relative">
       <div className="absolute inset-0 opacity-10 bg-[url('/images/hero_background.png')] bg-cover bg-center mix-blend-overlay" />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">

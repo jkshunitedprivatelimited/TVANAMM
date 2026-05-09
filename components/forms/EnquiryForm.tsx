@@ -76,7 +76,7 @@ export function EnquiryForm({ hideHeadline = false }: { hideHeadline?: boolean }
           Your enquiry has been received successfully. Our team will call you within 24 hours.
         </p>
         <button 
-          onClick={() => window.open("https://wa.me/919390658544?text=Hi,%20I%20just%20submitted%20a%20franchise%20enquiry", "_blank")}
+          onClick={() => window.open("https://wa.me/919390658544?text=Hello%20T%20VANAMM%20Team%2C%20I%20have%20submitted%20a%20franchise%20enquiry%20on%20your%20website.%20Kindly%20share%20the%20details%20regarding%20the%20franchise%20opportunity.%20Thank%20you.", "_blank")}
           className="bg-[#25D366] text-white px-6 py-3 rounded font-medium hover:bg-[#1ebd5a] transition-colors"
         >
           Chat on WhatsApp now

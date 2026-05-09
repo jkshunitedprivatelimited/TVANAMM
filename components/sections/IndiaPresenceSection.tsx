@@ -3,7 +3,12 @@ export const dynamic = 'force-dynamic';
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { IndiaMapVector } from '../IndiaMapVector';
+import dynamicImport from 'next/dynamic';
+
+const IndiaMapVector = dynamicImport(() => import('../IndiaMapVector').then(mod => mod.IndiaMapVector), {
+  ssr: false,
+  loading: () => <div className="w-full h-[400px] md:h-[600px] bg-gray-50/50 animate-pulse rounded-3xl" />
+});
 
 const generatePins = () => {
   const generated = [];
@@ -116,7 +121,7 @@ export const IndiaPresenceSection = ({
   const resolvedSubtitle = subtitle;
 
   return (
-    <section className="py-12 md:py-24 bg-gray-50 relative overflow-hidden">
+    <section aria-label="Growing Across India" className="py-12 md:py-24 bg-gray-50 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-8 md:mb-16 relative z-10">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4 leading-tight px-2">
@@ -164,7 +169,6 @@ export const IndiaPresenceSection = ({
                 transition={{ delay: (i % 30) * 0.03, duration: 0.3 }}
                 viewport={{ once: true }}
                 style={{ top: pin.top, left: pin.left }}
-                title={pin.city}
               >
                 <div className="relative">
                   <div className={`${pin.size} bg-[#006437] rounded-full shadow-sm absolute -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center`} />

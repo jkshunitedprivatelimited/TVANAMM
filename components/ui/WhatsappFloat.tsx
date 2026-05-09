@@ -21,7 +21,7 @@ const WhatsAppIcon = ({ size = 30 }: { size?: number }) => (
 export function WhatsappFloat({ phone = '919390658544' }: WhatsappFloatProps) {
   return (
     <motion.a
-      href={`https://wa.me/${phone.replace(/[\s+]/g, '')}?text=Hi,%20I'm%20interested%20in%20T%20Vanamm%20franchise`}
+      href={`https://wa.me/${phone.replace(/[\s+]/g, '')}?text=Hello%20T%20VANAMM%20Team%2C%20I%20am%20interested%20in%20learning%20more%20about%20the%20T%20VANAMM%20franchise%20opportunity.%20Could%20you%20please%20share%20the%20relevant%20details%3F%20Thank%20you.`}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, scale: 0.5, y: 50 }}

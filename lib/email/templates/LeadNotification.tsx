@@ -41,6 +41,8 @@ export default function LeadNotificationEmail({
             <Text style={text}><strong>Phone:</strong> {phone}</Text>
             <Text style={text}><strong>Email:</strong> {email}</Text>
             <Text style={text}><strong>City:</strong> {city}</Text>
+            <Text style={text}><strong>Source:</strong> T VANAMM Website (tvanamm.com)</Text>
+            <Text style={text}><strong>Submitted At:</strong> {new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'full', timeStyle: 'short' })}</Text>
             <Text style={text}><strong>Message:</strong></Text>
             <Text style={{ ...text, fontStyle: 'italic', backgroundColor: '#f9f9f9', padding: '12px' }}>
               {message || 'No additional message provided.'}

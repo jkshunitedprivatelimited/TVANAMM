@@ -4,6 +4,8 @@ import { galleryPage } from './galleryPage';
 import { blogPost } from './blogPost';
 import { contactPage } from './contactPage';
 import { siteSettings } from './siteSettings';
+import { outlet } from './outlet';
+import { customerReview } from './customerReview';
 
 export const schemaTypes = [
   homePage,
@@ -12,4 +14,6 @@ export const schemaTypes = [
   blogPost,
   contactPage,
   siteSettings,
+  outlet,
+  customerReview,
 ];
