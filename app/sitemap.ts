@@ -12,9 +12,21 @@ async function getBlogSlugs(): Promise<string[]> {
   }
 }
 
+async function getProductSlugs(): Promise<string[]> {
+  try {
+    const slugs: { slug: string }[] = await client.fetch(
+      `*[_type == "product" && inStock == true]{ "slug": slug.current }`
+    );
+    return slugs.map((s) => s.slug).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://tvanamm.com';
   const blogSlugs = await getBlogSlugs();
+  const productSlugs = await getProductSlugs();
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -22,6 +34,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
+    },
+    {
+      url: `${baseUrl}/store`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
@@ -56,5 +74,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...blogPages];
+  const productPages: MetadataRoute.Sitemap = productSlugs.map((slug) => ({
+    url: `${baseUrl}/store/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...blogPages, ...productPages];
 }

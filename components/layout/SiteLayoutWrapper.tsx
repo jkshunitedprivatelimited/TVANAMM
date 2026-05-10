@@ -18,6 +18,15 @@ export function SiteLayoutWrapper({
 }) {
   const pathname = usePathname();
   const isStudio = pathname?.startsWith('/studio');
+  
+  // E-commerce routes where we want a clean, distraction-free layout
+  // (Using the dedicated StoreHeader and store footer instead)
+  const isStoreRoute = pathname?.startsWith('/store') || 
+                       pathname?.startsWith('/cart') || 
+                       pathname?.startsWith('/checkout') || 
+                       pathname?.startsWith('/account') || 
+                       pathname?.startsWith('/order-success') ||
+                       pathname?.startsWith('/admin');
 
 
   useEffect(() => {
@@ -50,14 +59,18 @@ export function SiteLayoutWrapper({
 
   return (
     <>
-      <Navbar />
+      {!isStoreRoute && <Navbar />}
       <main id="main-content" className="flex-grow">
         {children}
       </main>
-      <Footer settings={settings} />
-      <WhatsappFloat phone={settings?.whatsappNumber} />
-      <CookieConsent />
-      <FranchisePopup />
+      {!isStoreRoute && (
+        <>
+          <Footer settings={settings} />
+          <WhatsappFloat phone={settings?.whatsappNumber} />
+          <CookieConsent />
+          <FranchisePopup />
+        </>
+      )}
     </>
   );
 }

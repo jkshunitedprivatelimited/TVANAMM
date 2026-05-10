@@ -36,9 +36,6 @@ export async function generateMetadata(): Promise<Metadata> {
       title: settings?.defaultSeoTitle || "T VANAMM | India's best Premium Tea Franchise",
       description: settings?.defaultSeoDescription || "Join 250+ successful T VANAMM franchise owners across India.",
       images: settings?.defaultOgImage ? [settings.defaultOgImage] : ['/images/logo.png'],
-    },
-    alternates: {
-      canonical: '/',
     }
   };
 }

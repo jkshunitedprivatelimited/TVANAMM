@@ -86,6 +86,14 @@ export function Navbar() {
             >
               Get Franchise
             </Link>
+            <a
+              href="/store"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2.5 rounded hover:opacity-90 font-semibold transition-all bg-[#006437] text-white"
+            >
+              Order Now
+            </a>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -148,7 +156,7 @@ export function Navbar() {
                 ))}
               </nav>
 
-              <div className="mt-auto p-6 border-t border-gray-100">
+              <div className="mt-auto p-6 border-t border-gray-100 space-y-3">
                 <Link
                   href="/#franchise-enquiry"
                   onClick={(e) => {
@@ -159,6 +167,15 @@ export function Navbar() {
                 >
                   Get Franchise
                 </Link>
+                <a
+                  href="/store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex justify-center items-center w-full bg-[#006437] hover:opacity-90 transition-opacity text-white py-3 rounded-md font-semibold"
+                >
+                  Order Now
+                </a>
               </div>
             </motion.div>
           </motion.div>

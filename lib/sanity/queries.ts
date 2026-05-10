@@ -155,3 +155,201 @@ export async function getAggregateRating() {
   };
 }
 
+// ── Product Queries ─────────────────────────────────────────────
+
+export async function getAllProducts() {
+  return await client.fetch(
+    `*[_type == "product" && inStock == true] | order(_createdAt desc) {
+      _id,
+      _createdAt,
+      name,
+      slug,
+      shortDescription,
+      price,
+      salePrice,
+      sku,
+      weight,
+      tags,
+      inStock,
+      stockQuantity,
+      isFeatured,
+      "images": images[].asset->url,
+      "category": category->{
+        _id,
+        name,
+        slug
+      }
+    }`,
+    {},
+    { next: { revalidate: 30 } }
+  );
+}
+
+export async function getProductBySlug(slug: string) {
+  return await client.fetch(
+    `*[_type == "product" && slug.current == $slug][0] {
+      _id,
+      _createdAt,
+      name,
+      slug,
+      shortDescription,
+      description,
+      price,
+      salePrice,
+      sku,
+      weight,
+      tags,
+      inStock,
+      stockQuantity,
+      isFeatured,
+      "images": images[].asset->url,
+      "category": category->{
+        _id,
+        name,
+        slug
+      },
+      seoTitle,
+      seoDescription
+    }`,
+    { slug },
+    { next: { revalidate: 30 } }
+  );
+}
+
+export async function getFeaturedProducts() {
+  return await client.fetch(
+    `*[_type == "product" && isFeatured == true && inStock == true] | order(_createdAt desc)[0...8] {
+      _id,
+      name,
+      slug,
+      shortDescription,
+      price,
+      salePrice,
+      sku,
+      weight,
+      inStock,
+      stockQuantity,
+      "images": images[].asset->url,
+      "category": category->{
+        _id,
+        name,
+        slug
+      }
+    }`,
+    {},
+    { next: { revalidate: 30 } }
+  );
+}
+
+export async function getProductsByCategory(categorySlug: string) {
+  return await client.fetch(
+    `*[_type == "product" && inStock == true && category->slug.current == $categorySlug] | order(_createdAt desc) {
+      _id,
+      name,
+      slug,
+      shortDescription,
+      price,
+      salePrice,
+      sku,
+      weight,
+      tags,
+      inStock,
+      stockQuantity,
+      "images": images[].asset->url,
+      "category": category->{
+        _id,
+        name,
+        slug
+      }
+    }`,
+    { categorySlug },
+    { next: { revalidate: 30 } }
+  );
+}
+
+export async function searchProducts(searchTerm: string) {
+  return await client.fetch(
+    `*[_type == "product" && inStock == true && (
+      name match $searchTerm ||
+      shortDescription match $searchTerm ||
+      sku match $searchTerm ||
+      $searchTerm in tags
+    )] | order(_createdAt desc) {
+      _id,
+      name,
+      slug,
+      shortDescription,
+      price,
+      salePrice,
+      sku,
+      weight,
+      inStock,
+      stockQuantity,
+      "images": images[].asset->url,
+      "category": category->{
+        _id,
+        name,
+        slug
+      }
+    }`,
+    { searchTerm: `*${searchTerm}*` },
+    { next: { revalidate: 30 } }
+  );
+}
+
+// ── Product Category Queries ────────────────────────────────────
+
+export async function getAllProductCategories() {
+  return await client.fetch(
+    `*[_type == "productCategory" && isActive == true] | order(order asc) {
+      _id,
+      name,
+      slug,
+      description,
+      image,
+      order,
+      isActive
+    }`,
+    {},
+    { next: { tags: ['productCategories'] } }
+  );
+}
+
+// ── Store Banner Queries ────────────────────────────────────────
+
+export async function getActiveBanners() {
+  return await client.fetch(
+    `*[_type == "storeBanner" && isActive == true] | order(order asc) {
+      _id,
+      title,
+      subtitle,
+      image,
+      ctaText,
+      ctaLink,
+      order,
+      isActive
+    }`,
+    {},
+    { next: { tags: ['storeBanners'] } }
+  );
+}
+
+// ── Product by IDs (for cart validation) ────────────────────────
+
+export async function getProductsByIds(ids: string[]) {
+  return await client.fetch(
+    `*[_type == "product" && _id in $ids] {
+      _id,
+      name,
+      slug,
+      price,
+      salePrice,
+      sku,
+      inStock,
+      stockQuantity,
+      "images": images[0].asset->url
+    }`,
+    { ids },
+    { next: { revalidate: 0 } }
+  );
+}

@@ -6,6 +6,9 @@ import { contactPage } from './contactPage';
 import { siteSettings } from './siteSettings';
 import { outlet } from './outlet';
 import { customerReview } from './customerReview';
+import { product } from './product';
+import { productCategory } from './productCategory';
+import { storeBanner } from './storeBanner';
 
 export const schemaTypes = [
   homePage,
@@ -16,4 +19,8 @@ export const schemaTypes = [
   siteSettings,
   outlet,
   customerReview,
+  // E-Commerce
+  product,
+  productCategory,
+  storeBanner,
 ];
