@@ -71,12 +71,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
         <div className="p-6 border-b border-gray-100">
           <Link href="/admin" className="flex items-center gap-3">
             <Image
-              src="/images/logo_gif.gif"
+              src="/images/logo.png"
               alt="T VANAMM Logo"
               width={40}
               height={40}
               className="rounded-lg"
-              unoptimized
             />
             <div>
               <p className="font-bold text-gray-900 text-sm">T VANAMM</p>

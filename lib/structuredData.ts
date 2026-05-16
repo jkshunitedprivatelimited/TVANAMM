@@ -8,7 +8,7 @@ export async function generateStructuredData() {
   const settings = await getSiteSettings();
 
   const siteUrl = 'https://tvanamm.com';
-  const logoUrl = `${siteUrl}/images/logo_gif.gif`;
+  const logoUrl = `${siteUrl}/images/logo.png`;
   const email = settings?.email || 'tvanamm@gmail.com';
   const phone = settings?.whatsappNumber
     ? `+${settings.whatsappNumber}`

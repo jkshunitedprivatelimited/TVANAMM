@@ -30,13 +30,11 @@ export function StoreHeader() {
               <ArrowLeft size={20} />
             </Link>
             <Link href="/store" className="flex items-center gap-2" aria-label="T VANAMM Store">
-              <Image
-                src="/images/logo_gif.gif"
+                src="/images/logo.png"
                 alt="T VANAMM"
                 width={40}
                 height={40}
                 className="object-contain"
-                unoptimized
               />
               <div className="hidden sm:flex flex-col">
                 <span className="font-playfair font-bold text-lg text-[#006437] leading-tight">

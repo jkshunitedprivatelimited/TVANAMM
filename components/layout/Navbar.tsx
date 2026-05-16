@@ -50,12 +50,11 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0 transition-transform hover:scale-105 group" aria-label="T VANAMM — Go to homepage">
             <Image 
-              src="/images/logo_gif.gif" 
+              src="/images/logo.png" 
               alt="T VANAMM Logo" 
               width={55} 
               height={55} 
               className="object-contain w-10 h-10 md:w-[55px] md:h-[55px]" 
-              unoptimized
             />
             <Image 
               src="/images/gif_left_pic.png" 

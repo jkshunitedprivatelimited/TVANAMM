@@ -142,13 +142,12 @@ export const IndiaPresenceSection = ({
           {/* Animated Badge top right of the India Map   outside overflow hidden */}
           <div className="absolute -top-12 md:-top-8 lg:-top-4 right-0 md:-right-4 lg:-right-16 z-20 pointer-events-none bg-white rounded-full shadow-lg p-2 md:p-3 border border-gray-100 flex items-center justify-center">
             <Image 
-              src="/images/logo_gif.gif" 
+              src="/images/logo.png" 
               alt="T VANAMM Badge" 
               width={120} 
               height={120} 
               style={{ height: 'auto' }}
               className="object-contain rounded-full w-16 h-16 md:w-[120px] md:h-[120px]" 
-              unoptimized
             />
           </div>
 

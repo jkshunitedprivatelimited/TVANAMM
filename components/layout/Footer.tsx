@@ -50,12 +50,11 @@ export function Footer({ settings }: FooterProps) {
           >
             <Link href="/" className="flex items-center gap-3 transition-transform hover:scale-105 group" aria-label="T VANAMM — Go to homepage">
               <Image
-                src="/images/logo_gif.gif"
+                src="/images/logo.png"
                 alt="T VANAMM Logo"
                 width={50}
                 height={50}
                 className="object-contain"
-                unoptimized
               />
               <div className="flex flex-col">
                 <span className="font-playfair font-bold text-2xl tracking-wide text-[#006437]" itemProp="name">

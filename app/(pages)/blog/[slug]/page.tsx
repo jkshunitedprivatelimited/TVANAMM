@@ -85,7 +85,7 @@ export default async function BlogPostPage({ params }: Props) {
       name: 'T VANAMM',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://tvanamm.com/images/logo_gif.gif'
+        url: 'https://tvanamm.com/images/logo.png'
       }
     },
     description: post.excerpt

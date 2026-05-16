@@ -44,7 +44,7 @@ export function CustomerReviewsSection({
     '@type': 'LocalBusiness',
     '@id': 'https://tvanamm.com/#reviews',
     name: 'T VANAMM',
-    image: 'https://tvanamm.com/images/logo_gif.gif',
+    image: 'https://tvanamm.com/images/logo.png',
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: String(aggregate.averageRating),
