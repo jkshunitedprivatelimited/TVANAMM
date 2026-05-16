@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import {
   Package,
@@ -421,10 +422,12 @@ function ProfileTab({ user }: { user: { fullName: string; email: string; phone: 
     <div className="bg-white rounded-xl border border-gray-100 p-6">
       <div className="flex items-center gap-4 mb-6">
         {user.avatarUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={user.avatarUrl}
-            alt={user.fullName}
+            alt={user.fullName || 'User Avatar'}
+            width={64}
+            height={64}
+            unoptimized
             className="w-16 h-16 rounded-full object-cover border-2 border-[#006437]"
           />
         ) : (

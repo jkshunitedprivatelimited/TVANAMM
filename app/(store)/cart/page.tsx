@@ -5,6 +5,11 @@ import { CartPageClient } from '@/components/store/CartPageClient';
 export const metadata: Metadata = {
   title: 'Cart | T VANAMM Store',
   description: 'Review your cart items before checkout.',
+  alternates: { canonical: '/cart' },
+  openGraph: {
+    title: 'Cart | T VANAMM Store',
+    description: 'Review your cart items before checkout.',
+  },
 };
 
 export default function CartPage() {

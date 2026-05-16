@@ -11,18 +11,7 @@ export function HeroSection({
   headline?: string;
   subtext?: string;
 }) {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 }
-    }
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-  };
+  // CSS animations used instead of Framer Motion to prevent FCP delays
 
   return (
     <section aria-label="Hero" className="relative w-full h-[100svh] md:h-screen min-h-[600px] flex items-start justify-center pt-16 md:pt-20 bg-[#006437] overflow-hidden">
@@ -46,15 +35,9 @@ export function HeroSection({
       
       {/* Top Text Content */}
       <div className="container relative z-10 px-4 mx-auto text-center mt-4">
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-4xl mx-auto"
-        >
-          <motion.h1 
-            variants={itemVariants}
-            className="text-[1.9rem] xs:text-[2.2rem] sm:text-4xl md:text-6xl lg:text-7xl font-playfair font-bold mb-6 leading-[1.2] md:leading-tight max-w-4xl mx-auto"
+        <div className="max-w-4xl mx-auto">
+          <h1 
+            className="animate-fade-in-up opacity-0 text-[1.9rem] xs:text-[2.2rem] sm:text-4xl md:text-6xl lg:text-7xl font-playfair font-bold mb-6 leading-[1.2] md:leading-tight max-w-4xl mx-auto"
           >
             <span className="sr-only">T VANAMM — </span>
             {headline?.includes("Premium Tea Franchise") ? (
@@ -69,17 +52,14 @@ export function HeroSection({
             ) : (
               headline?.replace(/\n/g, ' ')
             )}
-          </motion.h1>
-        </motion.div>
+          </h1>
+        </div>
       </div>
 
       {/* Subtitle and Buttons */}
       <div className="absolute bottom-[140px] md:bottom-32 left-1/2 -translate-x-1/2 w-full z-10 px-4 flex flex-col items-center gap-6 md:gap-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-          className="text-center"
+        <div
+          className="text-center animate-fade-in-up-delay-1 opacity-0"
         >
           <p className="text-[12px] xs:text-[13px] sm:text-[15px] md:text-xl text-white font-semibold leading-relaxed [text-shadow:_0_2px_6px_rgba(0,0,0,0.7),_0_1px_2px_rgba(0,0,0,0.5)]">
             <span className="block">Join 250+ successful franchise owners across India.</span>
@@ -87,13 +67,10 @@ export function HeroSection({
               Build your business with <span className="font-extrabold tracking-wide">T VANAMM</span>
             </span>
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full"
+        <div 
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full animate-fade-in-up-delay-2 opacity-0"
         >
           <Link
             href="#franchise-enquiry"
@@ -107,7 +84,7 @@ export function HeroSection({
           >
             Explore Our Story
           </Link>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}

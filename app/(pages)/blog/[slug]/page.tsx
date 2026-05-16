@@ -21,8 +21,13 @@ async function getPost(slug: string) {
   `, { slug });
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
   
   if (!post) {
     return { title: 'Post Not Found | T VANAMM' };
@@ -31,7 +36,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${post.title} | T VANAMM Blog`,
     description: post.excerpt || 'Read the latest insights and updates from T VANAMM.',
-    alternates: { canonical: `/blog/${params.slug}` },
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -43,8 +48,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = await getPost(slug);
 
   if (!post) {
     return (

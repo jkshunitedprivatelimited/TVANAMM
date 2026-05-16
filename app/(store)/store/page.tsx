@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       'Browse and order premium teas, coffees, and beverages from T VANAMM.',
   },
+  alternates: { canonical: '/store' },
 };
 
 export default async function StorePage() {

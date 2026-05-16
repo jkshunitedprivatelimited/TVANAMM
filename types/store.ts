@@ -20,8 +20,7 @@ export interface Product {
   name: string;
   slug: { current: string };
   shortDescription?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  description?: any[]; // Portable Text blocks
+  description?: Record<string, unknown>[]; // Portable Text blocks
   category: ProductCategory;
   weight?: string;
   tags?: string[];

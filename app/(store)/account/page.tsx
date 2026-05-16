@@ -6,6 +6,11 @@ import { StoreHeader } from '@/components/store/StoreHeader';
 export const metadata: Metadata = {
   title: 'My Account | T VANAMM Store',
   description: 'View your orders, manage addresses, and update your profile.',
+  alternates: { canonical: '/account' },
+  openGraph: {
+    title: 'My Account | T VANAMM Store',
+    description: 'View your orders, manage addresses, and update your profile.',
+  },
 };
 
 export default function AccountPage() {

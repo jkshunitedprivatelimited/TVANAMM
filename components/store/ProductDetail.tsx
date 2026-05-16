@@ -14,8 +14,7 @@ interface ProductData {
   name: string;
   slug: { current: string };
   shortDescription?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  description?: any[];
+  description?: Record<string, unknown>[];
   price: number;
   salePrice?: number;
   sku: string;

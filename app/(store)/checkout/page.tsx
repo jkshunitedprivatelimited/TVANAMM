@@ -5,6 +5,11 @@ import { CheckoutClient } from '@/components/store/CheckoutClient';
 export const metadata: Metadata = {
   title: 'Checkout | T VANAMM Store',
   description: 'Complete your order and pay securely via Razorpay.',
+  alternates: { canonical: '/checkout' },
+  openGraph: {
+    title: 'Checkout | T VANAMM Store',
+    description: 'Complete your order and pay securely via Razorpay.',
+  },
 };
 
 export default function CheckoutPage() {

@@ -5,6 +5,7 @@ import { SiteLayoutWrapper } from "@/components/layout/SiteLayoutWrapper";
 import { Analytics } from "@/components/layout/Analytics";
 import { getSiteSettings } from "@/lib/sanity/queries";
 import { generateStructuredData } from "@/lib/structuredData";
+import { SiteSettingsData } from '@/components/layout/Footer';
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair', display: 'swap' });
@@ -68,8 +69,7 @@ export default async function RootLayout({
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.webSite) }}
           />
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          <SiteLayoutWrapper settings={settings as any}>
+          <SiteLayoutWrapper settings={settings as SiteSettingsData}>
             {children}
           </SiteLayoutWrapper>
           <Analytics />

@@ -5,11 +5,12 @@ import { StoreHeader } from '@/components/store/StoreHeader';
 import { ProductDetailClient } from '@/components/store/ProductDetail';
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const product = await getProductBySlug(params.slug);
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
   if (!product) return { title: 'Product Not Found' };
 
   return {
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       description: product.shortDescription || product.name,
       images: product.images?.[0] ? [{ url: product.images[0] }] : [],
     },
+    alternates: { canonical: `/store/${slug}` },
   };
 }
 
@@ -34,7 +36,8 @@ export async function generateStaticParams() {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await getProductBySlug(params.slug);
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();

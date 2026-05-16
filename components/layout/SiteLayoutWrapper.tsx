@@ -4,9 +4,11 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsappFloat } from "@/components/ui/WhatsappFloat";
-import { CookieConsent } from "@/components/ui/CookieConsent";
-import { FranchisePopup } from "@/components/modals/FranchisePopup";
+import dynamic from 'next/dynamic';
+
+const WhatsappFloat = dynamic(() => import('@/components/ui/WhatsappFloat').then(mod => mod.WhatsappFloat), { ssr: false });
+const CookieConsent = dynamic(() => import('@/components/ui/CookieConsent').then(mod => mod.CookieConsent), { ssr: false });
+const FranchisePopup = dynamic(() => import('@/components/modals/FranchisePopup').then(mod => mod.FranchisePopup), { ssr: false });
 import { SiteSettingsData } from '@/components/layout/Footer';
 
 export function SiteLayoutWrapper({ 

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { User, LogOut, Package, MapPin } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
+import Image from 'next/image';
 
 /**
  * Account dropdown menu — shown in navbar when user is logged in.
@@ -39,10 +40,12 @@ export function AccountMenu() {
         aria-haspopup="true"
       >
         {user.avatarUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={user.avatarUrl}
-            alt={user.fullName}
+            alt={user.fullName || 'User Avatar'}
+            width={32}
+            height={32}
+            unoptimized
             className="w-8 h-8 rounded-full object-cover border-2 border-[#006437]"
           />
         ) : (

@@ -56,7 +56,7 @@ function getEmbedUrl(url: string | undefined) {
     videoId = url.split("embed/")[1].split("?")[0];
   }
   // enablejsapi=1 is REQUIRED to pause the video programmatically via postMessage
-  return videoId ? `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0` : url;
+  return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}?enablejsapi=1&rel=0` : url;
 }
 
 function isInstagramUrl(url?: string) {
@@ -107,6 +107,7 @@ function VideoCard({
           scrolling={isInsta ? "no" : "auto"}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
+          loading="lazy"
         ></iframe>
 
         {/* Transparent click-intercepting overlay on inactive videos */}
