@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { razorpay } from '@/lib/razorpay/client';
+import { getRazorpay } from '@/lib/razorpay/client';
 import { supabaseAdmin } from '@/lib/supabase/server';
 import { createClient } from '@supabase/supabase-js';
 import { getProductsByIds } from '@/lib/sanity/queries';
@@ -149,7 +149,7 @@ export async function POST(request: Request) {
     const orderNumber = orderNumResult || `TV-${Date.now()}`;
 
     // Step 5: Create Razorpay order
-    const razorpayOrder = await razorpay.orders.create({
+    const razorpayOrder = await getRazorpay().orders.create({
       amount: totalPaise,
       currency: 'INR',
       receipt: orderNumber,

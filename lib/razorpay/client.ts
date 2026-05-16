@@ -1,14 +1,29 @@
 import Razorpay from 'razorpay';
 
-if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
-  console.warn('[Razorpay] Missing RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET — payments will fail.');
-}
+let _razorpay: Razorpay | null = null;
 
 /**
- * Server-side Razorpay instance.
+ * Lazy-initialized server-side Razorpay instance.
  * ONLY use in API routes — never expose key_secret to client.
+ * 
+ * Lazy init prevents build-time crashes when env vars
+ * are not yet available (e.g. during Vercel static generation).
  */
-export const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID || '',
-  key_secret: process.env.RAZORPAY_KEY_SECRET || '',
-});
+export function getRazorpay(): Razorpay {
+  if (!_razorpay) {
+    const keyId = process.env.RAZORPAY_KEY_ID;
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+    if (!keyId || !keySecret) {
+      throw new Error(
+        '[Razorpay] Missing RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET. Payments cannot be processed.'
+      );
+    }
+
+    _razorpay = new Razorpay({
+      key_id: keyId,
+      key_secret: keySecret,
+    });
+  }
+  return _razorpay;
+}
