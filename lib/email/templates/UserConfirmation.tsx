@@ -43,8 +43,7 @@ export default function UserConfirmationEmail({
             In the meantime, we invite you to follow us on Instagram to stay updated with the latest developments from T VANAMM:
           </Text>
           <Text style={text}>
-            • <Link href="https://instagram.com/tvanamm.info" style={link}>@tvanamm.info</Link><br/>
-            • <Link href="https://instagram.com/tvanamm.official" style={link}>@tvanamm.official</Link>
+            • <Link href="https://instagram.com/tvanammofficial" style={link}>@tvanammofficial</Link>
           </Text>
           
           <Hr style={hr} />

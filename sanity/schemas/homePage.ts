@@ -124,7 +124,7 @@ export const homePage = {
           type: 'object',
           fields: [
             { name: 'isVideo', title: 'Is Video Testimonial?', type: 'boolean' },
-            { name: 'youtubeUrl', title: 'YouTube Embed URL', type: 'url', hidden: ({parent}: {parent: {isVideo?: boolean}}) => !parent?.isVideo },
+            { name: 'youtubeUrl', title: 'Video URL (YouTube or Instagram)', type: 'url', hidden: ({parent}: {parent: {isVideo?: boolean}}) => !parent?.isVideo },
             { name: 'quote', title: 'Quote', type: 'text', hidden: ({parent}: {parent: {isVideo?: boolean}}) => parent?.isVideo },
             { name: 'ownerName', title: 'Owner Name', type: 'string' },
             { name: 'city', title: 'City', type: 'string' },

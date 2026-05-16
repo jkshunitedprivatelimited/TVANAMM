@@ -27,7 +27,7 @@ interface FooterProps {
 export function Footer({ settings }: FooterProps) {
   const whatsappNumber = settings?.whatsappNumber || '919390658544';
   const email = settings?.email || 'tvanamm@gmail.com';
-  const instagramHandles = settings?.instagramHandles || ['tvanamm.info', 'tvanamm.official'];
+  const instagramHandles = settings?.instagramHandles || ['tvanammofficial'];
   const address = settings?.address || 'Floor #4, Flat No. #406, Alluri Trade Center, Near KPHB Metro (Pillar #761), Hyderabad, Telangana - 500072';
   const businessHours = settings?.businessHours || 'Mon - Sat:\n10:00 AM - 6:00 PM IST';
   const telecallers = settings?.telecallerNumbers || [];
@@ -38,7 +38,7 @@ export function Footer({ settings }: FooterProps) {
     : `+${whatsappNumber}`;
 
   return (
-    <footer className="bg-white text-gray-800 pt-16 pb-8 border-t border-gray-100" role="contentinfo">
+    <footer className="bg-white text-gray-800 pt-16 pb-28 md:pb-8 border-t border-gray-100" role="contentinfo">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
 

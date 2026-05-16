@@ -21,6 +21,25 @@ const nextConfig = {
     ],
     dangerouslyAllowSVG: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/the-benefits-of-refreshing-drinks-hydration-flavor-and-beyond',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/10-healthy-juice-recipes-to-boost-your-immune-system',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/how-to-snack-smart-tips-for-healthy-and-fulfilling-snack-choices',
+        destination: '/blog',
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

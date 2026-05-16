@@ -56,6 +56,7 @@ export function HeroSection({
             variants={itemVariants}
             className="text-[1.9rem] xs:text-[2.2rem] sm:text-4xl md:text-6xl lg:text-7xl font-playfair font-bold mb-6 leading-[1.2] md:leading-tight max-w-4xl mx-auto"
           >
+            <span className="sr-only">T VANAMM — </span>
             {headline?.includes("Premium Tea Franchise") ? (
               <div className="flex flex-col gap-1 md:block">
                 <span className="text-white block md:inline whitespace-nowrap drop-shadow-lg [text-shadow:_0_0_10px_rgba(255,255,255,0.8),_0_0_25px_rgba(255,255,255,0.4),_0_0_50px_rgba(255,255,255,0.2)]">India&apos;s Best</span>
@@ -72,41 +73,42 @@ export function HeroSection({
         </motion.div>
       </div>
 
-      {/* Subtitle below the cup */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-        className="absolute bottom-[230px] md:bottom-[200px] left-0 w-full z-10 px-4 text-center"
-      >
-        <p className="text-[15px] sm:text-base md:text-xl text-white font-semibold leading-relaxed [text-shadow:_0_2px_6px_rgba(0,0,0,0.7),_0_1px_2px_rgba(0,0,0,0.5)]">
-          <span className="block">Join 250+ successful franchise owners across India.</span>
-          <span className="block">
-            Build your business with <span className="font-extrabold tracking-wide">T VANAMM</span>
-          </span>
-        </p>
-      </motion.div>
+      {/* Subtitle and Buttons */}
+      <div className="absolute bottom-[140px] md:bottom-32 left-1/2 -translate-x-1/2 w-full z-10 px-4 flex flex-col items-center gap-6 md:gap-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          className="text-center"
+        >
+          <p className="text-[12px] xs:text-[13px] sm:text-[15px] md:text-xl text-white font-semibold leading-relaxed [text-shadow:_0_2px_6px_rgba(0,0,0,0.7),_0_1px_2px_rgba(0,0,0,0.5)]">
+            <span className="block">Join 250+ successful franchise owners across India.</span>
+            <span className="block">
+              Build your business with <span className="font-extrabold tracking-wide">T VANAMM</span>
+            </span>
+          </p>
+        </motion.div>
 
-      {/* Buttons */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-        className="absolute bottom-[140px] md:bottom-32 left-0 w-full z-10 px-4 flex flex-col sm:flex-row items-center justify-center gap-4"
-      >
-        <Link
-          href="#franchise-enquiry"
-          className="w-[260px] max-w-[90vw] px-8 py-4 bg-[#C8A96E] hover:bg-[#b5952f] text-white font-bold tracking-wide rounded transition-all shadow-[0_4px_20px_rgba(212,175,55,0.4)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.6)] text-lg text-center border border-[#C8A96E]/30"
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full"
         >
-          Enquire Now
-        </Link>
-        <Link
-          href="/about"
-          className="w-[260px] max-w-[90vw] px-8 py-4 bg-white text-[#006437] hover:bg-gray-100 font-bold tracking-wide rounded transition-all shadow-[0_4px_20px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_30px_rgba(255,255,255,0.5)] text-lg text-center"
-        >
-          Explore Our Story
-        </Link>
-      </motion.div>
+          <Link
+            href="#franchise-enquiry"
+            className="w-[260px] max-w-[90vw] px-8 py-4 bg-[#C8A96E] hover:bg-[#b5952f] text-white font-bold tracking-wide rounded transition-all shadow-[0_4px_20px_rgba(212,175,55,0.4)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.6)] text-lg text-center border border-[#C8A96E]/30"
+          >
+            Enquire Now
+          </Link>
+          <Link
+            href="/about"
+            className="w-[260px] max-w-[90vw] px-8 py-4 bg-white text-[#006437] hover:bg-gray-100 font-bold tracking-wide rounded transition-all shadow-[0_4px_20px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_30px_rgba(255,255,255,0.5)] text-lg text-center"
+          >
+            Explore Our Story
+          </Link>
+        </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.div 
@@ -115,7 +117,7 @@ export function HeroSection({
         transition={{ delay: 1.5, duration: 1 }}
         className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-10"
       >
-        <span className="text-white text-sm mb-2 font-medium tracking-widest uppercase [text-shadow:_0_1px_3px_rgba(0,0,0,0.8)]">Scroll</span>
+        <span className="text-white text-sm mb-2 font-medium tracking-widest uppercase pl-[0.1em] [text-shadow:_0_1px_3px_rgba(0,0,0,0.8)]">Scroll</span>
         <motion.div 
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}

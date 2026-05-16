@@ -86,6 +86,7 @@ export function Navbar() {
             >
               Get Franchise
             </Link>
+            {/* Temporarily paused e-commerce
             <a
               href="/store"
               target="_blank"
@@ -94,6 +95,7 @@ export function Navbar() {
             >
               Order Now
             </a>
+            */}
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -167,6 +169,7 @@ export function Navbar() {
                 >
                   Get Franchise
                 </Link>
+                {/* Temporarily paused e-commerce
                 <a
                   href="/store"
                   target="_blank"
@@ -176,6 +179,7 @@ export function Navbar() {
                 >
                   Order Now
                 </a>
+                */}
               </div>
             </motion.div>
           </motion.div>

@@ -116,7 +116,7 @@ function MarqueeWall({
               >
                 <Image
                   src={item.src}
-                  alt={item.title || `Product ${i + 1}`}
+                  alt={item.title || `T VANAMM ${item.category || 'Gallery'} image ${i + 1}`}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 768px) 200px, (max-width: 1024px) 280px, 320px"
@@ -276,7 +276,7 @@ export function GalleryClient({ initialImages }: GalleryClientProps) {
               className="relative max-w-5xl max-h-[90vh] w-full h-full rounded-2xl overflow-hidden cursor-default" 
               onClick={e => e.stopPropagation()}
             >
-               <Image src={selectedImage} alt="Expanded" fill sizes="100vw" className="object-contain" />
+               <Image src={selectedImage} alt="T VANAMM gallery image — full view" fill sizes="100vw" className="object-contain" />
                <button 
                  onClick={() => setSelectedImage(null)} 
                  className="absolute top-4 right-4 bg-white/20 hover:bg-white text-white hover:text-black w-10 h-10 rounded-full flex items-center justify-center transition-colors"

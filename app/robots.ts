@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/studio/'],
+      disallow: ['/api/', '/studio/', '/admin/', '/cart/', '/checkout/', '/account/', '/order-success/'],
     },
     sitemap: 'https://tvanamm.com/sitemap.xml',
   };

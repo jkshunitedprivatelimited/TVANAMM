@@ -39,8 +39,7 @@ export async function generateStructuredData() {
       addressCountry: 'IN',
     },
     sameAs: [
-      'https://instagram.com/tvanamm.info',
-      'https://instagram.com/tvanamm.official',
+      'https://instagram.com/tvanammofficial',
     ],
     foundingDate: '2023',
     numberOfEmployees: {

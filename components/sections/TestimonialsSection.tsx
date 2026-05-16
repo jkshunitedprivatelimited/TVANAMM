@@ -1,21 +1,27 @@
 'use client';
 
-import { useRef, useEffect, useCallback, useMemo, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useRef, useCallback } from 'react';
 
 const defaultTestimonials = [
   {
     isVideo: true,
-    youtubeUrl: "https://youtu.be/F-n05TjRr08?si=aHqa5eXIhDijJfkC",
-    ownerName: "Partner 1",
-    city: "Hyderabad",
+    youtubeUrl: "https://www.instagram.com/reel/DUGSbnRkuUC/?igsh=aDEybGFhczY1ODdk",
+    ownerName: "Franchise Partner",
+    city: "India",
     outletName: "T VANAMM Outlet"
   },
   {
     isVideo: true,
-    youtubeUrl: "https://youtu.be/7nbAyv48x_M?si=bAHckm8KOTqlE3HM",
-    ownerName: "Partner 2",
-    city: "Chennai",
+    youtubeUrl: "https://www.instagram.com/reel/DUC7FSmkUGG/?igsh=MjZyM2c0eHdtb3Jj",
+    ownerName: "Franchise Partner",
+    city: "India",
+    outletName: "T VANAMM Outlet"
+  },
+  {
+    isVideo: true,
+    youtubeUrl: "https://www.instagram.com/reel/DTFixOVEW_j/?igsh=MXU5aWM5eTM5MmdyOA==",
+    ownerName: "Franchise Partner",
+    city: "India",
     outletName: "T VANAMM Outlet"
   }
 ];
@@ -29,9 +35,18 @@ export interface Testimonial {
   outletName: string;
 }
 
-// Utility to reliably parse YouTube URLs and inject the Javascript API
-function getYouTubeEmbedUrl(url: string | undefined) {
+// Utility to reliably parse YouTube and Instagram URLs for embedding
+function getEmbedUrl(url: string | undefined) {
   if (!url) return "";
+  
+  if (url.includes("instagram.com")) {
+    const match = url.match(/(?:p|reel)\/([A-Za-z0-9_-]+)/);
+    if (match && match[1]) {
+      return `https://www.instagram.com/reel/${match[1]}/embed`;
+    }
+    return url;
+  }
+
   let videoId = "";
   if (url.includes("youtu.be/")) {
     videoId = url.split("youtu.be/")[1].split("?")[0];
@@ -44,155 +59,210 @@ function getYouTubeEmbedUrl(url: string | undefined) {
   return videoId ? `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0` : url;
 }
 
+function isInstagramUrl(url?: string) {
+  return url?.includes("instagram.com");
+}
+
 /* ===================================================================
-   VIDEO CAROUSEL
+   SINGLE VIDEO CARD (always shows preview, click to activate)
    =================================================================== */
-function VideoCarousel({ videos }: { videos: Testimonial[] }) {
-  const total = videos.length;
-  // Clone first and last slides for infinite loop trick
-  const slides = useMemo(
-    () => [videos[total - 1], ...videos, videos[0]],
-    [videos, total]
-  );
+function VideoCard({
+  testimonial,
+  uniqueId,
+  activeVideoId,
+  onActivate,
+}: {
+  testimonial: Testimonial;
+  uniqueId: string;
+  activeVideoId: string | null;
+  onActivate: (id: string) => void;
+}) {
+  const isInsta = isInstagramUrl(testimonial.youtubeUrl);
+  const isActive = activeVideoId === uniqueId;
 
-  // State to track if we should still be auto-playing
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  
-  const trackRef = useRef<HTMLDivElement>(null);
-  const indexRef = useRef(1);
-  const animatingRef = useRef(false);
-  
-  // Store refs to all iframes so we can pause them programmatically
-  const iframeRefs = useRef<(HTMLIFrameElement | null)[]>([]);
+  // Track a reset counter. When the video transitions from active → inactive,
+  // we increment this, which changes the iframe key and forces React to
+  // destroy + re-create the iframe (stopping playback, restoring preview).
+  const resetCountRef = useRef(0);
+  const wasActiveRef = useRef(false);
 
-  // Function to smoothly pause the video via YouTube Iframe API
-  const stopVideo = useCallback((index: number) => {
-    const iframe = iframeRefs.current[index];
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
-        '*'
-      );
-    }
-  }, []);
+  if (wasActiveRef.current && !isActive) {
+    // Just went from active → inactive: bump reset counter
+    resetCountRef.current += 1;
+  }
+  wasActiveRef.current = isActive;
 
-  const moveTo = useCallback((idx: number, animate: boolean) => {
-    const track = trackRef.current;
-    if (!track) return;
-    
-    if (animate) {
-      track.style.transition = 'transform 700ms cubic-bezier(0.4, 0, 0.2, 1)';
-      animatingRef.current = true;
-    } else {
-      track.style.transition = 'none';
-    }
-    
-    track.style.transform = `translateX(-${idx * 100}%)`;
-    indexRef.current = idx;
-  }, []);
-
-  const onEnd = useCallback((e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.target !== trackRef.current) return;
-    animatingRef.current = false;
-    
-    const idx = indexRef.current;
-    // Instantly jump to the real slide if we landed on a clone
-    if (idx >= total + 1) {
-      moveTo(1, false);
-    } else if (idx <= 0) {
-      moveTo(total, false);
-    }
-  }, [total, moveTo]);
-
-  // Permanently stop autoplay when the user interacts
-  const handleInteract = useCallback(() => {
-    setIsAutoPlaying(false);
-  }, []);
-
-  const next = useCallback(() => {
-    handleInteract(); // Stop autoplay if user manually clicks
-    if (animatingRef.current) return;
-    stopVideo(indexRef.current);
-    moveTo(indexRef.current + 1, true);
-  }, [moveTo, stopVideo, handleInteract]);
-
-  const prev = useCallback(() => {
-    handleInteract(); // Stop autoplay if user manually clicks
-    if (animatingRef.current) return;
-    stopVideo(indexRef.current);
-    moveTo(indexRef.current - 1, true);
-  }, [moveTo, stopVideo, handleInteract]);
-
-  // Set initial position
-  useEffect(() => {
-    moveTo(1, false); 
-  }, [moveTo]);
-
-  // Auto-play interval
-  useEffect(() => {
-    // If user has interacted, don't run the timer
-    if (!isAutoPlaying) return;
-    
-    const timer = setInterval(() => {
-      if (!animatingRef.current) {
-        stopVideo(indexRef.current);
-        moveTo(indexRef.current + 1, true);
-      }
-    }, 4000); // Slides every 4 seconds
-    
-    return () => clearInterval(timer);
-  }, [isAutoPlaying, moveTo, stopVideo]);
+  const iframeKey = `${uniqueId}-${resetCountRef.current}`;
 
   return (
-    <div 
-      className="relative"
-      onMouseEnter={handleInteract} // Stop autoplay on desktop hover
-      onTouchStart={handleInteract} // Stop autoplay on mobile tap
-    >
-      <div className="flex items-center justify-end mb-4">
-        <div className="flex gap-2">
-          <button onClick={prev} aria-label="Previous Video" className="p-2 rounded-full bg-white shadow hover:bg-[#006437] hover:text-white transition-colors text-[#006437]">
-            <ChevronLeft size={20} />
-          </button>
-          <button onClick={next} aria-label="Next Video" className="p-2 rounded-full bg-white shadow hover:bg-[#006437] hover:text-white transition-colors text-[#006437]">
-            <ChevronRight size={20} />
-          </button>
-        </div>
-      </div>
+    <div className={`bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 transition-shadow ${isActive ? 'shadow-xl ring-2 ring-[#006437]/20' : ''} ${isInsta ? 'w-[260px]' : 'w-[280px] md:w-[400px]'}`}>
+      <div className={`w-full ${isInsta ? 'aspect-[9/16]' : 'aspect-video'} bg-gray-200 overflow-hidden relative`}>
+        {/* Always render the iframe so Instagram's own preview/thumbnail is visible */}
+        <iframe
+          key={iframeKey}
+          className="absolute top-0 left-0 w-full h-full"
+          src={getEmbedUrl(testimonial.youtubeUrl)}
+          title={`Testimonial from ${testimonial.ownerName}`}
+          frameBorder="0"
+          scrolling={isInsta ? "no" : "auto"}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></iframe>
 
-      <div className="overflow-hidden rounded-2xl max-w-3xl mx-auto touch-pan-y">
-        <div
-          ref={trackRef}
-          className="flex will-change-transform"
-          style={{ backfaceVisibility: 'hidden' }}
-          onTransitionEnd={onEnd}
-        >
-          {slides.map((testimonial, i) => (
+        {/* Transparent click-intercepting overlay on inactive videos */}
+        {!isActive && (
+          <button
+            type="button"
+            className="absolute inset-0 z-10 w-full h-full cursor-pointer bg-transparent focus:outline-none"
+            onClick={() => onActivate(uniqueId)}
+            aria-label={`Play video from ${testimonial.ownerName}`}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ===================================================================
+   VIDEO CAROUSEL (Mobile: Snap Scroll, Desktop: Continuous Scroll)
+   Separated into two containers to avoid CSS conflicts that cause glitches.
+   =================================================================== */
+function VideoCarousel({ videos }: { videos: Testimonial[] }) {
+  // Track which video is currently active/playing — null means none
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+
+  const handleActivate = useCallback((id: string) => {
+    setActiveVideoId((prev) => {
+      if (prev === id) return null;
+      return id;
+    });
+
+    // Pause marquee when a video is playing
+    if (marqueeRef.current) {
+      marqueeRef.current.style.animationPlayState = 'paused';
+    }
+  }, []);
+
+  // When mouse leaves the entire carousel and no video is active, resume marquee
+  const handleMouseLeave = useCallback(() => {
+    if (marqueeRef.current && !activeVideoId) {
+      marqueeRef.current.style.animationPlayState = 'running';
+    }
+  }, [activeVideoId]);
+
+  // When mouse enters, always pause marquee so user can browse
+  const handleMouseEnter = useCallback(() => {
+    if (marqueeRef.current) {
+      marqueeRef.current.style.animationPlayState = 'paused';
+    }
+  }, []);
+
+  return (
+    <>
+      {/* ── MOBILE: horizontal snap scroll (below md) ── */}
+      <div className="md:hidden overflow-hidden py-4">
+        <div className="flex gap-4 pb-4 overflow-x-auto snap-x snap-mandatory px-4 mobile-scroll-hide">
+          {videos.map((testimonial, i) => (
             <div
-              key={`vid-${i}`}
-              className="w-full shrink-0 px-2"
-              style={{ backfaceVisibility: 'hidden' }}
+              key={`mob-${i}`}
+              className="shrink-0 snap-center"
             >
-              <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100">
-                <div className="w-full aspect-video bg-gray-200 overflow-hidden relative">
-                  <iframe
-                    ref={(el) => {
-                      iframeRefs.current[i] = el;
-                    }}
-                    className="absolute top-0 left-0 w-full h-full"
-                    src={getYouTubeEmbedUrl(testimonial.youtubeUrl)}
-                    title={`Testimonial from ${testimonial.ownerName}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </div>
+              <VideoCard
+                testimonial={testimonial}
+                uniqueId={`mob-${i}`}
+                activeVideoId={activeVideoId}
+                onActivate={handleActivate}
+              />
             </div>
           ))}
         </div>
       </div>
-    </div>
+
+      {/* ── DESKTOP: continuous marquee (md and above) ── */}
+      <div
+        className="hidden md:block overflow-hidden max-w-6xl mx-auto py-4"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div
+          ref={marqueeRef}
+          className="desktop-marquee-track"
+        >
+          {/* Set 1 (original) */}
+          {videos.map((testimonial, i) => (
+            <div
+              key={`dt1-${i}`}
+              className="shrink-0"
+            >
+              <VideoCard
+                testimonial={testimonial}
+                uniqueId={`dt1-${i}`}
+                activeVideoId={activeVideoId}
+                onActivate={handleActivate}
+              />
+            </div>
+          ))}
+          {/* Set 2 (duplicate for seamless loop) */}
+          {videos.map((testimonial, i) => (
+            <div
+              key={`dt2-${i}`}
+              className="shrink-0"
+              aria-hidden="true"
+            >
+              <VideoCard
+                testimonial={testimonial}
+                uniqueId={`dt2-${i}`}
+                activeVideoId={activeVideoId}
+                onActivate={handleActivate}
+              />
+            </div>
+          ))}
+          {/* Set 3 (extra duplicate to fill viewport gap) */}
+          {videos.map((testimonial, i) => (
+            <div
+              key={`dt3-${i}`}
+              className="shrink-0"
+              aria-hidden="true"
+            >
+              <VideoCard
+                testimonial={testimonial}
+                uniqueId={`dt3-${i}`}
+                activeVideoId={activeVideoId}
+                onActivate={handleActivate}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        .mobile-scroll-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .mobile-scroll-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+        .desktop-marquee-track {
+          display: flex;
+          gap: 1.5rem;
+          width: max-content;
+          will-change: transform;
+          animation: marquee-smooth 30s linear infinite;
+        }
+
+        @keyframes marquee-smooth {
+          0% {
+            transform: translate3d(0, 0, 0);
+          }
+          100% {
+            transform: translate3d(-33.33%, 0, 0);
+          }
+        }
+      `}</style>
+    </>
   );
 }
 
@@ -217,20 +287,24 @@ function CustomerReviewsGrid() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {customerVideos.map((url, i) => (
-            <div key={i} className="bg-white p-2 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="w-full aspect-video bg-gray-200 rounded-xl overflow-hidden relative">
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full"
-                  src={getYouTubeEmbedUrl(url)}
-                  title={`Customer Review ${i + 1}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
+          {customerVideos.map((url, i) => {
+            const isInsta = isInstagramUrl(url);
+            return (
+              <div key={i} className="bg-white p-2 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className={`w-full ${isInsta ? 'aspect-[9/16]' : 'aspect-video'} bg-gray-200 rounded-xl overflow-hidden relative`}>
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src={getEmbedUrl(url)}
+                    title={`Customer Review ${i + 1}`}
+                    frameBorder="0"
+                    scrolling={isInsta ? "no" : "auto"}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

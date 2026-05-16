@@ -51,7 +51,7 @@ export async function GET(request: Request) {
 
 const updateSchema = z.object({
   key: z.string().min(1),
-  value: z.record(z.unknown()),
+  value: z.record(z.string(), z.unknown()),
 });
 
 /**

@@ -18,6 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: data?.metaTitle || 'T VANAMM',
     description: data?.metaDescription || 'Join T VANAMM, India\'s fastest growing tea and coffee franchise with 250+ outlets.',
+    alternates: { canonical: '/' },
   };
 }
 
