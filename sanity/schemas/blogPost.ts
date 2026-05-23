@@ -17,7 +17,7 @@ export const blogPost = {
         maxLength: 96,
       },
     },
-    {
+    {//
       name: 'category',
       title: 'Category',
       type: 'string',
