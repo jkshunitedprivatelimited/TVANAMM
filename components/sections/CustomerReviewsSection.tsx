@@ -73,14 +73,23 @@ export function CustomerReviewsSection({
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
 
 
+        {/* ─── Google Reviews Heading ─────────── */}
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-[#006437] mb-4 leading-tight px-2">
+            Google <span className="text-[#C8A96E]">Reviews</span>
+          </h2>
+          <div className="w-24 h-1 bg-[#C8A96E] mx-auto rounded-full" />
+        </div>
 
-        {/* ─── Elfsight Google Reviews Widget (Live) ─────────── */}
+        {/* ─── EmbedSocial Google Reviews Widget (Live) ─────────── */}
         <div className="max-w-6xl mx-auto mb-10 md:mb-14">
-          <Script src="https://elfsightcdn.com/platform.js" strategy="lazyOnload" />
-          <div
-            className="elfsight-app-2b9eb488-4a20-4ad3-83e2-fb9ef5e8e4a3"
-            data-elfsight-app-lazy
-          ></div>
+          <div className="embedsocial-hashtag" data-ref="35647b01f93415641149d193ff63467723ad7106" data-dynamicload="yes" data-lazyload="yes">
+            <a className="feed-powered-by-es feed-powered-by-es-feed-img es-widget-branding" href="https://embedsocial.com/google-reviews-widget/" target="_blank" title="Embed Google reviews">
+              <img src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp" alt="EmbedSocial" />
+              <div className="es-widget-branding-text">Embed Google reviews</div>
+            </a>
+          </div>
+          <Script id="EmbedSocialHashtagScript" src="https://embedsocial.com/cdn/ht.js" strategy="lazyOnload" />
         </div>
 
         {/* ─── Trust Badges (Below the widget) ───────────────── */}

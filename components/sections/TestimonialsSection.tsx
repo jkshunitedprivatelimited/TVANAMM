@@ -270,6 +270,43 @@ function VideoCarousel({ videos }: { videos: Testimonial[] }) {
 /* ===================================================================
    CUSTOMER REVIEWS GRID
    =================================================================== */
+
+function GridVideoCard({ url, i }: { url: string; i: number }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const isInsta = isInstagramUrl(url);
+
+  let videoId = "";
+  if (!isInsta && url.includes("youtu.be/")) videoId = url.split("youtu.be/")[1].split("?")[0];
+  else if (!isInsta && url.includes("watch?v=")) videoId = url.split("watch?v=")[1].split("&")[0];
+
+  return (
+    <div className="bg-white p-2 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+      <div className={`w-full ${isInsta ? 'aspect-[9/16]' : 'aspect-video'} bg-gray-200 rounded-xl overflow-hidden relative`}>
+        {(!isPlaying && !isInsta && videoId) ? (
+          <div className="absolute inset-0 cursor-pointer group" onClick={() => setIsPlaying(true)}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} alt="Video thumbnail" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+            </div>
+          </div>
+        ) : (
+          <iframe
+            className="absolute top-0 left-0 w-full h-full"
+            src={getEmbedUrl(url) + (isPlaying ? "&autoplay=1" : "")}
+            title={`Customer Review ${i + 1}`}
+            frameBorder="0"
+            scrolling={isInsta ? "no" : "auto"}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function CustomerReviewsGrid() {
   const customerVideos = [
     "https://youtu.be/zmuOPzwAiGI?si=_EUPo2zwCA6JVOGR",
@@ -288,24 +325,9 @@ function CustomerReviewsGrid() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {customerVideos.map((url, i) => {
-            const isInsta = isInstagramUrl(url);
-            return (
-              <div key={i} className="bg-white p-2 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <div className={`w-full ${isInsta ? 'aspect-[9/16]' : 'aspect-video'} bg-gray-200 rounded-xl overflow-hidden relative`}>
-                  <iframe
-                    className="absolute top-0 left-0 w-full h-full"
-                    src={getEmbedUrl(url)}
-                    title={`Customer Review ${i + 1}`}
-                    frameBorder="0"
-                    scrolling={isInsta ? "no" : "auto"}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </div>
-            );
-          })}
+          {customerVideos.map((url, i) => (
+            <GridVideoCard key={i} url={url} i={i} />
+          ))}
         </div>
       </div>
     </section>

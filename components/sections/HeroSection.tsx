@@ -37,7 +37,7 @@ export function HeroSection({
       <div className="container relative z-10 px-4 mx-auto text-center mt-4">
         <div className="max-w-4xl mx-auto">
           <h1 
-            className="animate-fade-in-up opacity-0 text-[1.9rem] xs:text-[2.2rem] sm:text-4xl md:text-6xl lg:text-7xl font-playfair font-bold mb-6 leading-[1.2] md:leading-tight max-w-4xl mx-auto"
+            className="animate-fade-in-up text-[1.9rem] xs:text-[2.2rem] sm:text-4xl md:text-6xl lg:text-7xl font-playfair font-bold mb-6 leading-[1.2] md:leading-tight max-w-4xl mx-auto"
           >
             <span className="sr-only">T VANAMM — </span>
             {headline?.includes("Premium Tea Franchise") ? (
@@ -59,7 +59,7 @@ export function HeroSection({
       {/* Subtitle and Buttons */}
       <div className="absolute bottom-[140px] md:bottom-32 left-1/2 -translate-x-1/2 w-full z-10 px-4 flex flex-col items-center gap-6 md:gap-8">
         <div
-          className="text-center animate-fade-in-up-delay-1 opacity-0"
+          className="text-center animate-fade-in-up-delay-1"
         >
           <p className="text-[12px] xs:text-[13px] sm:text-[15px] md:text-xl text-white font-semibold leading-relaxed [text-shadow:_0_2px_6px_rgba(0,0,0,0.7),_0_1px_2px_rgba(0,0,0,0.5)]">
             <span className="block">Join 250+ successful franchise owners across India.</span>
@@ -70,7 +70,7 @@ export function HeroSection({
         </div>
 
         <div 
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full animate-fade-in-up-delay-2 opacity-0"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full animate-fade-in-up-delay-2"
         >
           <Link
             href="#franchise-enquiry"

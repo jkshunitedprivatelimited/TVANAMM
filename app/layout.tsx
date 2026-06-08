@@ -37,6 +37,10 @@ export async function generateMetadata(): Promise<Metadata> {
       title: settings?.defaultSeoTitle || "T VANAMM | India's best Premium Tea Franchise",
       description: settings?.defaultSeoDescription || "Join 250+ successful T VANAMM franchise owners across India.",
       images: settings?.defaultOgImage ? [settings.defaultOgImage] : ['/images/logo.png'],
+    },
+    icons: {
+      icon: '/icon.png',
+      apple: '/apple-icon.png',
     }
   };
 }
@@ -51,6 +55,11 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+        <link rel="preconnect" href="https://embedsocial.com" />
+      </head>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-gray-900 bg-white min-h-screen flex flex-col`}>
           {/* Skip to main content — Accessibility */}
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-[#006437] focus:text-white focus:px-4 focus:py-2 focus:rounded focus:font-semibold">
